@@ -18,17 +18,61 @@ export class CoronaCasesApiService extends BaseApiService {
     /**
      * Fetches cases by country name.
      */
-    public getCasesByCountry(countryName: string): Observable<any> {
+    public getCasesByCountryId(countryId: number): Observable<any> {
         const url = this.API_URL;
         const requestParams = {
             'params': {
-                'country': countryName
+                'country': String(countryId)
             }
         };
 
         if (!environment.production) {
             return this._httpClient
                 .get(environment.apiMockBaseUrl + '/cases-by-country.json', requestParams)
+                .pipe(map(this.retrieveData));
+        }
+
+        return this._httpClient
+            .get(url, requestParams)
+            .pipe(map(this.retrieveData));
+    }
+
+    /**
+     * Fetches cases by country name.
+     */
+    public getCasesByTimelineTotal(countryId: number): Observable<any> {
+        const url = this.API_URL;
+        const requestParams = {
+            'params': {
+                'country': String(countryId)
+            }
+        };
+
+        if (!environment.production) {
+            return this._httpClient
+                .get(environment.apiMockBaseUrl + '/timeline-total.json', requestParams)
+                .pipe(map(this.retrieveData));
+        }
+
+        return this._httpClient
+            .get(url, requestParams)
+            .pipe(map(this.retrieveData));
+    }
+
+    /**
+     * Fetches cases by country name.
+     */
+    public getCasesByTimelineWorld(countryId: number): Observable<any> {
+        const url = this.API_URL;
+        const requestParams = {
+            'params': {
+                'country': String(countryId)
+            }
+        };
+
+        if (!environment.production) {
+            return this._httpClient
+                .get(environment.apiMockBaseUrl + '/timeline-world.json', requestParams)
                 .pipe(map(this.retrieveData));
         }
 

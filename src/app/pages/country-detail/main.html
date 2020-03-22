@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                {{ selectedCountry.name }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <app-cases-line-chart [chartData]="casesByDay"></app-cases-line-chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <app-cases-text-title [translationKey]="'Total confirmed'"
+                                  [value]="latestData.confirmed">
+            </app-cases-text-title>
+            <app-cases-text-title [translationKey]="'Total deaths'"
+                                  [value]="latestData.deaths">
+            </app-cases-text-title>
+            <app-cases-text-title [translationKey]="'Total recovered'"
+                                  [value]="latestData.recovered">
+            </app-cases-text-title>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,13 @@
 <ngx-datatable class="material"
+               headerHeight="50"
+               footerHeight="50"
+               rowHeight="auto"
                [rows]="rows"
                [loadingIndicator]="loadingIndicator"
                [columns]="columns"
                [columnMode]="ColumnMode.force"
-               headerHeight="50"
-               footerHeight="50"
-               rowHeight="auto"
-               [reorderable]="reorderable">
+               [reorderable]="reorderable"
+               [selected]="selected"
+               [selectionType]="SelectionType.single"
+               (select)="onSelectCountry($event.selected)">
 </ngx-datatable>

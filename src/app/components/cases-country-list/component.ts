@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ColumnMode } from '@swimlane/ngx-datatable';
+import { Router } from '@angular/router';
+import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { CoronaCasesApiService } from '@app/services/apis';
 
 @Component({
@@ -9,6 +10,7 @@ import { CoronaCasesApiService } from '@app/services/apis';
 })
 export class CasesCountryListComponent {
     rows = [];
+    selected = [];
     loadingIndicator = true;
     reorderable = true;
     columns = [
@@ -21,19 +23,24 @@ export class CasesCountryListComponent {
         }, {
             name: 'Deaths',
             prop: 'deaths',
-            sortable: false
         }, {
             name: 'Recovered',
             prop: 'recovered',
-            sortable: false
         }
     ];
     ColumnMode = ColumnMode;
+    SelectionType = SelectionType;
 
     constructor(
+        public readonly _router: Router,
         public readonly coronaCasesApiService: CoronaCasesApiService
     ) {
         this.fetchCases();
+    }
+
+    public onSelectCountry(selectedElements: any): void {
+        const country = selectedElements[0];
+        this._router.navigate(['/country/1']);
     }
 
     private fetchCases(): void {

@@ -1,11 +1,37 @@
 {
-    "id": 1,
-    "name": "Austria",
-    "confirmed": 3000,
-    "deaths": 300,
-    "recovered": 400,
-    "delta_confirmed": "2700",
-    "delta_recovered": "2600",
-    "lat": 47.5162,
-    "long": 14.5501
+    "country": {
+        "id": 1,
+        "name": "Austria"
+    },
+    "data": [{
+        "id": 1,
+        "date": "2020-03-18",
+        "confirmed": 2000,
+        "deaths": 200,
+        "recovered": 300
+    }, {
+        "id": 2,
+        "date": "2020-03-19",
+        "confirmed": 2000,
+        "deaths": 200,
+        "recovered": 300
+    }, {
+        "id": 3,
+        "date": "2020-03-20",
+        "confirmed": 2000,
+        "deaths": 200,
+        "recovered": 300
+    }, {
+        "id": 4,
+        "date": "2020-03-21",
+        "confirmed": 2000,
+        "deaths": 200,
+        "recovered": 300
+    }, {
+        "id": 6,
+        "date": "2020-03-22",
+        "confirmed": 3000,
+        "deaths": 300,
+        "recovered": 400
+    }]
 }
