@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import * as Pages from '@app/pages';
+import * as Components from '@app/components';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
     ],
     declarations: [
         AppComponent,
+        Components.NavbarComponent,
         Pages.DashboardPage,
         Pages.Error404Page,
     ],
