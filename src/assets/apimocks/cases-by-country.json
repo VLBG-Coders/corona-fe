@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "name": "Austria",
+    "confirmed": 3000,
+    "deaths": 300,
+    "recovered": 400,
+    "delta_confirmed": "2700",
+    "delta_recovered": "2600",
+    "lat": 47.5162,
+    "long": 14.5501
+}
