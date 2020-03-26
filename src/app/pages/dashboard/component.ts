@@ -1,5 +1,7 @@
+import { last } from 'lodash';
 import { Component, OnInit } from '@angular/core';
 import { CoronaCasesApiService } from '@app/services/apis';
+import { DailyCasesModel } from '@app/models';
 
 @Component({
     selector: 'app-pages-dashboard',
@@ -10,13 +12,14 @@ export class DashboardPage implements OnInit {
     public casesByDay = [];
     public casesTimelineWorld = [];
     public casesTimelineTotal = [];
+    public latestData: DailyCasesModel = new DailyCasesModel;
 
     constructor(
         public readonly coronaCasesApiService: CoronaCasesApiService
     ) { }
 
     ngOnInit() {
-        //this.fetchCasesByDay();
+        this.fetchCasesByDay();
         this.fetchCasesByTimelineWorld();
         this.fetchCasesByTimelineTotal();
     }
@@ -25,6 +28,7 @@ export class DashboardPage implements OnInit {
         this.coronaCasesApiService.getCasesByDays().subscribe(
             response => {
                 this.casesByDay = response;
+                this.latestData = last(response);
             }
         );
     }

@@ -1,4 +1,23 @@
-<ngx-datatable class="material"
+<div class="row">
+    <div class="col-12">
+        <label for="">Find your country</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="filterCountryName"
+                   (keyup)="filterCountries($event)" />
+        </div>
+    </div>
+
+</div>
+
+<ngx-datatable #dataTable
+               class="dark"
                headerHeight="50"
                footerHeight="50"
                rowHeight="auto"

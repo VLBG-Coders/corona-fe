@@ -1,3 +1,4 @@
+import { filter } from 'lodash';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
@@ -9,6 +10,7 @@ import { CoronaCasesApiService } from '@app/services/apis';
     styleUrls: ['./styles.scss']
 })
 export class CasesCountryListComponent {
+    _rows = [];
     rows = [];
     selected = [];
     loadingIndicator = true;
@@ -30,6 +32,7 @@ export class CasesCountryListComponent {
     ];
     ColumnMode = ColumnMode;
     SelectionType = SelectionType;
+    filterCountryName = null;
 
     constructor(
         public readonly _router: Router,
@@ -43,11 +46,22 @@ export class CasesCountryListComponent {
         this._router.navigate(['/country/1']);
     }
 
+    public filterCountries(): void {
+        const countryName = this.filterCountryName.toLowerCase();
+
+        this.rows = filter(this._rows, (item) => {
+            let itemName = item.name.toLowerCase();
+
+            return itemName.includes(countryName);
+        });
+    }
+
     private fetchCases(): void {
         this.loadingIndicator = true;
 
         this.coronaCasesApiService.getCasesByCountries().subscribe(
             response => {
+                this._rows = response;
                 this.rows = response;
                 this.loadingIndicator = false;
             }

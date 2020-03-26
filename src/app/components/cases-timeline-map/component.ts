@@ -43,7 +43,7 @@ export class CasesTimelineMapComponent {
     }
 
     ngOnChanges() {
-        if (!isEmpty(this.chartDataCountry) || !isEmpty(this.chartDataTotal)) {
+        if (!isEmpty(this.chartDataCountry) && !isEmpty(this.chartDataTotal)) {
             this.createTimelineMap();
         }
     }

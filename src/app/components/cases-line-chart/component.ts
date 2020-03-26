@@ -2,7 +2,9 @@ import { AfterViewInit, Component, NgZone, Input, OnChanges, OnDestroy } from '@
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
+am4core.useTheme(am4themes_dark);
 am4core.useTheme(am4themes_animated);
 
 @Component({
@@ -55,9 +57,9 @@ export class CasesLineChartComponent implements AfterViewInit, OnDestroy, OnChan
         valueAxis.tooltip.disabled = true;
         valueAxis.renderer.minWidth = 35;
 
-        let confirmed = chart.series.push(this.getSeries(chart, 'date', 'confirmed'));
-        let deaths = chart.series.push(this.getSeries(chart, 'date', 'deaths'));
-        let recovered = chart.series.push(this.getSeries(chart, 'date', 'recovered'));
+        let confirmed = chart.series.push(this.getSeries(chart, 'date', 'confirmed', '#d21a1a'));
+        let deaths = chart.series.push(this.getSeries(chart, 'date', 'deaths', '#1c5fe5'));
+        let recovered = chart.series.push(this.getSeries(chart, 'date', 'recovered', '#45d21a'));
 
         let scrollbarX = new am4charts.XYChartScrollbar();
         scrollbarX.series.push(confirmed);
@@ -69,13 +71,14 @@ export class CasesLineChartComponent implements AfterViewInit, OnDestroy, OnChan
         this.chart = chart;
     }
 
-    private getSeries(chart, valueX: string, valueY: string): am4charts.LineSeries {
+    private getSeries(chart, valueX: string, valueY: string, color: string): am4charts.LineSeries {
         let series = new am4charts.LineSeries();
         series.dataFields.dateX = valueX;
         series.dataFields.valueY = valueY;
         series.strokeWidth = 2;
         series.minBulletDistance = 15;
         series.tooltipText = '{valueY}';
+        series.stroke = am4core.color(color);
         chart.cursor = new am4charts.XYCursor();
 
         // Make bullets grow on hover
