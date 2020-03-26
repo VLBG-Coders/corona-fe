@@ -46,7 +46,7 @@ export class CasesCountryListComponent {
         this._router.navigate(['/country/1']);
     }
 
-    public filterCountries(): void {
+    public filterCountries(event: any): void {
         const countryName = this.filterCountryName.toLowerCase();
 
         this.rows = filter(this._rows, (item) => {
