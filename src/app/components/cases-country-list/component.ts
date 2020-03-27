@@ -21,13 +21,25 @@ export class CasesCountryListComponent {
             prop: 'name',
         }, {
             name: 'Confirmed',
-            prop: 'deaths',
+            prop: 'confirmed',
+        }, {
+            name: '%',
+            prop: 'confirmedPrev',
         }, {
             name: 'Deaths',
             prop: 'deaths',
         }, {
+            name: '%',
+            prop: 'deathsPrev',
+        }, {
             name: 'Recovered',
             prop: 'recovered',
+        }, {
+            name: '%',
+            prop: 'recoveredPrev',
+        }, {
+            name: 'Immunity',
+            prop: 'recoveredPrev',
         }
     ];
     ColumnMode = ColumnMode;

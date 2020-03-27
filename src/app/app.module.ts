@@ -42,6 +42,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
         Components.CasesMapChartComponent,
         Components.CasesTextTileComponent,
         Components.CasesTimelineMapComponent,
+        Components.GeoMapCountryComponent,
         Components.NavbarComponent,
         Pages.CountryDetailPage,
         Pages.DashboardPage,

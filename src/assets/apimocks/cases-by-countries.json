@@ -2,32 +2,44 @@
     "id": 1,
     "name": "Austria",
     "confirmed": 3000,
+    "confirmedPrev": 2500,
     "deaths": 300,
+    "deathsPrev": 180,
     "recovered": 400,
+    "recoveredPrev": 300,
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
     "id": 1,
     "name": "Deutschland",
     "confirmed": 3000,
+    "confirmedPrev": 2500,
     "deaths": 300,
+    "deathsPrev": 180,
     "recovered": 400,
+    "recoveredPrev": 300,
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
     "id": 1,
     "name": "Schweiz",
     "confirmed": 3000,
+    "confirmedPrev": 2500,
     "deaths": 300,
+    "deathsPrev": 180,
     "recovered": 400,
+    "recoveredPrev": 300,
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
     "id": 1,
     "name": "Italien",
     "confirmed": 3000,
+    "confirmedPrev": 2500,
     "deaths": 300,
+    "deathsPrev": 180,
     "recovered": 400,
+    "recoveredPrev": 300,
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }]

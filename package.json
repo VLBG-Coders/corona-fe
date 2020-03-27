@@ -30,6 +30,7 @@
         "@ngx-translate/http-loader": "^4.0.0",
         "@swimlane/ngx-datatable": "^16.0.3",
         "bootstrap": "^4.4.1",
+        "country-json": "^1.1.0",
         "hammerjs": "^2.0.8",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
