@@ -1,3 +1,13 @@
+<div class="container-fuild">
+    <div class="row mb-5">
+        <div class="col-12">
+            <app-geo-map-country [countryCode]="countryCode"
+                                 (selectedCountry)="onCountrySelected($event)">
+            </app-geo-map-country>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -8,29 +18,44 @@
     </div>
 
     <div class="row mb-5">
-        <div class="col-12">
-            <app-geo-map-country></app-geo-map-country>
+        <div class="col-4">
+            <app-cases-text-title [translationKey]="'Total confirmed'"
+                                  [value]="latestData.confirmed">
+            </app-cases-text-title>
+        </div>
+
+        <div class="col-4">
+            <app-cases-text-title [translationKey]="'Total deaths'"
+                                  [value]="latestData.deaths">
+            </app-cases-text-title>
+        </div>
+
+        <div class="col-4">
+            <app-cases-text-title [translationKey]="'Total recovered'"
+                                  [value]="latestData.recovered">
+            </app-cases-text-title>
         </div>
     </div>
 
     <div class="row mb-5">
-        <div class="col-8">
+        <h3>The Curve</h3>
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <app-cases-line-chart [chartData]="casesByDay"></app-cases-line-chart>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <app-cases-text-title [translationKey]="'Total confirmed'"
-                                  [value]="latestData.confirmed">
-            </app-cases-text-title>
-            <app-cases-text-title [translationKey]="'Total deaths'"
-                                  [value]="latestData.deaths">
-            </app-cases-text-title>
-            <app-cases-text-title [translationKey]="'Total recovered'"
-                                  [value]="latestData.recovered">
-            </app-cases-text-title>
+    </div>
+
+    <div class="row mb-5">
+        <h3>New cases</h3>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <app-cases-bar-chart [chartData]="casesByDay"></app-cases-bar-chart>
+                </div>
+            </div>
         </div>
     </div>
 </div>

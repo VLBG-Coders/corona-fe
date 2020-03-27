@@ -1,1 +1,35 @@
 @import '../../../assets/scss/variables';
+
+.country-list-compact {
+    .country-list-compact-item {
+        border-bottom: 1px solid;
+        padding: 5px 0;
+
+        .country-details {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .country-flag {
+            width: 35px;
+            margin-right: 10px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                max-height: 15px;
+            }
+        }
+
+        .country-name {
+            font-size: 1rem;
+        }
+
+        .country-trend {}
+
+        .country-cases {
+            width: 100%;
+            text-align: right;
+        }
+    }
+}

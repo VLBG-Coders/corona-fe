@@ -1,5 +1,5 @@
 import { last } from 'lodash';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CoronaCasesApiService } from '@app/services/apis';
 import { DailyCasesModel } from '@app/models';
 

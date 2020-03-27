@@ -11,7 +11,7 @@ const routes: Routes = [
         path: 'dashboard',
         component: Pages.DashboardPage
     }, {
-        path: 'country/:countryId',
+        path: 'country/:countryCode',
         component: Pages.CountryDetailPage
     }, {
         path: '404',

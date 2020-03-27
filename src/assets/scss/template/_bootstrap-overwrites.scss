@@ -1,4 +1,6 @@
 .card {
+    @include box-shadow(0 1px 25px -1px rgba(0, 0, 0, 0.05));
     background: $main-structure-background;
     border-color: rgba($main-body-background, 0.05);
+    border-radius: 15px;
 }

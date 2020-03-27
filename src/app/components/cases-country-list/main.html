@@ -1,32 +1,72 @@
-<div class="row">
-    <div class="col-12">
-        <label for="">Find your country</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div class="input-group-text">
-                    <i class="fas fa-search"></i>
+<ng-container *ngIf="viewMode === 'compact'">
+    <div class="country-list-compact">
+        <div class="country-list-compact-item"
+             *ngFor="let country of countries"
+             (click)="onSelectCountryByCode(country.country.code)">
+            <div class="country-details d-flex align-items-center">
+                <div class="country-flag">
+                    <img [src]="country.country.flag"
+                         *ngIf="country.country.flag" />
+                </div>
+                <div class="country-name">
+                    {{ country.country.name }}
+                </div>
+                <div class="country-trend ml-auto">
+                    <span class="trend-percentage mr-1">
+                        -15%
+                    </span>
+                    <i class="fas"
+                       [class.fa-caret-up]="country.confirmed > country.confirmedPrev"
+                       [class.fa-caret-right]="country.confirmed === country.confirmedPrev"
+                       [class.fa-caret-down]="country.confirmed < country.confirmedPrev">
+                    </i>
                 </div>
             </div>
-            <input type="text"
-                   class="form-control"
-                   [(ngModel)]="filterCountryName"
-                   (keyup)="filterCountries($event)" />
+            <div class="country-cases">
+                {{ country.confirmed }}
+            </div>
         </div>
     </div>
+</ng-container>
 
-</div>
+<ng-container *ngIf="viewMode === 'table'">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <label for="">Find your country</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                        <input type="text"
+                               class="form-control"
+                               [(ngModel)]="filterCountryName"
+                               (keyup)="filterCountries($event)" />
+                    </div>
+                </div>
+            </div>
 
-<ngx-datatable #dataTable
-               class="dark"
-               headerHeight="50"
-               footerHeight="50"
-               rowHeight="auto"
-               [rows]="rows"
-               [loadingIndicator]="loadingIndicator"
-               [columns]="columns"
-               [columnMode]="ColumnMode.force"
-               [reorderable]="reorderable"
-               [selected]="selected"
-               [selectionType]="SelectionType.single"
-               (select)="onSelectCountry($event.selected)">
-</ngx-datatable>
+            <div class="row">
+                <div class="col-12">
+                    <ngx-datatable #dataTable
+                                   class="bootstrap"
+                                   headerHeight="50"
+                                   footerHeight="50"
+                                   rowHeight="auto"
+                                   [rows]="countries"
+                                   [loadingIndicator]="loadingIndicator"
+                                   [columns]="columns"
+                                   [columnMode]="ColumnMode.force"
+                                   [reorderable]="reorderable"
+                                   [selected]="selected"
+                                   [selectionType]="SelectionType.single"
+                                   (select)="onSelectCountry($event.selected)">
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

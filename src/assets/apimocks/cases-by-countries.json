@@ -1,7 +1,10 @@
 [{
-    "id": 1,
-    "name": "Austria",
-    "confirmed": 3000,
+    "country": {
+        "id": 1,
+        "name": "Austria",
+        "code": "AT"
+    },
+    "confirmed": 7196,
     "confirmedPrev": 2500,
     "deaths": 300,
     "deathsPrev": 180,
@@ -10,9 +13,12 @@
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
-    "id": 1,
-    "name": "Deutschland",
-    "confirmed": 3000,
+    "country": {
+        "id": 2,
+        "name": "Germany",
+        "code": "DE"
+    },
+    "confirmed": 47278,
     "confirmedPrev": 2500,
     "deaths": 300,
     "deathsPrev": 180,
@@ -21,9 +27,12 @@
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
-    "id": 1,
-    "name": "Schweiz",
-    "confirmed": 3000,
+    "country": {
+        "id": 3,
+        "name": "Switzerland",
+        "code": "CH"
+    },
+    "confirmed": 11811,
     "confirmedPrev": 2500,
     "deaths": 300,
     "deathsPrev": 180,
@@ -32,9 +41,12 @@
     "delta_confirmed": "2700",
     "delta_recovered": "2600"
 }, {
-    "id": 1,
-    "name": "Italien",
-    "confirmed": 3000,
+    "country": {
+        "id": 4,
+        "name": "Italy",
+        "code": "IT"
+    },
+    "confirmed": 80589,
     "confirmedPrev": 2500,
     "deaths": 300,
     "deathsPrev": 180,

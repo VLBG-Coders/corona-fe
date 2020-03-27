@@ -14,6 +14,8 @@ am4core.useTheme(am4themes_animated);
     styleUrls: ['./styles.scss']
 })
 export class CasesTimelineMapComponent {
+    public readonly COMPONENT_ID = 'Chart-Id-' + Math.random().toString(36).substring(2) + new Date().getTime();
+
     @Input()
     public chartDataCountry = null;
 
@@ -49,7 +51,7 @@ export class CasesTimelineMapComponent {
     }
 
     private createChartContainer(): void {
-        let container = am4core.create('timelineChart', am4core.Container);
+        let container = am4core.create(this.COMPONENT_ID, am4core.Container);
         container.width = am4core.percent(100);
         container.height = am4core.percent(100);
         container.background.fill = am4core.color('#1e2128');

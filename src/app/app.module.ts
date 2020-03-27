@@ -37,6 +37,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
     ],
     declarations: [
         AppComponent,
+        Components.CasesBarChartComponent,
         Components.CasesCountryListComponent,
         Components.CasesLineChartComponent,
         Components.CasesMapChartComponent,

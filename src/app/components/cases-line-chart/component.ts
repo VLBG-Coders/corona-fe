@@ -1,39 +1,21 @@
 import { AfterViewInit, Component, NgZone, Input, OnChanges, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import am4themes_dark from "@amcharts/amcharts4/themes/dark";
-
-am4core.useTheme(am4themes_dark);
-am4core.useTheme(am4themes_animated);
+import { ChartBase } from '../chart-base';
 
 @Component({
     selector: 'app-cases-line-chart',
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesLineChartComponent implements AfterViewInit, OnDestroy, OnChanges {
-    public chart: am4charts.XYChart = null;
-
+export class CasesLineChartComponent extends ChartBase implements OnChanges {
     @Input()
     public chartData = null;
 
     constructor(
-        private _ngZone: NgZone
-    ) { }
-
-    ngAfterViewInit() {
-        this._ngZone.runOutsideAngular(() => {
-            this.createLineChart();
-        });
-    }
-
-    ngOnDestroy() {
-        this._ngZone.runOutsideAngular(() => {
-            if (this.chart) {
-                this.chart.dispose();
-            }
-        });
+        public readonly _ngZone: NgZone
+    ) {
+        super(_ngZone);
     }
 
     ngOnChanges() {
@@ -45,8 +27,8 @@ export class CasesLineChartComponent implements AfterViewInit, OnDestroy, OnChan
     /**
      *
      */
-    private createLineChart(): void {
-        let chart = am4core.create('chartdiv', am4charts.XYChart);
+    public createChart(): void {
+        let chart = am4core.create(this.COMPONENT_ID, am4charts.XYChart);
         chart.paddingRight = 20;
         chart.data = [];
 
@@ -85,9 +67,9 @@ export class CasesLineChartComponent implements AfterViewInit, OnDestroy, OnChan
         let bullet = series.bullets.push(new am4charts.CircleBullet());
         bullet.circle.strokeWidth = 2;
         bullet.circle.radius = 4;
-        bullet.circle.fill = am4core.color("#fff");
+        bullet.circle.fill = am4core.color('#fff');
 
-        let bullethover = bullet.states.create("hover");
+        let bullethover = bullet.states.create('hover');
         bullethover.properties.scale = 1.3;
 
         return series;
