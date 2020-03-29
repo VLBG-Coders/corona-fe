@@ -2,23 +2,43 @@
 
 ::ng-deep{
     .cases-text-card-tile {
+        position: relative;
+        min-height: 120px;
+
         .content {
-            width: 100%;
-        }
+            position: absolute;
+            width: calc(100% - 2.5rem);
+            height: 100%;
+            z-index: 2;
 
-        .label {
-            font-size: 16px;
-        }
+            .label {
+                font-size: 16px;
+            }
 
-        .number {
-            width: 100%;
-            font-size: 1.5vw;
-            text-align: right;
+            .trend {
+                .trend-percentage {
+                    font-size: 12px;
+                    font-weight: 700;
+                }
+
+                .icon {
+                    font-size: 20px;
+                }
+            }
+
+            .number {
+                width: 100%;
+                font-size: 30px;
+                font-weight: 700;
+            }
         }
 
         .mini-line-chart {
-            width: 100%;
-            height: 60px;
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - 2.5rem);
+            height: 80px;
+            z-index: 1;
 
             svg {
                 g[aria-labelledby$="-title"] {

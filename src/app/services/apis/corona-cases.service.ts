@@ -101,6 +101,23 @@ export class CoronaCasesApiService extends BaseApiService {
     /**
      * Fetches cases by days.
      */
+    public getTotalCasesWorldwide(): Observable<any> {
+        const url = this.API_URL;
+
+        if (!environment.production) {
+            return this._httpClient
+                .get(environment.apiMockBaseUrl + '/cases-by-world.json')
+                .pipe(map(this.retrieveData));
+        }
+
+        return this._httpClient
+            .get(url)
+            .pipe(map(this.retrieveData));
+    }
+
+    /**
+     * Fetches cases by days.
+     */
     public getCasesByDays(fromDate?: string): Observable<any> {
         const url = this.API_URL;
         const requestParams = {

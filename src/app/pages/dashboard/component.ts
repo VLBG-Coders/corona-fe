@@ -1,7 +1,5 @@
-import { last } from 'lodash';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CoronaCasesApiService } from '@app/services/apis';
-import { DailyCasesModel } from '@app/models';
 
 @Component({
     selector: 'app-pages-dashboard',
@@ -9,41 +7,58 @@ import { DailyCasesModel } from '@app/models';
     styleUrls: ['./styles.scss']
 })
 export class DashboardPage implements OnInit {
-    public casesByDay = [];
-    public casesTimelineWorld = [];
-    public casesTimelineTotal = [];
-    public latestData: DailyCasesModel = new DailyCasesModel;
+    public totalCasesWorldwide: any = null;
+    public totalCasesCountries = [];
+    public casesByDayWorldwide = [];
 
     constructor(
         public readonly coronaCasesApiService: CoronaCasesApiService
     ) { }
 
     ngOnInit() {
+        this.fetchCasesByCountries();
+        this.fetchTotalCasesWorldwide();
         this.fetchCasesByDay();
-        this.fetchCasesByTimelineWorld();
-        this.fetchCasesByTimelineTotal();
     }
 
     private fetchCasesByDay(): void {
         this.coronaCasesApiService.getCasesByDays().subscribe(
             response => {
-                this.casesByDay = response;
-                this.latestData = last(response);
+                this.casesByDayWorldwide = response;
             }
         );
     }
 
-    private fetchCasesByTimelineWorld(): void {
-        this.coronaCasesApiService.getCasesByTimelineWorld(null).subscribe(
+    /**
+     *
+     */
+    private fetchCasesByCountries(): void {
+        this.coronaCasesApiService.getCasesByCountries().subscribe(
             response => {
-                this.casesTimelineWorld = response;
+                this.enrichApiData(response);
             }
         );
     }
-    private fetchCasesByTimelineTotal(): void {
-        this.coronaCasesApiService.getCasesByTimelineTotal(null).subscribe(
+
+    /**
+     *
+     */
+    private enrichApiData(countries: any): void {
+        for (let country of countries) {
+            let name = country.country.name;
+            country.country.compactName = name.toLowerCase().replace(/\s/g, '-');
+        }
+
+        this.totalCasesCountries = countries;
+    }
+
+    /**
+     *
+     */
+    private fetchTotalCasesWorldwide(): void {
+        this.coronaCasesApiService.getTotalCasesWorldwide().subscribe(
             response => {
-                this.casesTimelineTotal = response;
+                this.totalCasesWorldwide = response;
             }
         );
     }

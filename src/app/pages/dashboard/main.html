@@ -1,33 +1,38 @@
 <div class="container-fluid mb-5 pt-3">
     <div class="row">
-
-        <div class="col-2">
+        <div class="col-lg-4 col-xl-2">
             <div class="card">
                 <div class="card-body">
                     <div class="">
                         <div>CASES by</div>
                         COUNTRIES
                     </div>
-                    <app-cases-country-list [viewMode]="'compact'"></app-cases-country-list>
+                    <app-cases-country-list [viewMode]="'compact'"
+                                            [viewCase]="'confirmed'"
+                                            [dataCases]="totalCasesCountries">
+                    </app-cases-country-list>
                 </div>
             </div>
         </div>
 
-        <div class="col-7">
+        <div class="col-lg-8 col-xl-8">
             <div class="row mb-5">
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total confirmed'"
-                                          [value]="latestData.confirmed">
+                                          [viewCase]="'confirmed'"
+                                          [chartData]="totalCasesWorldwide">
                     </app-cases-text-title>
                 </div>
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total deaths'"
-                                          [value]="latestData.deaths">
+                                          [viewCase]="'deaths'"
+                                          [chartData]="totalCasesWorldwide">
                     </app-cases-text-title>
                 </div>
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total recovered'"
-                                          [value]="latestData.recovered">
+                                          [viewCase]="'recovered'"
+                                          [chartData]="totalCasesWorldwide">
                     </app-cases-text-title>
                 </div>
             </div>
@@ -36,47 +41,42 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <app-cases-map-chart></app-cases-map-chart>
+                            <app-cases-map-chart [chartData]="totalCasesCountries"></app-cases-map-chart>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row mb-5"
-                 *ngIf="false">
-                <div class="col-12">
-                    <app-cases-timeline-map [chartDataCountry]="casesTimelineWorld"
-                                            [chartDataTotal]="casesTimelineTotal">
-                    </app-cases-timeline-map>
-                </div>
-            </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-lg-4 col-xl-2">
             <div class="card">
                 <div class="card-body">
                     <div class="">
-                        <div>RATIO of</div>
-                        RECOVERY
+                        <div>Deaths by</div>
+                        COUNTRIES
                     </div>
+                    <app-cases-country-list [viewMode]="'compact'"
+                                            [viewCase]="'deaths'"
+                                            [dataCases]="totalCasesCountries">
+                    </app-cases-country-list>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row mb-5">
-        <div class="col-12 mb-5">
+        <div class="col-lg-12 col-xl-6 mb-5">
             <div class="card">
                 <div class="card-body">
-                    <app-cases-line-chart [chartData]="casesByDay"></app-cases-line-chart>
+                    <app-cases-line-chart [chartData]="casesByDayWorldwide"></app-cases-line-chart>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 mb-5">
-            <app-cases-country-list></app-cases-country-list>
+        <div class="col-lg-12 col-xl-6 mb-5">
+            <app-cases-country-list [dataCases]="totalCasesCountries"></app-cases-country-list>
         </div>
     </div>
 </div>

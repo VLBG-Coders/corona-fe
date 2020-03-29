@@ -1,29 +1,56 @@
 <ng-container *ngIf="viewMode === 'compact'">
     <div class="country-list-compact">
+        <app-loading-indicator [appearance]="'fullwidth'"
+                               *ngIf="isComponentLoading">
+        </app-loading-indicator>
         <div class="country-list-compact-item"
              *ngFor="let country of countries"
              (click)="onSelectCountryByCode(country.country.code)">
             <div class="country-details d-flex align-items-center">
                 <div class="country-flag">
-                    <img [src]="country.country.flag"
-                         *ngIf="country.country.flag" />
+                    <img [src]="'assets/images/flags/png/' + country.country.compactName + '.png'" />
                 </div>
-                <div class="country-name">
+                <div class="country-name text-truncate">
                     {{ country.country.name }}
                 </div>
-                <div class="country-trend ml-auto">
-                    <span class="trend-percentage mr-1">
-                        -15%
+                <div class="country-trend ml-auto" *ngIf="viewCase === 'confirmed'">
+                    <span class="trend-percentage mr-1" *ngIf="country.confirmed > country.confirmedPrev">
+                        + {{ (country.confirmed * 100 / country.confirmedPrev) - 100 | number:'1.0-1' }}%
                     </span>
-                    <i class="fas"
+                    <span class="trend-percentage mr-1" *ngIf="country.confirmed < country.confirmedPrev">
+                        - {{ (country.confirmedPrev * 100 / country.confirmed) - 100 | number:'1.0-1' }}%
+                    </span>
+                    <span class="trend-percentage mr-1" *ngIf="country.confirmed === country.confirmedPrev">
+                        0%
+                    </span>
+                    <i class="fas icon"
                        [class.fa-caret-up]="country.confirmed > country.confirmedPrev"
                        [class.fa-caret-right]="country.confirmed === country.confirmedPrev"
                        [class.fa-caret-down]="country.confirmed < country.confirmedPrev">
                     </i>
                 </div>
+                <div class="country-trend ml-auto" *ngIf="viewCase === 'deaths'">
+                    <span class="trend-percentage mr-1" *ngIf="country.deaths > country.deathsPrev">
+                        + {{ (country.deaths * 100 / country.deathsPrev) - 100 | number:'1.0-1' }}%
+                    </span>
+                    <span class="trend-percentage mr-1" *ngIf="country.deaths < country.deathsPrev">
+                        - {{ (country.deathsPrev * 100 / country.deaths) - 100 | number:'1.0-1' }}%
+                    </span>
+                    <span class="trend-percentage mr-1" *ngIf="country.deaths === country.deathsPrev">
+                        0%
+                    </span>
+                    <i class="fas icon"
+                       [class.fa-caret-up]="country.deaths > country.deathsPrev"
+                       [class.fa-caret-right]="country.deaths === country.deathsPrev"
+                       [class.fa-caret-down]="country.deaths < country.deathsPrev">
+                    </i>
+                </div>
             </div>
-            <div class="country-cases">
-                {{ country.confirmed }}
+            <div class="country-cases" *ngIf="viewCase === 'confirmed'">
+                {{ country.confirmed | number }}
+            </div>
+            <div class="country-cases" *ngIf="viewCase === 'deaths'">
+                {{ country.deaths | number }}
             </div>
         </div>
     </div>
@@ -31,40 +58,87 @@
 
 <ng-container *ngIf="viewMode === 'table'">
     <div class="card">
+        <app-loading-indicator [appearance]="'fullwidth'"
+                               *ngIf="isComponentLoading">
+        </app-loading-indicator>
         <div class="card-body">
-            <div class="row">
-                <div class="col-12">
-                    <label for="">Find your country</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fas fa-search"></i>
-                            </div>
+            <div class="data-table-filter d-flex align-items-center">
+                <div class="label">
+                    Global Data Table
+                </div>
+
+                <div class="search-field input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fas fa-search"></i>
                         </div>
-                        <input type="text"
-                               class="form-control"
-                               [(ngModel)]="filterCountryName"
-                               (keyup)="filterCountries($event)" />
                     </div>
+
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Search..."
+                           [(ngModel)]="filterCountryName"
+                           (keyup)="filterCountries($event)" />
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <ngx-datatable #dataTable
-                                   class="bootstrap"
-                                   headerHeight="50"
-                                   footerHeight="50"
-                                   rowHeight="auto"
-                                   [rows]="countries"
-                                   [loadingIndicator]="loadingIndicator"
-                                   [columns]="columns"
-                                   [columnMode]="ColumnMode.force"
-                                   [reorderable]="reorderable"
-                                   [selected]="selected"
-                                   [selectionType]="SelectionType.single"
-                                   (select)="onSelectCountry($event.selected)">
-                    </ngx-datatable>
+            <div class="data-table cases-data-table">
+                <div class="data-table-header d-flex">
+                    <div class="data-table-cell text-truncate text-strong bigger">
+                        Name
+                    </div>
+
+                    <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                        Confirmed
+                    </div>
+
+                    <div class="data-table-cell text-truncate grouped grouped-end">
+                        Today
+                    </div>
+
+                    <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                        Deaths
+                    </div>
+
+                    <div class="data-table-cell text-truncate grouped grouped-end">
+                        Today
+                    </div>
+
+                    <div class="data-table-cell text-truncate text-strong grouped">
+                        Recovered
+                    </div>
+                </div>
+
+                <div class="data-table-rows">
+                    <div class="data-table-row d-flex"
+                         *ngFor="let country of countries"
+                         (click)="onSelectCountryByCode(country.country.code)">
+                        <div class="data-table-cell text-truncate bigger">
+                            {{ country.country.name }}
+                        </div>
+
+                        <div class="data-table-cell text-truncate grouped grouped-start">
+                            {{ country.confirmed | number }}
+                        </div>
+
+                        <div class="data-table-cell text-truncate grouped grouped-end">
+                            {{ country.confirmed | number }}
+                            (+ 13,23%)
+                        </div>
+
+                        <div class="data-table-cell text-truncate grouped grouped-start">
+                            {{ country.deaths | number }}
+                        </div>
+
+                        <div class="data-table-cell text-truncate grouped grouped-end">
+                            {{ country.deaths | number }}
+                            (13,23%)
+                        </div>
+
+                        <div class="data-table-cell text-truncate grouped">
+                            {{ country.recovered | number }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

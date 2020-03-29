@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, NgZone, Input, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
+import { AmchartService } from '@app/services';
 import { ChartBase } from '../chart-base';
 
 @Component({
@@ -10,10 +11,15 @@ import { ChartBase } from '../chart-base';
     styleUrls: ['./styles.scss']
 })
 export class CasesMapChartComponent extends ChartBase {
+    @Input()
+    public isComponentLoading: boolean = false;
+
+    private BUBBLE_COLOR = '#9A653A';
     private _mapData = null;
 
     constructor(
-        public readonly _ngZone: NgZone
+        public readonly _ngZone: NgZone,
+        public readonly amchartService: AmchartService
     ) {
         super(_ngZone);
     }
@@ -37,102 +43,49 @@ export class CasesMapChartComponent extends ChartBase {
         let polygonTemplate = polygonSeries.mapPolygons.template;
         polygonTemplate.tooltipText = '{name}';
         polygonTemplate.polygon.fillOpacity = 0.6;
+        polygonTemplate.polygon.fill = this.amchartService.getColor(this.amchartService.config.MAP_COUNTRY_COLOR);
 
-        let mapData =[{
-            "country": {
-                "id": 1,
-                "name": "Austria",
-                "code": "AT"
-            },
-            "confirmed": 7196,
-            "confirmedPrev": 2500,
-            "deaths": 300,
-            "deathsPrev": 180,
-            "recovered": 400,
-            "recoveredPrev": 300,
-            "delta_confirmed": "2700",
-            "delta_recovered": "2600"
-        }, {
-            "country": {
-                "id": 2,
-                "name": "Germany",
-                "code": "DE"
-            },
-            "confirmed": 47278,
-            "confirmedPrev": 2500,
-            "deaths": 300,
-            "deathsPrev": 180,
-            "recovered": 400,
-            "recoveredPrev": 300,
-            "delta_confirmed": "2700",
-            "delta_recovered": "2600"
-        }, {
-            "country": {
-                "id": 3,
-                "name": "Switzerland",
-                "code": "CH"
-            },
-            "confirmed": 11811,
-            "confirmedPrev": 2500,
-            "deaths": 300,
-            "deathsPrev": 180,
-            "recovered": 400,
-            "recoveredPrev": 300,
-            "delta_confirmed": "2700",
-            "delta_recovered": "2600"
-        }, {
-            "country": {
-                "id": 4,
-                "name": "Italy",
-                "code": "IT"
-            },
-            "confirmed": 80589,
-            "confirmedPrev": 2500,
-            "deaths": 300,
-            "deathsPrev": 180,
-            "recovered": 400,
-            "recoveredPrev": 300,
-            "delta_confirmed": "2700",
-            "delta_recovered": "2600"
-        }];
-
-        //this.restructureMapData(mapData);
+        let mapData = this.chartData;
 
         let imageSeries = chart.series.push(new am4maps.MapImageSeries());
         imageSeries.data = mapData;
-        imageSeries.dataFields.value = "confirmed";
-        imageSeries.dummyData = "country";
+        imageSeries.dataFields.value = 'confirmed';
+        imageSeries.dummyData = 'country';
 
         let imageTemplate = imageSeries.mapImages.template;
         imageTemplate.nonScaling = true
 
         let circle = imageTemplate.createChild(am4core.Circle);
         circle.fillOpacity = 0.7;
-        circle.propertyFields.fill = "color";
-        circle.tooltipText = "{dummyData.name}: [bold]{value}[/]";
+        circle.propertyFields.fill = this.amchartService.getColor(this.BUBBLE_COLOR);
+        circle.tooltipText = '{country.name}: [bold]{value}[/]';
 
         imageSeries.heatRules.push({
-            "target": circle,
-            "property": "radius",
-            "min": 3,
-            "max": 20,
-            "dataField": "value"
+            'target': circle,
+            'property': 'radius',
+            'min': 3,
+            'max': 20,
+            'dataField': 'value'
         })
 
-        imageTemplate.adapter.add("latitude", function(latitude, target) {
+        imageTemplate.adapter.add('latitude', function(latitude, target) {
             let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext['country']['code']);
             if(polygon){
                 return polygon.visualLatitude;
             }
+
             return latitude;
         })
 
-        imageTemplate.adapter.add("longitude", function(longitude, target) {
+        imageTemplate.adapter.add('longitude', function(longitude, target) {
             let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext['country']['code']);
             if(polygon){
                 return polygon.visualLongitude;
             }
+
             return longitude;
         })
+
+        this.chart = chart;
     }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, NgZone, Input, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 
 export class ChartBase implements AfterViewInit, OnDestroy {
@@ -6,6 +6,9 @@ export class ChartBase implements AfterViewInit, OnDestroy {
     public container = null;
     public chart = null;
     public COMPONENT_ID: string;
+
+    @Input()
+    public chartData: any;
 
     constructor(
         public readonly _ngZone: NgZone
@@ -31,6 +34,12 @@ export class ChartBase implements AfterViewInit, OnDestroy {
                 this.chart.dispose();
             }
         });
+    }
+
+    ngOnChanges() {
+        if (this.chart) {
+            this.chart.data = this.chartData;
+        }
     }
 
     public createChart(): void {}

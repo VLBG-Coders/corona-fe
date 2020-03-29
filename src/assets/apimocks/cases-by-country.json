@@ -4,7 +4,17 @@
         "name": "Austria",
         "code": "AT"
     },
-    "data": [{
+    "casesTotal": {
+        "confirmed": 7900,
+        "confirmedPrev": 8000,
+        "deaths": 300,
+        "deathsPrev": 180,
+        "recovered": 400,
+        "recoveredPrev": 300,
+        "delta_confirmed": 2700,
+        "delta_recovered": 2600
+    },
+    "casesTimeline": [{
         "id": 1,
         "date": "2020-02-01",
         "confirmed": 0,

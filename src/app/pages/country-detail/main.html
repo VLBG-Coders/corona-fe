@@ -20,19 +20,22 @@
     <div class="row mb-5">
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total confirmed'"
-                                  [value]="latestData.confirmed">
+                                  [viewCase]="'confirmed'"
+                                  [chartData]="totalCasesCountry">
             </app-cases-text-title>
         </div>
 
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total deaths'"
-                                  [value]="latestData.deaths">
+                                  [viewCase]="'deaths'"
+                                  [chartData]="totalCasesCountry">
             </app-cases-text-title>
         </div>
 
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total recovered'"
-                                  [value]="latestData.recovered">
+                                  [viewCase]="'recovered'"
+                                  [chartData]="totalCasesCountry">
             </app-cases-text-title>
         </div>
     </div>
@@ -42,7 +45,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <app-cases-line-chart [chartData]="casesByDay"></app-cases-line-chart>
+                    <app-cases-line-chart [chartData]="casesByDayCountry"></app-cases-line-chart>
                 </div>
             </div>
         </div>
@@ -53,7 +56,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <app-cases-bar-chart [chartData]="casesByDay"></app-cases-bar-chart>
+                    <app-cases-bar-chart [chartData]="casesByDayCountry"></app-cases-bar-chart>
                 </div>
             </div>
         </div>

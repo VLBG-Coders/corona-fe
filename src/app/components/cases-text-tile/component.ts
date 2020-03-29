@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, NgZone, Input, OnDestroy } from '@angular/core';
+import moment from 'moment';
+import { AfterViewInit, Component, NgZone, Input, OnDestroy, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { AmchartService } from '@app/services';
 import { ChartBase } from '../chart-base';
 
 @Component({
@@ -8,24 +10,51 @@ import { ChartBase } from '../chart-base';
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesTextTileComponent extends ChartBase {
+export class CasesTextTileComponent extends ChartBase implements OnChanges {
+    private readonly CHART_COLOR_RISING = '#D12F30';
+    private readonly CHART_COLOR_SINKING = '#539E5D';
+    private readonly CHART_COLOR_STAGNANT = '#0000FF';
+    private readonly CHART_BASE_COLOR = '#eee';
+    private series: any;
+
     public container: am4core.Container = null;
+
+    public casesToday: number = 0;
+    public casesYesterday: number = 0;
+
+    @Input()
+    public isComponentLoading: boolean = false;
 
     @Input()
     public translationKey: string;
 
     @Input()
-    public value: number;
-
-    @Input()
-    public chartData = null;
+    public viewCase: string = 'confirmed';
 
     constructor(
-        public readonly _ngZone: NgZone
+        public readonly _ngZone: NgZone,
+        public readonly amchartService: AmchartService
     ) {
         super(_ngZone);
     }
 
+    ngOnChanges() {
+        if (this.chart) {
+            this.updateChartData();
+        }
+    }
+
+    /**
+     *
+     */
+    public updateCasesVariables(): void {
+        this.casesToday = this.chartData[this.viewCase];
+        this.casesYesterday = this.chartData[this.viewCase + 'Prev'];
+    }
+
+    /**
+     *
+     */
     public createChart(): void {
         this.container = am4core.create(this.COMPONENT_ID, am4core.Container);
         this.container.layout = 'grid';
@@ -40,8 +69,6 @@ export class CasesTextTileComponent extends ChartBase {
      */
     private createLineChart(): void {
         let chart = this.container.createChild(am4charts.XYChart);
-        //chart.width = am4core.percent(45);
-        //chart.height = 70;
         chart.padding(20, 5, 2, 5);
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -58,30 +85,56 @@ export class CasesTextTileComponent extends ChartBase {
         valueAxis.renderer.labels.template.disabled = true;
         valueAxis.cursorTooltipEnabled = false;
 
-        let series = chart.series.push(new am4charts.LineSeries());
-        series.dataFields.dateX = 'date';
-        series.dataFields.valueY = 'value';
-        series.tensionX = 0.8;
-        series.strokeWidth = 5;
-        series.stroke = am4core.color('#eee');
+        this.series = chart.series.push(new am4charts.LineSeries());
+        this.series.dataFields.dateX = 'date';
+        this.series.dataFields.valueY = 'value';
+        this.series.tensionX = 0.8;
+        this.series.strokeWidth = 2;
+        this.series.stroke = this.amchartService.getColor(this.CHART_BASE_COLOR);
+        this.series.fillOpacity = 1;
+        this.series.fill = this.getGradient(this.CHART_BASE_COLOR);
 
         // render data points as bullets
-        let bullet = series.bullets.push(new am4charts.CircleBullet());
+        let bullet = this.series.bullets.push(new am4charts.CircleBullet());
         bullet.circle.opacity = 0;
-        bullet.circle.fill = am4core.color('#eee');
+        bullet.circle.fill = this.amchartService.getColor(this.CHART_BASE_COLOR);
         bullet.circle.propertyFields.opacity = 'opacity';
         bullet.circle.radius = 3;
 
-        chart.data = [{ 'date': new Date(2018, 0, 1, 8, 0, 0), 'value': 57 },
-        { 'date': new Date(2018, 0, 1, 9, 0, 0), 'value': 27 },
-        { 'date': new Date(2018, 0, 1, 10, 0, 0), 'value': 24 },
-        { 'date': new Date(2018, 0, 1, 11, 0, 0), 'value': 59 },
-        { 'date': new Date(2018, 0, 1, 12, 0, 0), 'value': 33 },
-        { 'date': new Date(2018, 0, 1, 13, 0, 0), 'value': 46 },
-        { 'date': new Date(2018, 0, 1, 14, 0, 0), 'value': 20 },
-        { 'date': new Date(2018, 0, 1, 15, 0, 0), 'value': 42 },
-        { 'date': new Date(2018, 0, 1, 16, 0, 0), 'value': 59, 'opacity': 1 }];
-
         this.chart = chart;
+    }
+
+    /**
+     *
+     */
+    private updateChartData(): void {
+        this.updateCasesVariables();
+
+        let today = moment();
+        let data = [
+            {
+                date: today.format('YYYY-MM-DD'),
+                value: this.chartData[this.viewCase]
+            }, {
+                date: today.subtract(1, 'day').format('YYYY-MM-DD'),
+                value: this.chartData[this.viewCase + 'Prev']
+            }
+        ];
+
+        this.chart.data = data;
+
+        this.series.stroke = this.amchartService.getColor(this.CHART_COLOR_RISING);
+        this.series.fill = this.getGradient(this.CHART_COLOR_RISING);
+    }
+
+    /**
+     *
+     */
+    private getGradient(color: string): am4core.LinearGradient {
+        let gradient = new am4core.LinearGradient();
+        gradient.addColor(this.amchartService.getColor(color), 0.2);
+        gradient.addColor(this.amchartService.getColor(color), 0);
+
+        return gradient;
     }
 }

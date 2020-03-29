@@ -15,8 +15,8 @@ export class CountryDetailPage implements OnInit {
 
     public countryCode = null;
     public selectedCountry: CountryModel = new CountryModel;
-    public casesByDay: DailyCasesModel[] = [];
-    public latestData: DailyCasesModel = new DailyCasesModel;
+    public casesByDayCountry: DailyCasesModel[] = [];
+    public totalCasesCountry: any = null;
 
     constructor(
         public readonly _activatedRoute: ActivatedRoute,
@@ -38,8 +38,6 @@ export class CountryDetailPage implements OnInit {
         const countryCode = this._activatedRoute.snapshot.paramMap.get('countryCode');
 
         if (!countryCode) {
-            console.log('nothing found');
-
             return;
         }
 
@@ -50,9 +48,8 @@ export class CountryDetailPage implements OnInit {
         this.coronaCasesApiService.getCasesByCountryId(this.countryCode).subscribe(
             response => {
                 this.selectedCountry = response.country;
-                this.casesByDay = response.data;
-                this.latestData = last(response.data);
-                console.log('fetched')
+                this.casesByDayCountry = response.casesTimeline;
+                this.totalCasesCountry = response.casesTotal;
             }
         );
     }

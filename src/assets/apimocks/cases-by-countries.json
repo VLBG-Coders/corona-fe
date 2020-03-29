@@ -4,28 +4,24 @@
         "name": "Austria",
         "code": "AT"
     },
-    "confirmed": 7196,
-    "confirmedPrev": 2500,
+    "confirmed": 7900,
+    "confirmedPrev": 8000,
     "deaths": 300,
     "deathsPrev": 180,
     "recovered": 400,
-    "recoveredPrev": 300,
-    "delta_confirmed": "2700",
-    "delta_recovered": "2600"
+    "recoveredPrev": 300
 }, {
     "country": {
         "id": 2,
         "name": "Germany",
         "code": "DE"
     },
-    "confirmed": 47278,
+    "confirmed": 5000,
     "confirmedPrev": 2500,
     "deaths": 300,
     "deathsPrev": 180,
     "recovered": 400,
-    "recoveredPrev": 300,
-    "delta_confirmed": "2700",
-    "delta_recovered": "2600"
+    "recoveredPrev": 300
 }, {
     "country": {
         "id": 3,
@@ -33,13 +29,11 @@
         "code": "CH"
     },
     "confirmed": 11811,
-    "confirmedPrev": 2500,
+    "confirmedPrev": 9000,
     "deaths": 300,
     "deathsPrev": 180,
     "recovered": 400,
-    "recoveredPrev": 300,
-    "delta_confirmed": "2700",
-    "delta_recovered": "2600"
+    "recoveredPrev": 300
 }, {
     "country": {
         "id": 4,
@@ -47,11 +41,21 @@
         "code": "IT"
     },
     "confirmed": 80589,
-    "confirmedPrev": 2500,
+    "confirmedPrev": 25000,
     "deaths": 300,
     "deathsPrev": 180,
     "recovered": 400,
-    "recoveredPrev": 300,
-    "delta_confirmed": "2700",
-    "delta_recovered": "2600"
+    "recoveredPrev": 300
+}, {
+    "country": {
+        "id": 4,
+        "name": "Democratic Republic Of Congo",
+        "code": "IT"
+    },
+    "confirmed": 80589,
+    "confirmedPrev": 35000,
+    "deaths": 300,
+    "deathsPrev": 180,
+    "recovered": 400,
+    "recoveredPrev": 300
 }]

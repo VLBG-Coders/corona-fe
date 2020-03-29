@@ -10,18 +10,12 @@ import { ChartBase } from '../chart-base';
 })
 export class CasesBarChartComponent extends ChartBase implements OnChanges {
     @Input()
-    public chartData = null;
+    public isComponentLoading: boolean = false;
 
     constructor(
         public readonly _ngZone: NgZone
     ) {
         super(_ngZone);
-    }
-
-    ngOnChanges() {
-        if (this.chart) {
-            this.chart.data = this.chartData;
-        }
     }
 
     /**

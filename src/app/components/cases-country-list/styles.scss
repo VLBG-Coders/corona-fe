@@ -1,13 +1,39 @@
 @import '../../../assets/scss/variables';
 
 .country-list-compact {
+    margin: 0 -5px;
+
     .country-list-compact-item {
-        border-bottom: 1px solid;
-        padding: 5px 0;
+        @include transition(all 0.5s ease-in-out);
+        padding: 5px;
+        position: relative;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0;
+
+        &:hover {
+            background: #eee;
+
+            &:before {
+                width: 5px;
+                left: -5px;
+            }
+        }
+
+        &:before {
+            @include transition(all 0.25s ease-in-out);
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: #333;
+            border-radius: 10px 0 0 10px;
+        }
 
         .country-details {
             width: 100%;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
         .country-flag {
@@ -17,7 +43,6 @@
             img {
                 width: 100%;
                 height: 100%;
-                max-height: 15px;
             }
         }
 
@@ -25,11 +50,140 @@
             font-size: 1rem;
         }
 
-        .country-trend {}
+        .country-trend {
+            width: 105px;
+            position: relative;
+            padding-right: 20px;
+            text-align: right;
+
+            .trend-percentage {
+                font-weight: 700;
+            }
+
+            .icon {
+                font-size: 26px;
+                position: absolute;
+                right: 0;
+                top: 2px;
+            }
+        }
 
         .country-cases {
             width: 100%;
             text-align: right;
+            padding-right: 25px;
+        }
+    }
+}
+
+
+$data-table-max-width: 100%;
+$data-table-columns: 6;
+$data-table-col-width: $data-table-max-width / $data-table-columns;
+
+$data-table-col-margins-amount: 2;
+$data-table-col-margins-size: 15px;
+$data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-margins-amount) / $data-table-columns;
+
+.data-table {
+    .data-table-header {
+        width: 100%;
+
+        .data-table-cell.grouped {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .data-table-cell.grouped-start {
+            border-radius: 10px 0 0 0;
+        }
+
+        .data-table-cell.grouped-end {
+            border-radius: 0 10px 0 0;
+        }
+    }
+
+    .data-table-rows {
+        width: 100%;
+    }
+
+    .data-table-row {
+        width: 100%;
+
+        &:last-child {
+            .data-table-cell.grouped {
+                border-radius: 0 0 10px 10px;
+            }
+
+            .data-table-cell.grouped-start {
+                border-radius: 0 0 0 10px;
+            }
+
+            .data-table-cell.grouped-end {
+                border-radius: 0 0 10px 0;
+            }
+        }
+    }
+
+    .data-table-footer {
+        width: 100%;
+    }
+
+    .data-table-cell {
+        width: calc(#{$data-table-col-width} - #{$data-table-col-margins-total});
+        padding: 5px 10px;
+
+        &.grouped {
+            background-color: #F4F3F3;
+
+            &.grouped-start {
+            }
+
+            &.grouped-end {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+.cases-data-table {
+    margin-top: 25px;
+
+    .data-table-header {
+        .data-table-cell {
+            border-bottom: 1px solid #eee;
+
+            &.text-strong {
+                font-weight: 700;
+            }
+
+            &.grouped {
+                border-bottom: 1px solid white;
+            }
+        }
+    }
+}
+
+.data-table-filter {
+    .label {
+        width: 400px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .search-field {
+        .input-group-text {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            background-color: transparent;
+        }
+
+        input {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
         }
     }
 }

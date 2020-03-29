@@ -1,0 +1,14 @@
+export class AppConfig {
+}
+
+export class ChartConfig {
+    MAP_BACKGROUND_COLOR = '#EDECED';
+    MAP_COUNTRY_COLOR = '#E19596';
+    MAP_COUNTRY_COLOR_LIGHT = '#E1BA95';
+    MAP_COUNTRY_COLOR_SELECTED = '#E19596';
+    MAP_BUBBLE_COLOR = '#9A653A';
+
+    CASES_CONFIRMED_COLOR = '';
+    CASES_DEATHS_COLOR = '';
+    CASES_RECOVERED_COLOR = '';
+}

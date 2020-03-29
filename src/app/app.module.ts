@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -31,6 +32,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
                 ]
             }
         }),
+        MatProgressSpinnerModule,
         NgxDatatableModule,
         AppRoutingModule,
         BrowserAnimationsModule
@@ -44,6 +46,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
         Components.CasesTextTileComponent,
         Components.CasesTimelineMapComponent,
         Components.GeoMapCountryComponent,
+        Components.LoadingIndicatorComponent,
         Components.NavbarComponent,
         Pages.CountryDetailPage,
         Pages.DashboardPage,
@@ -51,6 +54,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
     ],
     providers: [
         Apis.CoronaCasesApiService,
+        Services.AmchartService,
         Services.DataStorageService,
     ],
     bootstrap: [AppComponent]
