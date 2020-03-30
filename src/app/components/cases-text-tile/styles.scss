@@ -1,9 +1,9 @@
 @import '../../../assets/scss/variables';
 
-::ng-deep{
+::ng-deep {
     .cases-text-card-tile {
         position: relative;
-        min-height: 120px;
+        height: 140px;
 
         .content {
             position: absolute;
@@ -12,24 +12,32 @@
             z-index: 2;
 
             .label {
-                font-size: 16px;
+                font-size: 20px;
+                line-height: 26px;
+                letter-spacing: 0;
+                text-transform: capitalize;
             }
 
             .trend {
                 .trend-percentage {
-                    font-size: 12px;
+                    font-size: 14px;
+                    line-height: 19px;
                     font-weight: 700;
+                    text-transform: capitalize;
                 }
 
                 .icon {
-                    font-size: 20px;
+                    font-size: 18px;
                 }
             }
 
             .number {
                 width: 100%;
-                font-size: 30px;
+                font-family: $font-family-alternative;
+                font-size: 32px;
+                line-height: 38px;
                 font-weight: 700;
+                margin-top: 5px;
             }
         }
 

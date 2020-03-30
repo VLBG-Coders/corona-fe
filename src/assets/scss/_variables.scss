@@ -1,10 +1,22 @@
-$font-family-text: 'Roboto';
+$font-family-text: 'Roboto Condensed';
+$font-family-alternative: 'Roboto';
 $font-size: 16px;
-$font-color: #656565;
+$font-color: #707070;
 $font-color-muted: rgba(56, 59, 65, 0.7);
 $fontawesome-font: 'Font Awesome 5 Pro';
 
-$main-body-background: #EDEDED;
+$main-body-background: #EFEFEF;
 $main-structure-background: #ffffff;
+$main-border-color: #E5E5E5;
+$main-box-shadow-color: #00000014;
+
+$app-color-red: #D51E1E;
+$app-color-green: #5ABD83;
+$app-color-grey-light: #EFEFEF;
+$app-color-grey-dark: #B0B0B0;
+
+$case-color-confirmed: #FCCE32;
+$case-color-deaths: #D62D2D;
+$case-color-recovered: #5DA868;
 
 @import 'utilities/_mixins';

@@ -18,9 +18,9 @@
     },
     "confirmed": 5000,
     "confirmedPrev": 2500,
-    "deaths": 300,
+    "deaths": 900,
     "deathsPrev": 180,
-    "recovered": 400,
+    "recovered": 100,
     "recoveredPrev": 300
 }, {
     "country": {
@@ -30,7 +30,7 @@
     },
     "confirmed": 11811,
     "confirmedPrev": 9000,
-    "deaths": 300,
+    "deaths": 12300,
     "deathsPrev": 180,
     "recovered": 400,
     "recoveredPrev": 300
@@ -42,9 +42,9 @@
     },
     "confirmed": 80589,
     "confirmedPrev": 25000,
-    "deaths": 300,
+    "deaths": 900,
     "deathsPrev": 180,
-    "recovered": 400,
+    "recovered": 600,
     "recoveredPrev": 300
 }, {
     "country": {
@@ -54,8 +54,8 @@
     },
     "confirmed": 80589,
     "confirmedPrev": 35000,
-    "deaths": 300,
+    "deaths": 10,
     "deathsPrev": 180,
-    "recovered": 400,
+    "recovered": 20,
     "recoveredPrev": 300
 }]

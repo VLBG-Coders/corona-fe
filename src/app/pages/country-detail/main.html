@@ -41,10 +41,12 @@
     </div>
 
     <div class="row mb-5">
-        <h3>The Curve</h3>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="header-component">
+                        Cases Curve
+                    </div>
                     <app-cases-line-chart [chartData]="casesByDayCountry"></app-cases-line-chart>
                 </div>
             </div>
@@ -52,10 +54,12 @@
     </div>
 
     <div class="row mb-5">
-        <h3>New cases</h3>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="header-component">
+                        Cases per day
+                    </div>
                     <app-cases-bar-chart [chartData]="casesByDayCountry"></app-cases-bar-chart>
                 </div>
             </div>

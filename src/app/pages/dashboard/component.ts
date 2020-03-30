@@ -49,7 +49,10 @@ export class DashboardPage implements OnInit {
             country.country.compactName = name.toLowerCase().replace(/\s/g, '-');
         }
 
-        this.totalCasesCountries = countries;
+        setTimeout(() => {
+            this.totalCasesCountries = countries;
+            console.log('yes', this.totalCasesCountries);
+        }, 1000);
     }
 
     /**

@@ -1,14 +1,15 @@
-<div class="container-fluid mb-5 pt-3">
+<div class="container-fluid mb-5 p-4 pt-5">
     <div class="row">
         <div class="col-lg-4 col-xl-2">
             <div class="card">
                 <div class="card-body">
-                    <div class="">
-                        <div>CASES by</div>
-                        COUNTRIES
+                    <div class="header-component">
+                        CONFIRMED CASES<br />
+                        by countries
                     </div>
                     <app-cases-country-list [viewMode]="'compact'"
                                             [viewCase]="'confirmed'"
+                                            [isComponentLoading]="true"
                                             [dataCases]="totalCasesCountries">
                     </app-cases-country-list>
                 </div>
@@ -41,7 +42,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <app-cases-map-chart [chartData]="totalCasesCountries"></app-cases-map-chart>
+                            <app-loading-indicator [appearance]="'fullwidth'"
+                                                   *ngIf="!totalCasesCountries.length">
+                            </app-loading-indicator>
+                            <app-cases-map-chart [chartData]="totalCasesCountries"
+                                                 *ngIf="totalCasesCountries.length">
+                            </app-cases-map-chart>
                         </div>
                     </div>
                 </div>
@@ -51,9 +57,9 @@
         <div class="col-lg-4 col-xl-2">
             <div class="card">
                 <div class="card-body">
-                    <div class="">
-                        <div>Deaths by</div>
-                        COUNTRIES
+                    <div class="header-component">
+                        DEATHS<br />
+                        by countries
                     </div>
                     <app-cases-country-list [viewMode]="'compact'"
                                             [viewCase]="'deaths'"
@@ -65,11 +71,14 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid p-4">
     <div class="row mb-5">
         <div class="col-lg-12 col-xl-6 mb-5">
             <div class="card">
                 <div class="card-body">
+                    <div class="header-component">
+                        Global curve
+                    </div>
                     <app-cases-line-chart [chartData]="casesByDayWorldwide"></app-cases-line-chart>
                 </div>
             </div>

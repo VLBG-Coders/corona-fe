@@ -4,14 +4,14 @@
     margin: 0 -5px;
 
     .country-list-compact-item {
-        @include transition(all 0.5s ease-in-out);
-        padding: 5px;
+        padding: 2px 5px;
         position: relative;
         cursor: pointer;
         border-radius: 0 5px 5px 0;
 
         &:hover {
-            background: #eee;
+            @include transition(background 0.5s ease-in-out);
+            background: $app-color-grey-light;
 
             &:before {
                 width: 5px;
@@ -27,7 +27,7 @@
             top: 0;
             width: 0;
             height: 100%;
-            background: #333;
+            background: $app-color-grey-dark;
             border-radius: 10px 0 0 10px;
         }
 
@@ -37,45 +37,54 @@
         }
 
         .country-flag {
-            width: 35px;
+            width: 27px;
             margin-right: 10px;
 
             img {
                 width: 100%;
-                height: 100%;
             }
         }
 
         .country-name {
-            font-size: 1rem;
+            font-size: 14px;
+            line-height: 19px;
+            text-transform: capitalize;
+            letter-spacing: 0;
         }
 
         .country-trend {
-            width: 105px;
+            width: 130px;
             position: relative;
-            padding-right: 20px;
+            padding-right: 15px;
             text-align: right;
 
             .trend-percentage {
                 font-weight: 700;
+                font-size: 14px;
+                line-height: 18px;
+                text-transform: capitalize;
+                letter-spacing: 0;
             }
 
             .icon {
-                font-size: 26px;
+                font-size: 16px;
                 position: absolute;
                 right: 0;
-                top: 2px;
+                top: 6px;
             }
         }
 
         .country-cases {
             width: 100%;
             text-align: right;
-            padding-right: 25px;
+            padding-right: 20px;
+            font-size: 14px;
+            text-transform: capitalize;
+            letter-spacing: 0;
+            line-height: 18px;
         }
     }
 }
-
 
 $data-table-max-width: 100%;
 $data-table-columns: 6;
@@ -108,6 +117,35 @@ $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-m
 
     .data-table-row {
         width: 100%;
+        position: relative;
+
+        &:hover {
+            @include transition(background 0.5s ease-in-out);
+            cursor: pointer;
+            background: $app-color-grey-light;
+
+            &:before {
+                width: 5px;
+                left: -5px;
+            }
+
+            .data-table-cell.grouped {
+                background: $app-color-grey-light;
+                border-radius: 0;
+            }
+        }
+
+        &:before {
+            @include transition(all 0.25s ease-in-out);
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: $app-color-grey-dark;
+            border-radius: 10px 0 0 10px;
+        }
 
         &:last-child {
             .data-table-cell.grouped {
@@ -133,10 +171,9 @@ $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-m
         padding: 5px 10px;
 
         &.grouped {
-            background-color: #F4F3F3;
+            background-color: #F5F5F5;
 
-            &.grouped-start {
-            }
+            &.grouped-start {}
 
             &.grouped-end {
                 margin-right: 15px;
@@ -150,7 +187,7 @@ $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-m
 
     .data-table-header {
         .data-table-cell {
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #F5F5F5;
 
             &.text-strong {
                 font-weight: 700;
@@ -161,13 +198,19 @@ $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-m
             }
         }
     }
+
+    .data-table-cell {
+        font-size: 14px;
+        line-height: 19px;
+        text-transform: capitalize;
+        letter-spacing: 0;
+    }
 }
 
 .data-table-filter {
-    .label {
+    .header-component {
         width: 400px;
-        font-size: 24px;
-        font-weight: 700;
+        margin-bottom: 0;
     }
 
     .search-field {

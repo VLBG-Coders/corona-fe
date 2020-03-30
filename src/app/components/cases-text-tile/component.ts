@@ -31,6 +31,17 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     @Input()
     public viewCase: string = 'confirmed';
 
+    private colorCodes = {
+        confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
+        deaths: this.amchartService.config.CASES_DEATHS_COLOR,
+        recovered: this.amchartService.config.CASES_RECOVERED_COLOR
+    }
+    private colors = {
+        confirmed: am4core.color(this.colorCodes.confirmed),
+        deaths: am4core.color(this.colorCodes.deaths),
+        recovered: am4core.color(this.colorCodes.recovered)
+    };
+
     constructor(
         public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService
@@ -107,7 +118,7 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     /**
      *
      */
-    private updateChartData(): void {
+    public updateChartData(): void {
         this.updateCasesVariables();
 
         let today = moment();
@@ -122,9 +133,8 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         ];
 
         this.chart.data = data;
-
-        this.series.stroke = this.amchartService.getColor(this.CHART_COLOR_RISING);
-        this.series.fill = this.getGradient(this.CHART_COLOR_RISING);
+        this.series.stroke = this.colors[this.viewCase];
+        this.series.fill = this.getGradient(this.colorCodes[this.viewCase]);
     }
 
     /**

@@ -21,10 +21,6 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
     @Input()
     public countryCode: string;
 
-    private readonly COUNTRY_COLOR = '#eee';
-    private readonly COUNTRY_COLOR_SELECTED = '#fff';
-    private readonly COUNTRY_COLOR_HOVERED = '#e3e3e3';
-
     private worldPolygonSeries = null;
     private countryPolygonTemplate = null;
     private worldData: any = geoData;
@@ -38,7 +34,7 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
         super(_ngZone);
     }
 
-    ngOnChanges() {}
+    ngOnChanges() { }
 
     /**
      *
@@ -65,22 +61,21 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
         this.countryPolygonTemplate.togglable = true;
         this.countryPolygonTemplate.nonScalingStroke = true;
         this.countryPolygonTemplate.fill = this.amchartService.getColor(
-            this.amchartService.config.MAP_COUNTRY_COLOR_LIGHT
+            this.amchartService.config.MAP_COUNTRY_COLOR
         );
         this.countryPolygonTemplate.tooltipText = '{name}';
-        //this.countryPolygonTemplate.polygon.fillOpacity = 0.6;
 
         // Create hover state and set alternative fill color
         let hoverState = this.countryPolygonTemplate.states.create('hover');
         hoverState.properties.fill = this.amchartService.getColor(
-            this.amchartService.config.MAP_COUNTRY_COLOR
+            this.amchartService.config.MAP_COUNTRY_COLOR_SELECTED
         );
-        hoverState.properties.fillOpacity = 0.9;
+        hoverState.properties.fillOpacity = 0.3;
 
         /* Create selected and hover states and set alternative fill color */
         let activeState = this.countryPolygonTemplate.states.create('active');
         activeState.properties.fill = this.amchartService.getColor(
-            this.amchartService.config.MAP_COUNTRY_COLOR
+            this.amchartService.config.MAP_COUNTRY_COLOR_SELECTED
         );
         activeState.properties.fillOpacity = 0.9;
 

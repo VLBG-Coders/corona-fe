@@ -38,11 +38,14 @@ export class ChartBase implements AfterViewInit, OnDestroy {
 
     ngOnChanges() {
         if (this.chart) {
+            this.updateChartData();
             this.chart.data = this.chartData;
         }
     }
 
-    public createChart(): void {}
+    public createChart(): void { }
+
+    public updateChartData(): void { }
 
     public getComponentId(): string {
         return 'Chart-Id-' + Math.random().toString(36).substring(2) + new Date().getTime();

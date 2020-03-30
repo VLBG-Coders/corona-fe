@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, NgZone, Input, OnChanges, OnDestroy } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
+import { AmchartService } from '@app/services';
 import { ChartBase } from '../chart-base';
 
 @Component({
@@ -13,7 +14,8 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     public isComponentLoading: boolean = false;
 
     constructor(
-        public readonly _ngZone: NgZone
+        public readonly _ngZone: NgZone,
+        public readonly amchartService: AmchartService,
     ) {
         super(_ngZone);
     }
@@ -33,9 +35,24 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
         valueAxis.tooltip.disabled = true;
         valueAxis.renderer.minWidth = 35;
 
-        let confirmed = chart.series.push(this.getSeries(chart, 'date', 'confirmed', '#d21a1a'));
-        let deaths = chart.series.push(this.getSeries(chart, 'date', 'deaths', '#1c5fe5'));
-        let recovered = chart.series.push(this.getSeries(chart, 'date', 'recovered', '#45d21a'));
+        let confirmed = chart.series.push(this.getSeries(
+            chart,
+            'date',
+            'confirmed',
+            this.amchartService.config.CASES_CONFIRMED_COLOR
+        ));
+        let deaths = chart.series.push(this.getSeries(
+            chart,
+            'date',
+            'deaths',
+            this.amchartService.config.CASES_DEATHS_COLOR
+        ));
+        let recovered = chart.series.push(this.getSeries(
+            chart,
+            'date',
+            'recovered',
+            this.amchartService.config.CASES_RECOVERED_COLOR
+        ));
 
         let scrollbarX = new am4charts.XYChartScrollbar();
         scrollbarX.series.push(confirmed);
@@ -44,6 +61,19 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
         chart.scrollbarX = scrollbarX;
         chart.scrollbarX.parent = chart.bottomAxesContainer;
 
+
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = 'right';
+        chart.legend.scrollable = true;
+        chart.legend.itemContainers.template.events.on('over', function(event) {
+            this.processOver(event.target.dataItem.dataContext);
+        }.bind(this));
+
+        chart.legend.itemContainers.template.events.on('out', function(event) {
+            this.processOut(event.target.dataItem.dataContext);
+        }.bind(this));
+
         this.chart = chart;
     }
 
@@ -51,21 +81,81 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
         let series = new am4charts.LineSeries();
         series.dataFields.dateX = valueX;
         series.dataFields.valueY = valueY;
-        series.strokeWidth = 2;
+        series.strokeWidth = 3;
         series.minBulletDistance = 15;
         series.tooltipText = '{valueY}';
         series.stroke = am4core.color(color);
+        series.name = valueY;
         chart.cursor = new am4charts.XYCursor();
+
+        let segment = series.segments.template;
+        segment.interactionsEnabled = true;
+
+        let hoverState = segment.states.create('hover');
+        hoverState.properties.strokeWidth = 3;
+
+        let dimmed = segment.states.create('dimmed');
+        dimmed.properties.stroke = am4core.color('#dadada');
+
+        segment.events.on('over', function(event) {
+            this.processOver(event.target.parent.parent.parent);
+        }.bind(this));
+
+        segment.events.on('out', function(event) {
+            this.processOut(event.target.parent.parent.parent);
+        }.bind(this));
 
         // Make bullets grow on hover
         let bullet = series.bullets.push(new am4charts.CircleBullet());
+        bullet.circle.stroke = am4core.color(color);
         bullet.circle.strokeWidth = 2;
-        bullet.circle.radius = 4;
+        bullet.circle.radius = 3;
         bullet.circle.fill = am4core.color('#fff');
 
         let bullethover = bullet.states.create('hover');
         bullethover.properties.scale = 1.3;
 
+        let bulletDimmed = bullet.states.create('dimmed');
+        bulletDimmed.properties.strokeWidth = 0;
+
         return series;
+    }
+
+    /**
+     *
+     */
+    private processOver(hoveredSeries) {
+        hoveredSeries.toFront();
+
+        hoveredSeries.segments.each(function(segment) {
+            segment.setState('hover');
+        })
+
+        this.chart.series.each(function(series) {
+            if (series != hoveredSeries) {
+                series.segments.each(function(segment) {
+                    segment.setState('dimmed');
+                })
+                series.bullets.each(function(bullet) {
+                    bullet.setState('dimmed');
+                });
+                series.bulletsContainer.setState('dimmed');
+            }
+        });
+    }
+
+    /**
+     *
+     */
+    private processOut(hoveredSeries) {
+        this.chart.series.each(function(series) {
+            series.segments.each(function(segment) {
+                segment.setState('default');
+            });
+            series.bullets.each(function(bullet) {
+                bullet.setState('default');
+            });
+            series.bulletsContainer.setState('default');
+        });
     }
 }
