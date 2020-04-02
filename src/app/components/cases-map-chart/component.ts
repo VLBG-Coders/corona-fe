@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, NgZone, Input, OnChanges } from '@angular/core';
+import { isEmpty } from 'lodash';
+import { Component, NgZone, Input } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import { AmchartService } from '@app/services';
-import { ChartBase } from '../chart-base';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { AmchartService } from '@app/services';
+import { CasesTotalModel, CountryModel } from '@app/models';
+import { ChartBase } from '../chart-base';
 
 am4core.useTheme(am4themes_animated);
 
@@ -13,9 +15,12 @@ am4core.useTheme(am4themes_animated);
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesMapChartComponent extends ChartBase implements OnChanges {
+export class CasesMapChartComponent extends ChartBase {
     @Input()
     public isComponentLoading: boolean = false;
+
+    @Input()
+    public chartData: ChartDataModel[] = [];
 
     private currentType = 'confirmed';
     private polygonSeries: am4maps.MapPolygonSeries;
@@ -43,11 +48,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
      */
     public createChart(): void {
         this.updateChartData();
-        let container = am4core.create(this.COMPONENT_ID, am4core.Container);
-        container.width = am4core.percent(100);
-        container.height = am4core.percent(100);
-
-        let chart = container.createChild(am4maps.MapChart);
+        let chart = this.container.createChild(am4maps.MapChart);
         chart.geodata = am4geodata_worldLow;
         // Set projection
         chart.projection = new am4maps.projections.Miller();
@@ -61,7 +62,6 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
         polygonSeries.nonScalingStroke = true;
         polygonSeries.strokeWidth = 0.5;
         polygonSeries.calculateVisualCenter = true;
-
 
         // Exclude Antartica
         polygonSeries.exclude = ['AQ'];
@@ -88,7 +88,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
         });
 
         // buttons container (active/confirmed/recovered/deaths)
-        let buttonsContainer = container.createChild(am4core.Container);
+        let buttonsContainer = this.container.createChild(am4core.Container);
         buttonsContainer.layout = 'grid';
         buttonsContainer.width = am4core.percent(100);
         buttonsContainer.x = 0;
@@ -139,7 +139,9 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
         let activeHoverState = button.background.states.create('hoverActive');
         activeHoverState.properties.fillOpacity = 0;
 
-        button.events.on('hit', this.handleButtonClick.bind(this));
+        button.events.on('hit', (event) => {
+            this.handleButtonClick(event);
+        });
 
         return button;
     }
@@ -162,7 +164,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
             }
         }
 
-        this.polygonSeries.dataItems.each(function(dataItem) {
+        this.polygonSeries.dataItems.each((dataItem) => {
             let newValue = dataItem.dataContext[currentType];
             if (!newValue) {
                 newValue = null;
@@ -180,10 +182,26 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
      *
      */
     public updateChartData(): void {
-        for (let country of this.chartData) {
-            country.id = country.country.code;
-            country.title = country.country.name;
-            country.value = country.confirmed;
+        if (!this.chartData || isEmpty(this.chartData)) {
+            return;
+        }
+
+        for (let item of this.chartData) {
+            item.id = item.country.code;
+            item.title = item.country.name;
+            item.confirmed = item.cases.confirmed;
+            item.deaths = item.cases.deaths;
+            item.recovered = item.cases.recovered;
         }
     }
+}
+
+export class ChartDataModel {
+    id: string;
+    title: string;
+    confirmed: number;
+    deaths: number;
+    recovered: number;
+    country: CountryModel;
+    cases: CasesTotalModel;
 }

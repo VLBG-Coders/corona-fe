@@ -1,66 +1,73 @@
 <div class="container-fuild">
     <div class="row mb-5">
         <div class="col-12">
-            <app-geo-map-country [countryCode]="countryCode"
-                                 (selectedCountry)="onCountrySelected($event)">
+            <app-geo-map-country #worldChart
+                                 *ngIf="countryCode"
+                                 [countryCode]="countryCode">
             </app-geo-map-country>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row"
+         *ngIf="selectedCountry">
         <div class="col-12">
             <h1>
                 {{ selectedCountry.name }}
             </h1>
         </div>
     </div>
+</div>
 
+<div class="container">
     <div class="row mb-5">
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total confirmed'"
                                   [viewCase]="'confirmed'"
-                                  [chartData]="totalCasesCountry">
+                                  [totalData]="totalCases"
+                                  [chartData]="casesByDay">
             </app-cases-text-title>
         </div>
 
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total deaths'"
                                   [viewCase]="'deaths'"
-                                  [chartData]="totalCasesCountry">
+                                  [totalData]="totalCases"
+                                  [chartData]="casesByDay">
             </app-cases-text-title>
         </div>
 
         <div class="col-4">
             <app-cases-text-title [translationKey]="'Total recovered'"
                                   [viewCase]="'recovered'"
-                                  [chartData]="totalCasesCountry">
+                                  [totalData]="totalCases"
+                                  [chartData]="casesByDay">
             </app-cases-text-title>
         </div>
     </div>
+</div>
 
+<div class="container-fluid mt-5 p-5">
     <div class="row mb-5">
-        <div class="col-12">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <div class="header-component">
                         Cases Curve
                     </div>
-                    <app-cases-line-chart [chartData]="casesByDayCountry"></app-cases-line-chart>
+                    <app-cases-line-chart [chartData]="casesByDay"></app-cases-line-chart>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mb-5">
-        <div class="col-12">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <div class="header-component">
                         Cases per day
                     </div>
-                    <app-cases-bar-chart [chartData]="casesByDayCountry"></app-cases-bar-chart>
+                    <app-cases-bar-chart [chartData]="casesByDay"></app-cases-bar-chart>
                 </div>
             </div>
         </div>

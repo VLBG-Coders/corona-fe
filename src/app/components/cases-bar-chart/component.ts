@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, NgZone, Input, OnChanges, OnDestroy } from '@angular/core';
+import { orderBy } from 'lodash';
+import { Component, NgZone, Input, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { AmchartService } from '@app/services';
+import { CasesDailyModel } from '@app/models';
 import { ChartBase } from '../chart-base';
 
 @Component({
@@ -13,6 +15,9 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     @Input()
     public isComponentLoading: boolean = false;
 
+    @Input()
+    public chartData: CasesDailyModel[] = [];
+
     constructor(
         public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService,
@@ -20,13 +25,21 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         super(_ngZone);
     }
 
+    ngOnChanges() {
+        if (this.chart) {
+            this.updateChartData();
+            this.chart.data = this.chartData;
+            this.drawChart();
+        }
+    }
+
     /**
      *
      */
     public createChart(): void {
-        let chart = am4core.create(this.COMPONENT_ID, am4charts.XYChart);
+        this.updateChartData();
+        let chart = this.container.createChild(am4charts.XYChart);
         chart.data = this.chartData;
-        chart.dateFormatter.dateFormat = 'yyyy-MM';
 
         chart.legend = new am4charts.Legend()
         chart.legend.position = 'top'
@@ -38,8 +51,27 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
+        this.chart = chart;
+        this.drawChart();
+    }
+
+    /**
+     *
+     */
+    public updateChartData(): void {
+        this.chartData = orderBy(this.chartData, ['date'], ['asc']);
+    }
+
+    /**
+     *
+     */
+    private drawChart(): void {
+        if (this.chart.series.length) {
+            this.chart.series.removeIndex(0);
+            this.chart.series.removeIndex(0);
+        }
         // Create series
-        let seriesConfirmed = chart.series.push(new am4charts.ColumnSeries());
+        let seriesConfirmed = this.chart.series.push(new am4charts.ColumnSeries());
         seriesConfirmed.clustered = false;
         seriesConfirmed.name = 'confirmed';
         seriesConfirmed.dataFields.valueY = 'confirmed';
@@ -54,7 +86,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         );
 
         // Create series
-        let seriesDeaths = chart.series.push(new am4charts.ColumnSeries());
+        let seriesDeaths = this.chart.series.push(new am4charts.ColumnSeries());
         seriesDeaths.clustered = false;
         seriesDeaths.name = 'deaths';
         seriesDeaths.dataFields.valueY = 'deaths';
@@ -68,11 +100,5 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         seriesDeaths.columns.template.stroke = this.amchartService.getColor(
             this.amchartService.config.CASES_DEATHS_COLOR
         );
-
-        /*let columnTemplate = series.columns.template;
-        columnTemplate.strokeWidth = 2;
-        columnTemplate.strokeOpacity = 1;*/
-
-        this.chart = chart;
     }
 }

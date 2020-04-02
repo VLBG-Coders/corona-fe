@@ -3,15 +3,17 @@
         <div class="col-lg-4 col-xl-2">
             <div class="card">
                 <div class="card-body">
+                    <app-loading-indicator [appearance]="'fullwidth'"
+                                           *ngIf="totalCasesCountriesLoading">
+                    </app-loading-indicator>
                     <div class="header-component">
                         CONFIRMED CASES<br />
                         by countries
                     </div>
-                    <app-cases-country-list [viewMode]="'compact'"
-                                            [viewCase]="'confirmed'"
-                                            [isComponentLoading]="true"
-                                            [dataCases]="totalCasesCountries">
-                    </app-cases-country-list>
+                    <app-cases-country-list-compact *ngIf="!totalCasesCountriesLoading"
+                                                    [viewCase]="'confirmed'"
+                                                    [dataCases]="totalCasesCountries">
+                    </app-cases-country-list-compact>
                 </div>
             </div>
         </div>
@@ -21,19 +23,25 @@
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total confirmed'"
                                           [viewCase]="'confirmed'"
-                                          [chartData]="totalCasesWorldwide">
+                                          [chartData]="dailyCasesWorldwide"
+                                          [totalData]="totalCasesWorldwide"
+                                          [isComponentLoading]="totalCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total deaths'"
                                           [viewCase]="'deaths'"
-                                          [chartData]="totalCasesWorldwide">
+                                          [chartData]="dailyCasesWorldwide"
+                                          [totalData]="totalCasesWorldwide"
+                                          [isComponentLoading]="totalCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
                 <div class="col-4">
                     <app-cases-text-title [translationKey]="'Total recovered'"
                                           [viewCase]="'recovered'"
-                                          [chartData]="totalCasesWorldwide">
+                                          [chartData]="dailyCasesWorldwide"
+                                          [totalData]="totalCasesWorldwide"
+                                          [isComponentLoading]="totalCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
             </div>
@@ -43,10 +51,10 @@
                     <div class="card">
                         <div class="card-body">
                             <app-loading-indicator [appearance]="'fullwidth'"
-                                                   *ngIf="!totalCasesCountries.length">
+                                                   *ngIf="totalCasesCountriesLoading">
                             </app-loading-indicator>
                             <app-cases-map-chart [chartData]="totalCasesCountries"
-                                                 *ngIf="totalCasesCountries.length">
+                                                 *ngIf="!totalCasesCountriesLoading">
                             </app-cases-map-chart>
                         </div>
                     </div>
@@ -61,10 +69,10 @@
                         DEATHS<br />
                         by countries
                     </div>
-                    <app-cases-country-list [viewMode]="'compact'"
-                                            [viewCase]="'deaths'"
-                                            [dataCases]="totalCasesCountries">
-                    </app-cases-country-list>
+                    <app-cases-country-list-compact *ngIf="!totalCasesCountriesLoading"
+                                                    [viewCase]="'deaths'"
+                                                    [dataCases]="totalCasesCountries">
+                    </app-cases-country-list-compact>
                 </div>
             </div>
         </div>
@@ -79,7 +87,9 @@
                     <div class="header-component">
                         Global curve
                     </div>
-                    <app-cases-line-chart [chartData]="casesByDayWorldwide"></app-cases-line-chart>
+                    <app-cases-line-chart [chartData]="dailyCasesWorldwide"
+                                          [isComponentLoading]="dailyCasesWorldwideLoading">
+                    </app-cases-line-chart>
                 </div>
             </div>
         </div>

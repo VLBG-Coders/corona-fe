@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, NgZone, OnChanges, Input, Output } from '@angular/core';
+import { Component, EventEmitter, NgZone, OnChanges, Input, Output } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
@@ -13,7 +13,7 @@ import { ChartBase } from '../chart-base';
 })
 export class GeoMapCountryComponent extends ChartBase implements OnChanges {
     @Output()
-    public selectedCountry: EventEmitter<string> = new EventEmitter();
+    public onCountrySelected: EventEmitter<string> = new EventEmitter();
 
     @Input()
     public isComponentLoading: boolean = false;
@@ -21,11 +21,10 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
     @Input()
     public countryCode: string;
 
-    private worldPolygonSeries = null;
-    private countryPolygonTemplate = null;
-    private worldData: any = geoData;
-    private _selectedCountryCode: string = null;
     private _selectedCountry: any = null;
+    private worldPolygonSeries;
+    private countryPolygonTemplate;
+    public chartData: any;
 
     constructor(
         public readonly _ngZone: NgZone,
@@ -40,40 +39,40 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
      *
      */
     public createChart(): void {
-        let chart = am4core.create(this.COMPONENT_ID, am4maps.MapChart);
+        let chart = this.container.createChild(am4maps.MapChart);
         chart.geodata = am4geodata_worldLow;
         chart.projection = new am4maps.projections.Miller();
         chart.data = [];
 
         // Create map polygon series
-        this.worldPolygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-        this.worldPolygonSeries.useGeodata = true;
-        this.worldPolygonSeries.fill = this.amchartService.getColor(
+        let worldPolygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+        worldPolygonSeries.useGeodata = true;
+        worldPolygonSeries.fill = this.amchartService.getColor(
             this.amchartService.config.MAP_BACKGROUND_COLOR
         );
 
         // Exclude Antartica
-        this.worldPolygonSeries.exclude = ['AQ'];
+        worldPolygonSeries.exclude = ['AQ'];
 
         // Configure countries
-        this.countryPolygonTemplate = this.worldPolygonSeries.mapPolygons.template;
-        this.countryPolygonTemplate.applyOnClones = true;
-        this.countryPolygonTemplate.togglable = true;
-        this.countryPolygonTemplate.nonScalingStroke = true;
-        this.countryPolygonTemplate.fill = this.amchartService.getColor(
+        let countryPolygonTemplate = worldPolygonSeries.mapPolygons.template;
+        countryPolygonTemplate.applyOnClones = true;
+        countryPolygonTemplate.togglable = true;
+        countryPolygonTemplate.nonScalingStroke = true;
+        countryPolygonTemplate.fill = this.amchartService.getColor(
             this.amchartService.config.MAP_COUNTRY_COLOR
         );
-        this.countryPolygonTemplate.tooltipText = '{name}';
+        countryPolygonTemplate.tooltipText = '{name}';
 
         // Create hover state and set alternative fill color
-        let hoverState = this.countryPolygonTemplate.states.create('hover');
+        let hoverState = countryPolygonTemplate.states.create('hover');
         hoverState.properties.fill = this.amchartService.getColor(
             this.amchartService.config.MAP_COUNTRY_COLOR_SELECTED
         );
         hoverState.properties.fillOpacity = 0.3;
 
         /* Create selected and hover states and set alternative fill color */
-        let activeState = this.countryPolygonTemplate.states.create('active');
+        let activeState = countryPolygonTemplate.states.create('active');
         activeState.properties.fill = this.amchartService.getColor(
             this.amchartService.config.MAP_COUNTRY_COLOR_SELECTED
         );
@@ -84,27 +83,29 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
         // Re-position to top right (it defaults to bottom left)
         chart.smallMap.align = 'right';
         chart.smallMap.valign = 'top';
-        chart.smallMap.series.push(this.worldPolygonSeries);
+        chart.smallMap.series.push(worldPolygonSeries);
 
+        this.countryPolygonTemplate = countryPolygonTemplate;
+        this.worldPolygonSeries = worldPolygonSeries;
         this.chart = chart;
-        this.addMapEvents();
-    }
 
+        this.bindEvents();
+    }
     /**
      *
      */
-    private addMapEvents(): void {
-        this.chart.events.on('ready', function(event) {
+    private bindEvents(): void {
+        this.chart.events.on('ready', (event) => {
             let country = this.worldPolygonSeries.getPolygonById(this.countryCode);
             this.updateSelectedCountry(country);
-            this.zoomToCountry(this.countryCode);
-        }.bind(this));
+            this.zoomToCountry();
+        });
 
-        this.countryPolygonTemplate.events.on('hit', function(event) {
+        this.countryPolygonTemplate.events.on('hit', (event) => {
             this.updateSelectedCountry(event.target);
             this.zoomToCountry();
-            this.selectedCountry.emit(this._selectedCountry.dataItem.dataContext.id);
-        }.bind(this));
+            this.onCountrySelected.emit(event.target.dataItem.dataContext.id)
+        });
     }
 
     /**
@@ -120,17 +121,21 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
     /**
      *
      */
-    private updateSelectedCountry(MapPolygon: any): void {
+    private updateSelectedCountry(mapPolygon: any): void {
         // Handle deselection.
         if (this._selectedCountry) {
             this._selectedCountry.isActive = false;
         }
 
         if (!this._selectedCountry) {
-            this._selectedCountry = MapPolygon;
+            this._selectedCountry = mapPolygon;
             this._selectedCountry.isActive = true;
-        } else if (this._selectedCountry !== MapPolygon) {
-            this._selectedCountry = MapPolygon;
+        } else if (this._selectedCountry !== mapPolygon) {
+            this._selectedCountry = mapPolygon;
         }
+    }
+
+    private emitSelectedCountry(): void {
+        this.onCountrySelected.emit();
     }
 }

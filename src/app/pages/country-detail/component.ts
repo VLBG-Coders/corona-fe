@@ -1,8 +1,9 @@
-import { last } from 'lodash';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CountryModel, DailyCasesModel } from '@app/models';
-import { CoronaCasesApiService } from '@app/services/apis';
+import { find } from 'lodash';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CasesDailyModel, CasesTotalModel } from '@app/models';
+import { CoronaCasesApiService, CountriesApiService } from '@app/services/apis';
+import { GeoMapCountryComponent } from '@app/components';
 
 @Component({
     selector: 'app-pages-country-detail',
@@ -10,52 +11,132 @@ import { CoronaCasesApiService } from '@app/services/apis';
     styleUrls: ['./styles.scss']
 })
 export class CountryDetailPage implements OnInit {
-    private readonly SUBSCRIPTION_DELAY = 50;
-    private paramSubscriber = null;
+    @ViewChild(GeoMapCountryComponent, { static: false })
+    private worldChart: GeoMapCountryComponent;
 
-    public countryCode = null;
-    public selectedCountry: CountryModel = new CountryModel;
-    public casesByDayCountry: DailyCasesModel[] = [];
-    public totalCasesCountry: any = null;
+    private readonly PARAM_DELAY = 50;
+    private paramSubscriber = null;
+    private countries = [];
+
+    public countryCode: string = null;
+    public countryName: string = null;
+    public selectedCountry;
+    public isNoCountrySelected = false;
+    public casesByDay: CasesDailyModel[] = null;
+    public totalCases: CasesTotalModel = null;
 
     constructor(
+        public readonly _router: Router,
         public readonly _activatedRoute: ActivatedRoute,
-        public readonly coronaCasesApiService: CoronaCasesApiService
+        public readonly coronaCasesApiService: CoronaCasesApiService,
+        public readonly countriesApiService: CountriesApiService
     ) { }
 
     ngOnInit() {
-        // Timeout is needed to wait for the init event.
         setTimeout(() => {
-            this.getRouteParameters();
-        }, this.SUBSCRIPTION_DELAY);
+            this.setRouteParameters();
+            this.fetchCountries();
+            this.bindMapCountrySelect();
+        }, this.PARAM_DELAY);
     }
 
+    /**
+     *
+     */
     public onCountrySelected(countryCode: string): void {
-        this.changeSelectedCountry(countryCode);
+        this.countryCode = countryCode;
+        this.changeSelectedCountry();
     }
 
-    private getRouteParameters(): void {
+    /**
+     *
+     */
+    private setRouteParameters(): void {
         const countryCode = this._activatedRoute.snapshot.paramMap.get('countryCode');
 
         if (!countryCode) {
+            this.isNoCountrySelected = true;
+
             return;
         }
 
-        this.changeSelectedCountry(countryCode);
+        this.countryCode = countryCode;
     }
 
-    private fetchCasesByDay(): void {
-        this.coronaCasesApiService.getCasesByCountryId(this.countryCode).subscribe(
-            response => {
-                this.selectedCountry = response.country;
-                this.casesByDayCountry = response.casesTimeline;
-                this.totalCasesCountry = response.casesTotal;
+    /**
+     *
+     */
+    private bindMapCountrySelect(): void {
+        setTimeout(() => {
+            this.worldChart.onCountrySelected.subscribe(
+                countryCode => {
+                    this.onCountrySelected(countryCode);
+                }
+            );
+        }, 100);
+    }
+
+    /**
+     *
+     */
+    private changeSelectedCountry(): void {
+        let country = find(this.countries, { 'code': this.countryCode });
+
+        if (!country) {
+
+            this.isNoCountrySelected = true;
+
+            return;
+        }
+
+        this.countryName = country.name;
+        this.fetchCountryDetails();
+        this.fetchDailyCasesByCountry();
+        this.fetchTotalCasesByCountry();
+    }
+
+    /**
+     *
+     */
+    private fetchCountries(): void {
+        this.countriesApiService.getCountries().subscribe(
+            data => {
+                this.countries = data;
+                this.changeSelectedCountry();
             }
         );
     }
 
-    private changeSelectedCountry(countryCode): void {
-        this.countryCode = countryCode;
-        this.fetchCasesByDay();
+    /**
+     *
+     */
+    private fetchCountryDetails(): void {
+        this.countriesApiService.getCountries(this.countryName).subscribe(
+            data => {
+                this.selectedCountry = data;
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    private fetchDailyCasesByCountry(): void {
+        this.coronaCasesApiService.getDailyCases(this.countryName).subscribe(
+            (data: CasesDailyModel[]) => {
+                this.casesByDay = data;
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    private fetchTotalCasesByCountry(): void {
+        this.coronaCasesApiService.getTotalCases(this.countryName).subscribe(
+            (data: CasesTotalModel) => {
+                this.totalCases = data;
+            }
+        );
     }
 }

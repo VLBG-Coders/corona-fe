@@ -1,4 +1,5 @@
 export class AppConfig {
+    DATE_FORMAT_SHORT_BE = 'YYYY-MM-DD';
 }
 
 export class ChartConfig {

@@ -1,57 +1,52 @@
-import { find, filter } from 'lodash';
-import { Component, Input, OnChanges } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { filter, orderBy } from 'lodash';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { CoronaCasesApiService } from '@app/services/apis';
+import { ApiCasesTotalModel } from '@app/models';
 
 @Component({
     selector: 'app-cases-country-list',
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesCountryListComponent implements OnChanges {
+export class CasesCountryListComponent implements OnInit, OnChanges {
     @Input()
     public isComponentLoading: boolean = false;
 
     @Input()
-    public viewMode: string = 'table';
+    public dataCases: ApiCasesTotalModel[] = null;
 
-    @Input()
-    public viewCase: string = 'confirmed';
-
-    @Input()
-    public dataCases = [];
-
-    private _countries = [];
-    public countries = [];
+    private _dataCases: ApiCasesTotalModel[] = [];
     public filterCountryName: string;
+    public sortParameter = 'confirmed';
+    public isComponentReady = false;
 
     constructor(
-        public readonly _router: Router,
-        public readonly _domSanitizer: DomSanitizer,
-        public readonly coronaCasesApiService: CoronaCasesApiService
+        public readonly _router: Router
     ) { }
 
+    ngOnInit() {
+        this.enrichApiData();
+    }
+
     ngOnChanges() {
-        this._countries = this.dataCases;
-        this.countries = this.dataCases;
+        this.enrichApiData();
     }
 
     /**
      *
      */
     public onSelectCountry(selectedElements: any): void {
-        const country = selectedElements[0];
-        const url = '/country/' + country.country.code;
+        const item = selectedElements[0];
+        const url = '/country/' + item.country.code;
         this._router.navigate([url]);
     }
 
     /**
      *
      */
-    public onSelectCountryByCode(code: string): void {
-        const url = '/country/' + code;
+    public onSelectCountryByCode(countryCode: string): void {
+        const url = '/country/' + countryCode;
         this._router.navigate([url]);
     }
 
@@ -61,10 +56,25 @@ export class CasesCountryListComponent implements OnChanges {
     public filterCountries(event: any): void {
         const countryName = this.filterCountryName.toLowerCase();
 
-        this.countries = filter(this._countries, (item) => {
+        this._dataCases = filter(this.dataCases, (item) => {
             let itemName = item.country.name.toLowerCase();
 
             return itemName.includes(countryName);
         });
+    }
+
+    /**
+     *
+     */
+    private enrichApiData(): void {
+        const orderByProperty = 'cases.' + this.sortParameter;
+
+        if (!this.dataCases) {
+            return;
+        }
+
+        this.isComponentReady = false;
+        this._dataCases = orderBy(this.dataCases, [orderByProperty], ['desc']);
+        this.isComponentReady = true;
     }
 }

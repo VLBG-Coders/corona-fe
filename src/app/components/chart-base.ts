@@ -5,10 +5,8 @@ export class ChartBase implements AfterViewInit, OnDestroy {
     public readonly SUBSCRIPTION_DELAY = 10;
     public container = null;
     public chart = null;
-    public COMPONENT_ID: string;
-
-    @Input()
     public chartData: any;
+    public COMPONENT_ID: string;
 
     constructor(
         public readonly _ngZone: NgZone
@@ -16,14 +14,21 @@ export class ChartBase implements AfterViewInit, OnDestroy {
         this.COMPONENT_ID = this.getComponentId();
     }
 
+    /**
+     *
+     */
     ngAfterViewInit() {
         setTimeout(() => {
             this._ngZone.runOutsideAngular(() => {
-                this.createChart();
+                this.createChartContainer();
             });
+            this.createChart();
         }, this.SUBSCRIPTION_DELAY);
     }
 
+    /**
+     *
+     */
     ngOnDestroy() {
         this._ngZone.runOutsideAngular(() => {
             if (this.container) {
@@ -36,17 +41,27 @@ export class ChartBase implements AfterViewInit, OnDestroy {
         });
     }
 
-    ngOnChanges() {
-        if (this.chart) {
-            this.updateChartData();
-            this.chart.data = this.chartData;
-        }
+    /**
+     *
+     */
+    public createChartContainer(): void {
+        this.container = am4core.create(this.COMPONENT_ID, am4core.Container);
+        this.container.width = am4core.percent(100);
+        this.container.height = am4core.percent(100);
     }
-
+    /**
+     *
+     */
     public createChart(): void { }
 
+    /**
+     *
+     */
     public updateChartData(): void { }
 
+    /**
+     *
+     */
     public getComponentId(): string {
         return 'Chart-Id-' + Math.random().toString(36).substring(2) + new Date().getTime();
     }

@@ -10,13 +10,16 @@
                 </div>
 
                 <div class="trend ml-auto d-flex align-items-center">
-                    <span class="trend-percentage mr-1 text-right" *ngIf="casesToday > casesYesterday">
+                    <span class="trend-percentage mr-1 text-right"
+                          *ngIf="casesToday > casesYesterday">
                         + {{ (casesToday * 100 / casesYesterday) - 100 | number:'1.0-1' }}%
                     </span>
-                    <span class="trend-percentage mr-1 text-right" *ngIf="casesToday < casesYesterday">
+                    <span class="trend-percentage mr-1 text-right"
+                          *ngIf="casesToday < casesYesterday">
                         - {{ (casesYesterday * 100 / casesToday) - 100 | number:'1.0-1' }}%
                     </span>
-                    <span class="trend-percentage mr-1 text-right" *ngIf="casesToday === casesYesterday">
+                    <span class="trend-percentage mr-1 text-right"
+                          *ngIf="casesToday === casesYesterday">
                         0%
                     </span>
 
@@ -28,8 +31,9 @@
                 </div>
             </div>
 
-            <div class="number" *ngIf="chartData">
-                {{ chartData[viewCase] | number }}
+            <div class="number"
+                 *ngIf="totalData">
+                {{ totalData[viewCase] | number }}
             </div>
         </div>
 

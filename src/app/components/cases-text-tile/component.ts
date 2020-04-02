@@ -1,8 +1,8 @@
-import moment from 'moment';
-import { AfterViewInit, Component, NgZone, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, NgZone, Input, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { AmchartService } from '@app/services';
+import { CasesTotalModel, CasesDailyModel } from '@app/models';
 import { ChartBase } from '../chart-base';
 
 @Component({
@@ -11,17 +11,6 @@ import { ChartBase } from '../chart-base';
     styleUrls: ['./styles.scss']
 })
 export class CasesTextTileComponent extends ChartBase implements OnChanges {
-    private readonly CHART_COLOR_RISING = '#D12F30';
-    private readonly CHART_COLOR_SINKING = '#539E5D';
-    private readonly CHART_COLOR_STAGNANT = '#0000FF';
-    private readonly CHART_BASE_COLOR = '#eee';
-    private series: any;
-
-    public container: am4core.Container = null;
-
-    public casesToday: number = 0;
-    public casesYesterday: number = 0;
-
     @Input()
     public isComponentLoading: boolean = false;
 
@@ -30,6 +19,20 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
 
     @Input()
     public viewCase: string = 'confirmed';
+
+    @Input()
+    public totalData: CasesTotalModel;
+
+    @Input()
+    public chartData: CasesDailyModel[] = [];
+
+    private readonly CHART_BASE_COLOR = '#eee';
+    private series: any;
+    private MAX_CHART_DAYS = 5;
+
+    public container: am4core.Container = null;
+    public casesToday: number = 0;
+    public casesYesterday: number = 0;
 
     private colorCodes = {
         confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
@@ -52,6 +55,7 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     ngOnChanges() {
         if (this.chart) {
             this.updateChartData();
+            this.chart.invalidateRawData();
         }
     }
 
@@ -59,19 +63,20 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
      *
      */
     public updateCasesVariables(): void {
-        this.casesToday = this.chartData[this.viewCase];
-        this.casesYesterday = this.chartData[this.viewCase + 'Prev'];
+        if (!this.totalData) {
+            return;
+        }
+
+        this.casesToday = this.totalData[this.viewCase];
+        this.casesYesterday = this.totalData['delta_' + this.viewCase];
     }
 
     /**
      *
      */
     public createChart(): void {
-        this.container = am4core.create(this.COMPONENT_ID, am4core.Container);
         this.container.layout = 'grid';
         this.container.fixedWidthGrid = false;
-        this.container.width = am4core.percent(100);
-        this.container.height = am4core.percent(100);
         this.createLineChart();
     }
 
@@ -121,16 +126,17 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     public updateChartData(): void {
         this.updateCasesVariables();
 
-        let today = moment();
-        let data = [
-            {
-                date: today.format('YYYY-MM-DD'),
-                value: this.chartData[this.viewCase]
-            }, {
-                date: today.subtract(1, 'day').format('YYYY-MM-DD'),
-                value: this.chartData[this.viewCase + 'Prev']
+        let data = [];
+        for (let item of this.chartData) {
+            data.push({
+                date: item.date,
+                value: item[this.viewCase]
+            });
+
+            if (data.length === this.MAX_CHART_DAYS) {
+                break;
             }
-        ];
+        }
 
         this.chart.data = data;
         this.series.stroke = this.colors[this.viewCase];

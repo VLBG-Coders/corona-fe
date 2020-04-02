@@ -7,28 +7,25 @@ import { environment } from '@env/environment';
 
 @Injectable()
 export class CoronaCasesApiService extends BaseApiService {
-    public API_BASE_PATH = '/cases';
+    public API_BASE_PATH = '/covid19';
 
     constructor(
         public readonly _httpClient: HttpClient
     ) {
         super();
+        this.setApiUrl();
     }
 
     /**
-     * Fetches cases by country name.
+     * Fetches cases on a daily basis.
      */
-    public getCasesByCountryId(countryId: number): Observable<any> {
-        const url = this.API_URL;
-        const requestParams = {
-            'params': {
-                'country': String(countryId)
-            }
-        };
+    public getDailyCases(countryCode: string = null): Observable<any> {
+        const url = this.API_URL + '/cases-daily';
+        const requestParams = this.getCountryQueryParameter(countryCode);
 
-        if (!environment.production) {
+        if (environment.useApiMock) {
             return this._httpClient
-                .get(environment.apiMockBaseUrl + '/cases-by-country.json', requestParams)
+                .get(environment.apiMockBaseUrl + '/cases-daily-by-country.json', requestParams)
                 .pipe(map(this.retrieveData));
         }
 
@@ -38,19 +35,21 @@ export class CoronaCasesApiService extends BaseApiService {
     }
 
     /**
-     * Fetches cases by country name.
+     * Fetch total cases.
      */
-    public getCasesByTimelineTotal(countryId: number): Observable<any> {
-        const url = this.API_URL;
-        const requestParams = {
-            'params': {
-                'country': String(countryId)
-            }
-        };
+    public getTotalCases(countryCode: string = null): Observable<any> {
+        const url = this.API_URL + '/cases-total';
+        const requestParams = this.getCountryQueryParameter(countryCode);
 
-        if (!environment.production) {
+        if (environment.useApiMock) {
+            if (countryCode) {
+                return this._httpClient
+                    .get(environment.apiMockBaseUrl + '/cases-total-by-country.json')
+                    .pipe(map(this.retrieveData));
+            }
+
             return this._httpClient
-                .get(environment.apiMockBaseUrl + '/timeline-total.json', requestParams)
+                .get(environment.apiMockBaseUrl + '/cases-total.json')
                 .pipe(map(this.retrieveData));
         }
 
@@ -60,75 +59,19 @@ export class CoronaCasesApiService extends BaseApiService {
     }
 
     /**
-     * Fetches cases by country name.
-     */
-    public getCasesByTimelineWorld(countryId: number): Observable<any> {
-        const url = this.API_URL;
-        const requestParams = {
-            'params': {
-                'country': String(countryId)
-            }
-        };
-
-        if (!environment.production) {
-            return this._httpClient
-                .get(environment.apiMockBaseUrl + '/timeline-world.json', requestParams)
-                .pipe(map(this.retrieveData));
-        }
-
-        return this._httpClient
-            .get(url, requestParams)
-            .pipe(map(this.retrieveData));
-    }
-
-    /**
-     * Fetches cases by days.
-     */
-    public getCasesByCountries(): Observable<any> {
-        const url = this.API_URL;
-
-        if (!environment.production) {
-            return this._httpClient
-                .get(environment.apiMockBaseUrl + '/cases-by-countries.json')
-                .pipe(map(this.retrieveData));
-        }
-
-        return this._httpClient
-            .get(url)
-            .pipe(map(this.retrieveData));
-    }
-
-    /**
-     * Fetches cases by days.
+     * Fetch total cases.
      */
     public getTotalCasesWorldwide(): Observable<any> {
-        const url = this.API_URL;
-
-        if (!environment.production) {
-            return this._httpClient
-                .get(environment.apiMockBaseUrl + '/cases-by-world.json')
-                .pipe(map(this.retrieveData));
-        }
-
-        return this._httpClient
-            .get(url)
-            .pipe(map(this.retrieveData));
-    }
-
-    /**
-     * Fetches cases by days.
-     */
-    public getCasesByDays(fromDate?: string): Observable<any> {
-        const url = this.API_URL;
+        const url = this.API_URL + '/cases-total';
         const requestParams = {
             'params': {
-                'from': fromDate
+                'worldwide': 'true'
             }
         };
 
-        if (!environment.production) {
+        if (environment.useApiMock) {
             return this._httpClient
-                .get(environment.apiMockBaseUrl + '/cases-total-days.json', requestParams)
+                .get(environment.apiMockBaseUrl + '/cases-total-worldwide.json')
                 .pipe(map(this.retrieveData));
         }
 

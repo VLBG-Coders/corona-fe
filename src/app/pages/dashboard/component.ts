@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiCasesTotalModel, CasesDailyModel } from '@app/models';
 import { CoronaCasesApiService } from '@app/services/apis';
 
 @Component({
@@ -7,61 +8,61 @@ import { CoronaCasesApiService } from '@app/services/apis';
     styleUrls: ['./styles.scss']
 })
 export class DashboardPage implements OnInit {
-    public totalCasesWorldwide: any = null;
-    public totalCasesCountries = [];
-    public casesByDayWorldwide = [];
+    public totalCasesCountries: ApiCasesTotalModel[] = [];
+    public totalCasesWorldwide: ApiCasesTotalModel = null;
+    public dailyCasesWorldwide: CasesDailyModel[] = [];
+    public totalCasesCountriesLoading: boolean = false;
+    public totalCasesWorldwideLoading: boolean = false;
+    public dailyCasesWorldwideLoading: boolean = false;
 
     constructor(
-        public readonly coronaCasesApiService: CoronaCasesApiService
+        public readonly coronaCasesApiService: CoronaCasesApiService,
     ) { }
 
     ngOnInit() {
-        this.fetchCasesByCountries();
+        this.fetchDailyCasesWorldwide();
         this.fetchTotalCasesWorldwide();
-        this.fetchCasesByDay();
-    }
-
-    private fetchCasesByDay(): void {
-        this.coronaCasesApiService.getCasesByDays().subscribe(
-            response => {
-                this.casesByDayWorldwide = response;
-            }
-        );
+        this.fetchTotalCasesByCountries();
     }
 
     /**
      *
      */
-    private fetchCasesByCountries(): void {
-        this.coronaCasesApiService.getCasesByCountries().subscribe(
-            response => {
-                this.enrichApiData(response);
+    private fetchDailyCasesWorldwide(): void {
+        this.dailyCasesWorldwideLoading = true;
+        this.dailyCasesWorldwide = null;
+        this.coronaCasesApiService.getDailyCases().subscribe(
+            (data: CasesDailyModel[]) => {
+                this.dailyCasesWorldwide = data;
+                this.dailyCasesWorldwideLoading = false;
             }
         );
-    }
-
-    /**
-     *
-     */
-    private enrichApiData(countries: any): void {
-        for (let country of countries) {
-            let name = country.country.name;
-            country.country.compactName = name.toLowerCase().replace(/\s/g, '-');
-        }
-
-        setTimeout(() => {
-            this.totalCasesCountries = countries;
-            console.log('yes', this.totalCasesCountries);
-        }, 1000);
     }
 
     /**
      *
      */
     private fetchTotalCasesWorldwide(): void {
+        this.totalCasesWorldwideLoading = true;
+        this.totalCasesWorldwide = null;
         this.coronaCasesApiService.getTotalCasesWorldwide().subscribe(
-            response => {
-                this.totalCasesWorldwide = response;
+            (data: ApiCasesTotalModel) => {
+                this.totalCasesWorldwide = data;
+                this.totalCasesWorldwideLoading = false;
+            }
+        );
+    }
+
+    /**
+     *
+     */
+    private fetchTotalCasesByCountries(): void {
+        this.totalCasesCountriesLoading = true;
+        this.totalCasesCountries = null;
+        this.coronaCasesApiService.getTotalCases().subscribe(
+            (data: ApiCasesTotalModel[]) => {
+                this.totalCasesCountries = data;
+                this.totalCasesCountriesLoading = false;
             }
         );
     }
