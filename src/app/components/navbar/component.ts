@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./styles.scss']
 })
 export class NavbarComponent {
+    public showMenu = false;
 }

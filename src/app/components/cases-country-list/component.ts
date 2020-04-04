@@ -29,8 +29,7 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
     public filterCountryName: string;
     public sortParameter = 'confirmed';
     public isComponentReady = false;
-
-    private _dataCases: ApiCasesTotalModel[] = [];
+    public _dataCases: ApiCasesTotalModel[] = [];
 
     constructor(
         public readonly _router: Router
