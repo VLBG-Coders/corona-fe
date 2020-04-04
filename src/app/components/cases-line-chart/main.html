@@ -1,8 +1,10 @@
-<div class="">
+<div class="cases-line-chart-container"
+     [ngClass]="customClass">
     <app-loading-indicator [appearance]="'fullwidth'"
                            *ngIf="isComponentLoading">
     </app-loading-indicator>
+
     <div id="{{ COMPONENT_ID }}"
-         style="width: 100%; height: 500px">
+         class="cases-line-chart">
     </div>
 </div>

@@ -6,12 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 import * as Pages from '@app/pages';
 import * as Components from '@app/components';
 import * as Services from '@app/services';
 import * as Apis from '@app/services/apis';
+import { environment } from '@env/environment';
 
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         HttpClientModule,
@@ -32,10 +34,8 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
                 ]
             }
         }),
-        MatProgressSpinnerModule,
-        NgxDatatableModule,
+        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalyticsTrackingCode),
         AppRoutingModule,
-        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
@@ -45,10 +45,13 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
         Components.CasesLineChartComponent,
         Components.CasesMapChartComponent,
         Components.CasesTextTileComponent,
-        Components.GeoMapCountryComponent,
+        Components.GeoMapComponent,
         Components.LoadingIndicatorComponent,
         Components.NavbarComponent,
+        Components.SnippetCasesTrendComponent,
+        Pages.AboutPage,
         Pages.CountryDetailPage,
+        Pages.ContinentsPage,
         Pages.DashboardPage,
         Pages.Error404Page,
     ],

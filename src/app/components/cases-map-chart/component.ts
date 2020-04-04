@@ -1,5 +1,5 @@
 import { isEmpty } from 'lodash';
-import { Component, NgZone, Input } from '@angular/core';
+import { Component, NgZone, Input, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
@@ -15,12 +15,15 @@ am4core.useTheme(am4themes_animated);
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesMapChartComponent extends ChartBase {
+export class CasesMapChartComponent extends ChartBase implements OnChanges {
     @Input()
     public isComponentLoading: boolean = false;
 
     @Input()
     public chartData: ChartDataModel[] = [];
+
+    @Input()
+    public customClass: string;
 
     private currentType = 'confirmed';
     private polygonSeries: am4maps.MapPolygonSeries;
@@ -43,6 +46,14 @@ export class CasesMapChartComponent extends ChartBase {
         super(_ngZone);
     }
 
+    ngOnChanges() {
+        this.storeChartData();
+        if (!this.isComponentLoading && this.chart) {
+            this.chart.dispose();
+            this.createChart();
+        }
+    }
+
     /**
      *
      */
@@ -53,6 +64,9 @@ export class CasesMapChartComponent extends ChartBase {
         // Set projection
         chart.projection = new am4maps.projections.Miller();
         chart.zoomControl = new am4maps.ZoomControl();
+        chart.chartContainer.wheelable = false;
+        chart.seriesContainer.events.disableType('doublehit');
+        chart.chartContainer.background.events.disableType('doublehit');
 
         // Create map polygon series
         let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());

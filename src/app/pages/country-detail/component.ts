@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CasesDailyModel, CasesTotalModel } from '@app/models';
 import { CoronaCasesApiService, CountriesApiService } from '@app/services/apis';
-import { GeoMapCountryComponent } from '@app/components';
+import { GeoMapComponent } from '@app/components';
 
 @Component({
     selector: 'app-pages-country-detail',
@@ -11,8 +11,8 @@ import { GeoMapCountryComponent } from '@app/components';
     styleUrls: ['./styles.scss']
 })
 export class CountryDetailPage implements OnInit {
-    @ViewChild(GeoMapCountryComponent, { static: false })
-    private worldChart: GeoMapCountryComponent;
+    @ViewChild(GeoMapComponent, { static: false })
+    private worldChart: GeoMapComponent;
 
     private readonly PARAM_DELAY = 50;
     private paramSubscriber = null;
@@ -22,8 +22,12 @@ export class CountryDetailPage implements OnInit {
     public countryName: string = null;
     public selectedCountry;
     public isNoCountrySelected = false;
+
     public casesByDay: CasesDailyModel[] = null;
     public totalCases: CasesTotalModel = null;
+    public totalCasesLoading: boolean = false;
+    public casesByDayLoading: boolean = false;
+    public isPageLoading: boolean = false;
 
     constructor(
         public readonly _router: Router,
@@ -33,6 +37,7 @@ export class CountryDetailPage implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.isPageLoading = true;
         setTimeout(() => {
             this.setRouteParameters();
             this.fetchCountries();
@@ -44,6 +49,8 @@ export class CountryDetailPage implements OnInit {
      *
      */
     public onCountrySelected(countryCode: string): void {
+        const url = '/country/' + countryCode;
+        this._router.navigate([url]);
         this.countryCode = countryCode;
         this.changeSelectedCountry();
     }
@@ -55,7 +62,8 @@ export class CountryDetailPage implements OnInit {
         const countryCode = this._activatedRoute.snapshot.paramMap.get('countryCode');
 
         if (!countryCode) {
-            this.isNoCountrySelected = true;
+            this.countryCode = null;
+            this.isPageLoading = false;
 
             return;
         }
@@ -67,6 +75,7 @@ export class CountryDetailPage implements OnInit {
      *
      */
     private bindMapCountrySelect(): void {
+        const BINDING_DELAY = 100;
         setTimeout(() => {
             this.worldChart.onCountrySelected.subscribe(
                 countryCode => {
@@ -80,10 +89,11 @@ export class CountryDetailPage implements OnInit {
      *
      */
     private changeSelectedCountry(): void {
+        this.isPageLoading = true;
         let country = find(this.countries, { 'code': this.countryCode });
 
         if (!country) {
-
+            this.isPageLoading = false;
             this.isNoCountrySelected = true;
 
             return;
@@ -103,6 +113,7 @@ export class CountryDetailPage implements OnInit {
             data => {
                 this.countries = data;
                 this.changeSelectedCountry();
+                this.isPageLoading = false;
             }
         );
     }
@@ -122,9 +133,11 @@ export class CountryDetailPage implements OnInit {
      *
      */
     private fetchDailyCasesByCountry(): void {
+        this.casesByDayLoading = true;
         this.coronaCasesApiService.getDailyCases(this.countryName).subscribe(
             (data: CasesDailyModel[]) => {
                 this.casesByDay = data;
+                this.casesByDayLoading = false;
             }
         );
     }
@@ -133,9 +146,13 @@ export class CountryDetailPage implements OnInit {
      *
      */
     private fetchTotalCasesByCountry(): void {
+        this.isPageLoading = true;
+        this.totalCasesLoading = true;
         this.coronaCasesApiService.getTotalCases(this.countryName).subscribe(
             (data: CasesTotalModel) => {
                 this.totalCases = data;
+                this.totalCasesLoading = false;
+                this.isPageLoading = false;
             }
         );
     }

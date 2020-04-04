@@ -30,7 +30,6 @@ export class DashboardPage implements OnInit {
      */
     private fetchDailyCasesWorldwide(): void {
         this.dailyCasesWorldwideLoading = true;
-        this.dailyCasesWorldwide = null;
         this.coronaCasesApiService.getDailyCases().subscribe(
             (data: CasesDailyModel[]) => {
                 this.dailyCasesWorldwide = data;
@@ -44,7 +43,6 @@ export class DashboardPage implements OnInit {
      */
     private fetchTotalCasesWorldwide(): void {
         this.totalCasesWorldwideLoading = true;
-        this.totalCasesWorldwide = null;
         this.coronaCasesApiService.getTotalCasesWorldwide().subscribe(
             (data: ApiCasesTotalModel) => {
                 this.totalCasesWorldwide = data;
@@ -58,7 +56,6 @@ export class DashboardPage implements OnInit {
      */
     private fetchTotalCasesByCountries(): void {
         this.totalCasesCountriesLoading = true;
-        this.totalCasesCountries = null;
         this.coronaCasesApiService.getTotalCases().subscribe(
             (data: ApiCasesTotalModel[]) => {
                 this.totalCasesCountries = data;

@@ -1,1 +1,11 @@
 @import '../../../assets/scss/variables';
+
+.cases-map-chart {
+    width: 100%;
+    height: 500px;
+
+    &.dashboard {
+        height: calc(100vh - 460px);
+        min-height: 350px;
+    }
+}

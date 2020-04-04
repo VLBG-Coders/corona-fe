@@ -1,7 +1,7 @@
-const BASE_URL = '';
+const BASE_URL = 'https://corona-be.eishockey-liga.at';
 
 export const environment = {
-    production: true,
+    production: false,
     useApiMock: false,
     googleAnalyticsTrackingCode: 'UA-162590851-1',
     apiBaseUrl: BASE_URL + '',

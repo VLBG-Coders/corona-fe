@@ -14,6 +14,16 @@ const routes: Routes = [
         path: 'country/:countryCode',
         component: Pages.CountryDetailPage
     }, {
+        path: 'country',
+        redirectTo: 'country/',
+        pathMatch: 'full'
+    }, {
+        path: 'continents',
+        component: Pages.ContinentsPage
+    }, {
+        path: 'about',
+        component: Pages.AboutPage,
+    }, {
         path: '404',
         component: Pages.Error404Page,
     }, {

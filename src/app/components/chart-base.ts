@@ -1,7 +1,7 @@
-import { AfterViewInit, NgZone, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, NgZone, Input, OnDestroy, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 
-export class ChartBase implements AfterViewInit, OnDestroy {
+export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
     public readonly SUBSCRIPTION_DELAY = 10;
     public container = null;
     public chart = null;
@@ -18,6 +18,7 @@ export class ChartBase implements AfterViewInit, OnDestroy {
      *
      */
     ngAfterViewInit() {
+        this.storeChartData();
         setTimeout(() => {
             this._ngZone.runOutsideAngular(() => {
                 this.createChartContainer();
@@ -30,6 +31,7 @@ export class ChartBase implements AfterViewInit, OnDestroy {
      *
      */
     ngOnDestroy() {
+        this.chartData = null;
         this._ngZone.runOutsideAngular(() => {
             if (this.container) {
                 this.container.dispose();
@@ -39,6 +41,15 @@ export class ChartBase implements AfterViewInit, OnDestroy {
                 this.chart.dispose();
             }
         });
+    }
+
+    ngOnChanges() {
+        this.storeChartData();
+        if (this.chart) {
+            this.chart.dispose();
+            this.updateChartData()
+            this.createChart();
+        }
     }
 
     /**
@@ -64,5 +75,14 @@ export class ChartBase implements AfterViewInit, OnDestroy {
      */
     public getComponentId(): string {
         return 'Chart-Id-' + Math.random().toString(36).substring(2) + new Date().getTime();
+    }
+
+    /**
+     *
+     */
+    public storeChartData(): void {
+        if (this.chartData) {
+            this.chartData = JSON.parse(JSON.stringify(this.chartData));
+        }
     }
 }

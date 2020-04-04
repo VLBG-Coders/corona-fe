@@ -11,5 +11,6 @@ export class CasesTotalModel {
     deaths?: number = null;
     delta_confirmed?: number = null;
     delta_recovered?: number = null;
+    delta_deaths?: number = null;
     recovered?: number = null;
 }

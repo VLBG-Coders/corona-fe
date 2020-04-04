@@ -4,6 +4,7 @@ export * from './cases-country-list-compact';
 export * from './cases-line-chart';
 export * from './cases-map-chart';
 export * from './cases-text-tile';
-export * from './geo-map-country';
+export * from './geo-map';
 export * from './loading-indicator';
 export * from './navbar';
+export * from './snippet-cases-trend';

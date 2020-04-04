@@ -1,8 +1,8 @@
-import { filter, orderBy } from 'lodash';
+import { filter, orderBy, sumBy } from 'lodash';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoronaCasesApiService } from '@app/services/apis';
-import { ApiCasesTotalModel } from '@app/models';
+import { ApiCasesTotalModel, CasesTotalModel } from '@app/models';
 
 @Component({
     selector: 'app-cases-country-list',
@@ -16,10 +16,21 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
     @Input()
     public dataCases: ApiCasesTotalModel[] = null;
 
-    private _dataCases: ApiCasesTotalModel[] = [];
+    @Input()
+    public customClass: string;
+
+    @Input()
+    public tableName: string = 'Global Data Table';
+
+    @Input()
+    public showTotalBar: boolean = true;
+
+    public toalCases: CasesTotalModel = new CasesTotalModel;
     public filterCountryName: string;
     public sortParameter = 'confirmed';
     public isComponentReady = false;
+
+    private _dataCases: ApiCasesTotalModel[] = [];
 
     constructor(
         public readonly _router: Router
@@ -55,6 +66,7 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
      */
     public filterCountries(event: any): void {
         const countryName = this.filterCountryName.toLowerCase();
+        console.log(this.dataCases[0]);
 
         this._dataCases = filter(this.dataCases, (item) => {
             let itemName = item.country.name.toLowerCase();
@@ -71,6 +83,12 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
 
         if (!this.dataCases) {
             return;
+        }
+
+        for (let prop in this.toalCases) {
+            this.toalCases[prop] = sumBy(this.dataCases, (item) => {
+                return item.cases[prop];
+            });
         }
 
         this.isComponentReady = false;

@@ -17,6 +17,9 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     @Input()
     public chartData: CasesDailyModel[] = [];
 
+    @Input()
+    public customClass: string;
+
     constructor(
         public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService,
@@ -25,6 +28,7 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     }
 
     ngOnChanges() {
+        this.storeChartData();
         if (this.chart) {
             this.chart.data = this.chartData;
             this.drawChart();

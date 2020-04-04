@@ -5,12 +5,26 @@
         <img src="assets/images/app-logo.svg" />
     </a>
 
-    <div class="collapse navbar-collapse">
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            (click)="showMenu = !showMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse"
+         [class.show]="showMenu"
+         id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   routerLink="/dashboard">
+                   routerLink="/dashboard"
+                   (click)="showMenu = !showMenu">
                     Dashboard
                 </a>
             </li>
@@ -18,8 +32,18 @@
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   routerLink="/continents">
+                   routerLink="/continents"
+                   (click)="showMenu = !showMenu">
                     Continents
+                </a>
+            </li>
+
+            <li class="nav-item"
+                routerLinkActive="active">
+                <a class="nav-link"
+                   routerLink="/country"
+                   (click)="showMenu = !showMenu">
+                    Country
                 </a>
             </li>
         </ul>
@@ -28,7 +52,8 @@
             <li class="nav-item"
                 routerLinkActive="active">
                 <a class="nav-link"
-                   routerLink="/about">
+                   routerLink="/about"
+                   (click)="showMenu = !showMenu">
                     About
                 </a>
             </li>

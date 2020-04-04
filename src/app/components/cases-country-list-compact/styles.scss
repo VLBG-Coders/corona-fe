@@ -1,34 +1,28 @@
 @import '../../../assets/scss/variables';
 
+$country-list-header-height: 100px;
+$country-list-margins: 272px;
+$country-list-height-reducer: $country-list-header-height + $country-list-margins;
+
 .country-list-compact {
     margin: 0 -5px;
+    position: relative;
+
+    &.dashboard {
+        height: calc(100vh - #{$country-list-height-reducer});
+        min-height: 320px;
+        overflow: scroll;
+    }
 
     .country-list-compact-item {
         padding: 2px 5px;
         position: relative;
         cursor: pointer;
-        border-radius: 0 5px 5px 0;
+        border-radius: 5px;
 
         &:hover {
-            @include transition(background 0.5s ease-in-out);
+            @include transition(all 0.5s ease-in-out);
             background: $app-color-grey-light;
-
-            &:before {
-                width: 5px;
-                left: -5px;
-            }
-        }
-
-        &:before {
-            @include transition(all 0.25s ease-in-out);
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: $app-color-grey-dark;
-            border-radius: 10px 0 0 10px;
         }
 
         .country-details {
@@ -82,6 +76,40 @@
             text-transform: capitalize;
             letter-spacing: 0;
             line-height: 18px;
+        }
+    }
+
+    .country-list-compact-pagination {
+        position: sticky;
+        bottom: 0;
+        background: rgba(white, 0.8);
+        height: 50px;
+        word-spacing: 100%;
+
+        .pagination-button {
+            @include transition(box-shadow 0.15s ease-in-out);
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            background: rgba($app-color-grey-light, 0.8);
+            margin-right: 10px;
+            cursor: pointer;
+
+            &:hover {
+                @include box-shadow(0 1px 8px rgba(black, 0.25));
+                background: rgba($app-color-grey-light, 0.9);
+            }
+
+            &.disabled {
+                background: rgba($app-color-grey-light, 0.6);
+                color: rgba($font-color, 0.5);
+                cursor: no-drop;
+
+                &:hover {
+                    @include box-shadow(0 1px 8px rgba(black, 0.05));
+                    background: rgba($app-color-grey-light, 0.6);
+                }
+            }
         }
     }
 }

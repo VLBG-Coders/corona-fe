@@ -1,3 +1,4 @@
+import { isEmpty, orderBy } from 'lodash';
 import { Component, NgZone, Input, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -26,9 +27,12 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     @Input()
     public chartData: CasesDailyModel[] = [];
 
+    @Input()
+    public customClass: string;
+
     private readonly CHART_BASE_COLOR = '#eee';
     private series: any;
-    private MAX_CHART_DAYS = 5;
+    private MAX_CHART_DAYS = 15;
 
     public container: am4core.Container = null;
     public casesToday: number = 0;
@@ -53,6 +57,11 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     }
 
     ngOnChanges() {
+        if (!this.totalData || isEmpty(this.totalData)) {
+            this.totalData = JSON.parse(JSON.stringify(this.totalData));
+        }
+
+        this.storeChartData();
         if (this.chart) {
             this.updateChartData();
             this.chart.invalidateRawData();
@@ -124,9 +133,15 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
      *
      */
     public updateChartData(): void {
+        if (!this.chartData || isEmpty(this.chartData)) {
+            return;
+        }
+
         this.updateCasesVariables();
 
         let data = [];
+        data = orderBy(data, ['date'], ['desc']);
+
         for (let item of this.chartData) {
             data.push({
                 date: item.date,
@@ -137,6 +152,8 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
                 break;
             }
         }
+
+        data = orderBy(data, ['date']);
 
         this.chart.data = data;
         this.series.stroke = this.colors[this.viewCase];

@@ -64,6 +64,12 @@
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.local.ts"
                             }]
+                        },
+                        "dev": {
+                            "fileReplacements": [{
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.dev.ts"
+                            }]
                         }
                     }
                 },
@@ -78,6 +84,9 @@
                         },
                         "local": {
                             "browserTarget": "corona-fe:build:local"
+                        },
+                        "dev": {
+                            "browserTarget": "corona-fe:build:dev"
                         }
                     }
                 },

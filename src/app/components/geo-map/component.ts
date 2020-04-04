@@ -7,11 +7,11 @@ import { AmchartService } from '@app/services';
 import { ChartBase } from '../chart-base';
 
 @Component({
-    selector: 'app-geo-map-country',
+    selector: 'app-geo-map',
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class GeoMapCountryComponent extends ChartBase implements OnChanges {
+export class GeoMapComponent extends ChartBase implements OnChanges {
     @Output()
     public onCountrySelected: EventEmitter<string> = new EventEmitter();
 
@@ -21,6 +21,10 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
     @Input()
     public countryCode: string;
 
+    @Input()
+    public customClass: string;
+
+    private readonly MAX_ZOOM_LEVEL = 2;
     private _selectedCountry: any = null;
     private worldPolygonSeries;
     private countryPolygonTemplate;
@@ -42,6 +46,11 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
         let chart = this.container.createChild(am4maps.MapChart);
         chart.geodata = am4geodata_worldLow;
         chart.projection = new am4maps.projections.Miller();
+        chart.chartContainer.wheelable = false;
+        chart.seriesContainer.events.disableType('doublehit');
+        chart.chartContainer.background.events.disableType('doublehit');
+        chart.homeZoomLevel = this.MAX_ZOOM_LEVEL;
+        chart.maxZoomLevel = this.MAX_ZOOM_LEVEL;
         chart.data = [];
 
         // Create map polygon series
@@ -96,6 +105,10 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
      */
     private bindEvents(): void {
         this.chart.events.on('ready', (event) => {
+            if (!this.countryCode) {
+                return;
+            }
+
             let country = this.worldPolygonSeries.getPolygonById(this.countryCode);
             this.updateSelectedCountry(country);
             this.zoomToCountry();
@@ -115,7 +128,9 @@ export class GeoMapCountryComponent extends ChartBase implements OnChanges {
         let country = this.worldPolygonSeries.getPolygonById(
             this._selectedCountry.dataItem.dataContext.id
         );
+        this.chart.maxZoomLevel = this.MAX_ZOOM_LEVEL * 2;
         this.chart.zoomToMapObject(country);
+        this.chart.maxZoomLevel = this.MAX_ZOOM_LEVEL;
     }
 
     /**

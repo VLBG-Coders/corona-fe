@@ -1,89 +1,162 @@
-<app-loading-indicator [appearance]="'fullwidth'"
-                       *ngIf="isComponentLoading">
-</app-loading-indicator>
+<div class="data-table-container"
+     [ngClass]="customClass">
+    <app-loading-indicator [appearance]="'fullwidth'"
+                           *ngIf="isComponentLoading">
+    </app-loading-indicator>
 
-<div class="card">
-    <div class="card-body">
-        <div class="data-table-container">
-            <div class="data-table-filter d-flex align-items-center">
-                <div class="header-component">
-                    Global Data Table
-                </div>
+    <div class="data-table-filter d-flex align-items-center">
+        <div class="header-component">
+            {{ tableName }}
+        </div>
 
-                <div class="search-field input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fas fa-search"></i>
-                        </div>
-                    </div>
-
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Search..."
-                           [(ngModel)]="filterCountryName"
-                           (keyup)="filterCountries($event)" />
+        <div class="search-field input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-search"></i>
                 </div>
             </div>
 
-            <div class="data-table cases-data-table">
-                <div class="data-table-header d-flex">
-                    <div class="data-table-cell text-truncate text-strong bigger">
-                        Name
-                    </div>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Search..."
+                   [(ngModel)]="filterCountryName"
+                   (keyup)="filterCountries($event)" />
+        </div>
+    </div>
 
-                    <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                        Confirmed
-                    </div>
+    <div class="data-table cases-data-table">
+        <div class="data-table-header d-flex">
+            <div class="data-table-cell text-truncate text-strong bigger">
+                Name
+            </div>
 
-                    <div class="data-table-cell text-truncate grouped grouped-end">
-                        Today
-                    </div>
+            <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                Confirmed
+            </div>
 
-                    <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                        Deaths
-                    </div>
+            <div class="data-table-cell text-truncate grouped grouped-end">
+                Today
+            </div>
 
-                    <div class="data-table-cell text-truncate grouped grouped-end">
-                        Today
-                    </div>
+            <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                Deaths
+            </div>
 
-                    <div class="data-table-cell text-truncate text-strong grouped">
-                        Recovered
-                    </div>
+            <div class="data-table-cell text-truncate grouped grouped-end">
+                Today
+            </div>
+
+            <div class="data-table-cell text-truncate text-strong grouped">
+                Recovered
+            </div>
+        </div>
+
+        <div class="data-table-rows"
+             *ngIf="isComponentReady">
+            <div class="data-table-row d-flex"
+                 [class.has-total-row]="showTotalBar"
+                 *ngFor="let data of _dataCases"
+                 (click)="onSelectCountryByCode(data.country.code)">
+                <div class="data-table-cell text-truncate bigger">
+                    {{ data.country.name }}
                 </div>
 
-                <div class="data-table-rows"
-                     *ngIf="isComponentReady">
-                    <div class="data-table-row d-flex"
-                         *ngFor="let data of _dataCases"
-                         (click)="onSelectCountryByCode(data.country.code)">
-                        <div class="data-table-cell text-truncate bigger">
-                            {{ data.country.name }}
-                        </div>
-
-                        <div class="data-table-cell text-truncate grouped grouped-start">
-                            {{ data.cases.confirmed | number }}
-                        </div>
-
-                        <div class="data-table-cell text-truncate grouped grouped-end">
-                            {{ data.cases.confirmed | number }}
-                            (+ 13,23%)
-                        </div>
-
-                        <div class="data-table-cell text-truncate grouped grouped-start">
-                            {{ data.cases.deaths | number }}
-                        </div>
-
-                        <div class="data-table-cell text-truncate grouped grouped-end">
-                            {{ data.cases.deaths | number }}
-                            (13,23%)
-                        </div>
-
-                        <div class="data-table-cell text-truncate grouped">
-                            {{ data.cases.recovered | number }}
-                        </div>
-                    </div>
+                <div class="data-table-cell text-truncate grouped grouped-start">
+                    <ng-container *ngIf="data.cases.confirmed !== null">
+                        {{ data.cases.confirmed | number }}
+                    </ng-container>
+                    <ng-container *ngIf="data.cases.confirmed === null">
+                        -
+                    </ng-container>
                 </div>
+
+                <div class="data-table-cell text-truncate grouped grouped-end">
+                    <ng-container *ngIf="data.cases.delta_confirmed !== null">
+                        {{ data.cases.delta_confirmed | number }}
+                    </ng-container>
+                    <ng-container *ngIf="data.cases.delta_confirmed === null">
+                        -
+                    </ng-container>
+                </div>
+
+                <div class="data-table-cell text-truncate grouped grouped-start">
+                    <ng-container *ngIf="data.cases.deaths !== null">
+                        {{ data.cases.deaths | number }}
+                    </ng-container>
+                    <ng-container *ngIf="data.cases.deaths === null">
+                        -
+                    </ng-container>
+                </div>
+
+                <div class="data-table-cell text-truncate grouped grouped-end">
+                    <ng-container *ngIf="data.cases.delta_deaths && data.cases.delta_deaths !== null">
+                        {{ data.cases.delta_deaths | number }}
+                    </ng-container>
+                    <ng-container *ngIf="!data.cases.delta_deaths || data.cases.delta_deaths === null">
+                        -
+                    </ng-container>
+                </div>
+
+                <div class="data-table-cell text-truncate grouped">
+                    <ng-container *ngIf="data.cases.recovered !== null">
+                        {{ data.cases.recovered | number }}
+                    </ng-container>
+                    <ng-container *ngIf="data.cases.recovered === null">
+                        -
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-table-total-bar d-flex"
+             *ngIf="showTotalBar">
+            <div class="data-table-cell text-truncate text-strong bigger">
+                Toal
+            </div>
+
+            <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                <ng-container *ngIf="toalCases.confirmed !== null">
+                    {{ toalCases.confirmed | number }}
+                </ng-container>
+                <ng-container *ngIf="toalCases.confirmed === null">
+                    -
+                </ng-container>
+            </div>
+
+            <div class="data-table-cell text-truncate grouped grouped-end">
+                <ng-container *ngIf="toalCases.delta_confirmed !== null">
+                    {{ toalCases.delta_confirmed | number }}
+                </ng-container>
+                <ng-container *ngIf="toalCases.delta_confirmed === null">
+                    -
+                </ng-container>
+            </div>
+
+            <div class="data-table-cell text-truncate text-strong grouped grouped-start">
+                <ng-container *ngIf="toalCases.deaths !== null">
+                    {{ toalCases.deaths | number }}
+                </ng-container>
+                <ng-container *ngIf="toalCases.deaths === null">
+                    -
+                </ng-container>
+            </div>
+
+            <div class="data-table-cell text-truncate grouped grouped-end">
+                <ng-container *ngIf="toalCases.delta_deaths && toalCases.delta_deaths !== null">
+                    {{ toalCases.delta_deaths | number }}
+                </ng-container>
+                <ng-container *ngIf="!toalCases.delta_deaths || toalCases.delta_deaths === null">
+                    -
+                </ng-container>
+            </div>
+
+            <div class="data-table-cell text-truncate text-strong grouped">
+                <ng-container *ngIf="toalCases.recovered !== null">
+                    {{ toalCases.recovered | number }}
+                </ng-container>
+                <ng-container *ngIf="toalCases.recovered === null">
+                    -
+                </ng-container>
             </div>
         </div>
     </div>

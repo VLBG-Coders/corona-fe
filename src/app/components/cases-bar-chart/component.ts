@@ -1,4 +1,4 @@
-import { orderBy } from 'lodash';
+import { isEmpty, orderBy } from 'lodash';
 import { Component, NgZone, Input, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -18,6 +18,9 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     @Input()
     public chartData: CasesDailyModel[] = [];
 
+    @Input()
+    public customClass: string;
+
     constructor(
         public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService,
@@ -26,6 +29,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     }
 
     ngOnChanges() {
+        this.storeChartData();
         if (this.chart) {
             this.updateChartData();
             this.chart.data = this.chartData;
@@ -59,6 +63,10 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
      *
      */
     public updateChartData(): void {
+        if (!this.chartData || isEmpty(this.chartData)) {
+            return;
+        }
+
         this.chartData = orderBy(this.chartData, ['date'], ['asc']);
     }
 

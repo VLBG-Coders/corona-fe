@@ -1,5 +1,5 @@
 import { isEmpty, orderBy } from 'lodash';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoronaCasesApiService } from '@app/services/apis';
 import { ApiCasesTotalModel } from '@app/models';
@@ -9,7 +9,7 @@ import { ApiCasesTotalModel } from '@app/models';
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesCountryListCompactComponent implements OnInit {
+export class CasesCountryListCompactComponent implements OnInit, OnChanges {
     @Input()
     public isComponentLoading: boolean = false;
 
@@ -18,6 +18,9 @@ export class CasesCountryListCompactComponent implements OnInit {
 
     @Input()
     public dataCases: ApiCasesTotalModel[] = [];
+
+    @Input()
+    public customClass: string;
 
     public _dataCases: ApiCasesTotalModel[] = [];
     public isComponentReady = false;
@@ -33,12 +36,51 @@ export class CasesCountryListCompactComponent implements OnInit {
         this.buildPagination();
     }
 
+    ngOnChanges() {
+        this.enrichApiData();
+        this.buildPagination();
+    }
+
     /**
      *
      */
     public onSelectCountryByCode(countryCode: string): void {
         const url = '/country/' + countryCode;
         this._router.navigate([url]);
+    }
+
+    /**
+     *
+     */
+    public onNextPageClicked(): void {
+        if (this.currentPageIndex >= this._dataCases.length - 1) {
+            return;
+        }
+
+        this.currentPageIndex++;
+        this.showLoadingAnimation();
+    }
+
+    /**
+     *
+     */
+    public onPreviousPageClicked(): void {
+        if (this.currentPageIndex === 0) {
+            return;
+        }
+
+        this.currentPageIndex--;
+        this.showLoadingAnimation();
+    }
+
+    /**
+     *
+     */
+    public showLoadingAnimation() {
+        this.isComponentReady = false;
+        setTimeout(() => {
+            this.isComponentReady = true;
+        }, 50);
     }
 
     /**
@@ -71,6 +113,12 @@ export class CasesCountryListCompactComponent implements OnInit {
      *
      */
     private buildPagination(): void {
+        if (!this._dataCases || isEmpty(this._dataCases)) {
+            this.isComponentReady = true;
+
+            return;
+        }
+
         let data = [];
         let page = [];
         for (let item of this._dataCases) {

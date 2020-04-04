@@ -1,47 +1,48 @@
 <div class="country-list-compact"
-     *ngIf="!isComponentLoading && isComponentReady">
-    <div class="country-list-compact-item"
-         *ngFor="let data of _dataCases[currentPageIndex]"
-         (click)="onSelectCountryByCode(data.country.code)">
-        <div class="country-details d-flex align-items-center"
-             *ngIf="data.cases[viewCase]">
-            <div class="country-flag">
-                <img [src]="'assets/images/flags/png/' + data.country.compactName + '.png'"
-                     *ngIf="data.country?.compactName" />
+     [ngClass]="customClass">
+    <app-loading-indicator [appearance]="'fullwidth'"
+                           *ngIf="isComponentLoading || !isComponentReady">
+    </app-loading-indicator>
+
+    <ng-container *ngIf="!isComponentLoading && isComponentReady">
+        <div class="country-list-compact-item"
+             *ngFor="let data of _dataCases[currentPageIndex]"
+             (click)="onSelectCountryByCode(data.country.code)">
+            <div class="country-details d-flex align-items-center"
+                 *ngIf="data.cases[viewCase]">
+                <div class="country-flag">
+                    <img [src]="'assets/images/flags/png/' + data.country.compactName + '.png'"
+                         *ngIf="data.country?.compactName" />
+                </div>
+
+                <div class="country-name text-truncate mr-auto">
+                    {{ data.country?.name }}
+                </div>
+
+                <app-snippet-cases-trend [casesToday]="data.cases[viewCase]"
+                                         [casesYesterday]="data.cases['delta_' + viewCase]">
+                </app-snippet-cases-trend>
             </div>
 
-            <div class="country-name text-truncate">
-                {{ data.country?.name }}
-            </div>
-
-            <div class="country-trend ml-auto"
-                 *ngIf="data.cases && data.cases['delta_' + viewCase]">
-                <span class="trend-percentage mr-1"
-                      *ngIf="data.cases[viewCase] > data.cases['delta_' + viewCase]">
-                    + {{ (data.cases[viewCase] * 100 / data.cases['delta_' + viewCase]) - 100 | number:'1.0-1' }}%
-                </span>
-
-                <span class="trend-percentage mr-1"
-                      *ngIf="data.cases[viewCase] < data.cases['delta_' + viewCase]">
-                    - {{ (data.cases['delta_' + viewCase] * 100 / data.cases[viewCase]) - 100 | number:'1.0-1' }}%
-                </span>
-
-                <span class="trend-percentage mr-1"
-                      *ngIf="data.cases[viewCase] === data.cases['delta_' + viewCase]">
-                    0%
-                </span>
-
-                <i class="fas icon"
-                   [class.fa-caret-up]="data.cases[viewCase] > data.cases['delta_' + viewCase]"
-                   [class.fa-caret-right]="data.cases[viewCase] === data.cases['delta_' + viewCase]"
-                   [class.fa-caret-down]="data.cases[viewCase] < data.cases['delta_' + viewCase]">
-                </i>
+            <div class="country-cases"
+                 *ngIf="data.cases[viewCase]">
+                {{ data.cases[viewCase] | number }}
             </div>
         </div>
 
-        <div class="country-cases"
-             *ngIf="data.cases[viewCase]">
-            {{ data.cases[viewCase] | number }}
+        <div class="country-list-compact-pagination d-flex align-items-center justify-content-center"
+             *ngIf="_dataCases.length">
+            <div class="pagination-button d-flex justify-content-center align-items-center"
+                 [class.disabled]="currentPageIndex === 0"
+                 (click)="onPreviousPageClicked()">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+
+            <div class="pagination-button d-flex justify-content-center align-items-center"
+                 [class.disabled]="currentPageIndex === _dataCases.length - 1"
+                 (click)="onNextPageClicked()">
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
-    </div>
+    </ng-container>
 </div>
