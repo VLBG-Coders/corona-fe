@@ -42,7 +42,10 @@
             </h1>
         </div>
     </div>
+</div>
 
+<div class="container"
+     *ngIf="countryCode && !notEnoughDataError">
     <div class="row mb-5">
         <div class="col-lg-4 custom-mb-30">
             <app-cases-text-title [translationKey]="'Total confirmed'"
@@ -74,7 +77,7 @@
 </div>
 
 <div class="container-fluid mt-5 p-4"
-     *ngIf="countryCode">
+     *ngIf="countryCode && !notEnoughDataError">
     <div class="row mb-5">
         <div class="col-lg-12 col-xl-6 custom-mb-30">
             <div class="card">
@@ -98,6 +101,27 @@
                     <app-cases-bar-chart [chartData]="casesByDay"
                                          [isComponentLoading]="casesByDayLoading">
                     </app-cases-bar-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5"
+     *ngIf="notEnoughDataError">
+    <div class="row mb-5 justify-content-center">
+        <div class="col-8">
+            <div class="card empty-country-selection">
+                <div class="card-body">
+                    <h1 class="display-5 mb-3">
+                        Ups no data
+                    </h1>
+                    <p class="lead mb-3">
+                        It seems there are no offical data available for this country.
+                    </p>
+                    <p>
+                        Please select an other country from the map. Meanwhile we are looking for data.
+                    </p>
                 </div>
             </div>
         </div>

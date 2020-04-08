@@ -48,6 +48,7 @@ import { HttpTranslationsLoaderFactory } from './app.translations';
         Components.GeoMapComponent,
         Components.LoadingIndicatorComponent,
         Components.NavbarComponent,
+        Components.SnippetCasesNumberComponent,
         Components.SnippetCasesTrendComponent,
         Pages.AboutPage,
         Pages.CountryDetailPage,

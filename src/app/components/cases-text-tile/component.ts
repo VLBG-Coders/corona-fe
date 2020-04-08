@@ -36,7 +36,7 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
 
     public container: am4core.Container = null;
     public casesToday: number = 0;
-    public casesYesterday: number = 0;
+    public casesDelta: number = 0;
 
     private colorCodes = {
         confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
@@ -77,7 +77,7 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         }
 
         this.casesToday = this.totalData[this.viewCase];
-        this.casesYesterday = this.totalData['delta_' + this.viewCase];
+        this.casesDelta = this.totalData['delta_' + this.viewCase];
     }
 
     /**

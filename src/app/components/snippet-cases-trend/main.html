@@ -1,15 +1,15 @@
 <div class="snippet-cases-trend d-flex align-items-center"
-     *ngIf="casesToday && casesYesterday">
+     *ngIf="showTrend">
     <span class="trend-percentage mr-1 text-right"
-          *ngIf="casesToday > casesYesterday">
-        + {{ (casesToday * 100 / casesYesterday) - 100 | number:'1.0-1' }}%
+          *ngIf="casesDelta !== 0">
+        <span *ngIf="trendNumber > 0">
+            +
+        </span>
+        {{ trendNumber | number:'1.0-1' }}%
     </span>
+
     <span class="trend-percentage mr-1 text-right"
-          *ngIf="casesToday < casesYesterday">
-        - {{ (casesYesterday * 100 / casesToday) - 100 | number:'1.0-1' }}%
-    </span>
-    <span class="trend-percentage mr-1 text-right"
-          *ngIf="casesToday === casesYesterday">
+          *ngIf="casesDelta === 0">
         0%
     </span>
 
@@ -21,7 +21,7 @@
 </div>
 
 <div class="snippet-cases-trend d-flex align-items-center"
-     *ngIf="!casesToday || !casesYesterday">
+     *ngIf="!showTrend">
     <span class="trend-percentage mr-1 text-right">
         n.A.
     </span>

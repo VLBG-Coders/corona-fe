@@ -3,9 +3,9 @@ import * as am4core from '@amcharts/amcharts4/core';
 
 export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
     public readonly SUBSCRIPTION_DELAY = 10;
-    public container = null;
-    public chart = null;
-    public chartData: any;
+    public container: am4core.Container;
+    public chart: any;
+    public chartData = [];
     public COMPONENT_ID: string;
 
     constructor(
@@ -31,7 +31,6 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
      *
      */
     ngOnDestroy() {
-        this.chartData = null;
         this._ngZone.runOutsideAngular(() => {
             if (this.container) {
                 this.container.dispose();
@@ -83,6 +82,8 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
     public storeChartData(): void {
         if (this.chartData) {
             this.chartData = JSON.parse(JSON.stringify(this.chartData));
+
+            return;
         }
     }
 }

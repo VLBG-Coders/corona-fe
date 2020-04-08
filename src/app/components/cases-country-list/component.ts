@@ -14,7 +14,7 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
     public isComponentLoading: boolean = false;
 
     @Input()
-    public dataCases: ApiCasesTotalModel[] = null;
+    public dataCases: ApiCasesTotalModel[] = [];
 
     @Input()
     public customClass: string;

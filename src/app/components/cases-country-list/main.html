@@ -62,48 +62,23 @@
                 </div>
 
                 <div class="data-table-cell text-truncate grouped grouped-start">
-                    <ng-container *ngIf="data.cases.confirmed !== null">
-                        {{ data.cases.confirmed | number }}
-                    </ng-container>
-                    <ng-container *ngIf="data.cases.confirmed === null">
-                        -
-                    </ng-container>
+                    <app-snippet-cases-number [cases]="data.cases.confirmed"></app-snippet-cases-number>
                 </div>
 
                 <div class="data-table-cell text-truncate grouped grouped-end">
-                    <ng-container *ngIf="data.cases.delta_confirmed !== null">
-                        {{ data.cases.delta_confirmed | number }}
-                    </ng-container>
-                    <ng-container *ngIf="data.cases.delta_confirmed === null">
-                        -
-                    </ng-container>
+                    <app-snippet-cases-number [cases]="data.cases.delta_confirmed"></app-snippet-cases-number>
                 </div>
 
                 <div class="data-table-cell text-truncate grouped grouped-start">
-                    <ng-container *ngIf="data.cases.deaths !== null">
-                        {{ data.cases.deaths | number }}
-                    </ng-container>
-                    <ng-container *ngIf="data.cases.deaths === null">
-                        -
-                    </ng-container>
+                    <app-snippet-cases-number [cases]="data.cases.deaths"></app-snippet-cases-number>
                 </div>
 
                 <div class="data-table-cell text-truncate grouped grouped-end">
-                    <ng-container *ngIf="data.cases.delta_deaths && data.cases.delta_deaths !== null">
-                        {{ data.cases.delta_deaths | number }}
-                    </ng-container>
-                    <ng-container *ngIf="!data.cases.delta_deaths || data.cases.delta_deaths === null">
-                        -
-                    </ng-container>
+                    <app-snippet-cases-number [cases]="data.cases.delta_deaths"></app-snippet-cases-number>
                 </div>
 
                 <div class="data-table-cell text-truncate grouped">
-                    <ng-container *ngIf="data.cases.recovered !== null">
-                        {{ data.cases.recovered | number }}
-                    </ng-container>
-                    <ng-container *ngIf="data.cases.recovered === null">
-                        -
-                    </ng-container>
+                    <app-snippet-cases-number [cases]="data.cases.recovered"></app-snippet-cases-number>
                 </div>
             </div>
         </div>
@@ -115,48 +90,23 @@
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                <ng-container *ngIf="toalCases.confirmed !== null">
-                    {{ toalCases.confirmed | number }}
-                </ng-container>
-                <ng-container *ngIf="toalCases.confirmed === null">
-                    -
-                </ng-container>
+                <app-snippet-cases-number [cases]="toalCases.confirmed"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate grouped grouped-end">
-                <ng-container *ngIf="toalCases.delta_confirmed !== null">
-                    {{ toalCases.delta_confirmed | number }}
-                </ng-container>
-                <ng-container *ngIf="toalCases.delta_confirmed === null">
-                    -
-                </ng-container>
+                <app-snippet-cases-number [cases]="toalCases.delta_confirmed"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                <ng-container *ngIf="toalCases.deaths !== null">
-                    {{ toalCases.deaths | number }}
-                </ng-container>
-                <ng-container *ngIf="toalCases.deaths === null">
-                    -
-                </ng-container>
+                <app-snippet-cases-number [cases]="toalCases.deaths"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate grouped grouped-end">
-                <ng-container *ngIf="toalCases.delta_deaths && toalCases.delta_deaths !== null">
-                    {{ toalCases.delta_deaths | number }}
-                </ng-container>
-                <ng-container *ngIf="!toalCases.delta_deaths || toalCases.delta_deaths === null">
-                    -
-                </ng-container>
+                <app-snippet-cases-number [cases]="toalCases.delta_deaths"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped">
-                <ng-container *ngIf="toalCases.recovered !== null">
-                    {{ toalCases.recovered | number }}
-                </ng-container>
-                <ng-container *ngIf="toalCases.recovered === null">
-                    -
-                </ng-container>
+                <app-snippet-cases-number [cases]="toalCases.recovered"></app-snippet-cases-number>
             </div>
         </div>
     </div>

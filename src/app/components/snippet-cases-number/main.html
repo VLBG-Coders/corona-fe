@@ -1,0 +1,6 @@
+<ng-container *ngIf="cases">
+    {{ cases | number }}
+</ng-container>
+<ng-container *ngIf="!cases && showPlaceholder">
+    {{ placeholder }}
+</ng-container>

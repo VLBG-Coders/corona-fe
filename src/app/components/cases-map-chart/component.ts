@@ -205,7 +205,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
             item.title = item.country.name;
             item.confirmed = item.cases.confirmed;
             item.deaths = item.cases.deaths;
-            item.recovered = item.cases.recovered;
+            item.recovered = item.cases.recovered || 1;
         }
     }
 }

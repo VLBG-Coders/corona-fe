@@ -8,3 +8,4 @@ export * from './geo-map';
 export * from './loading-indicator';
 export * from './navbar';
 export * from './snippet-cases-trend';
+export * from './snippet-cases-number';

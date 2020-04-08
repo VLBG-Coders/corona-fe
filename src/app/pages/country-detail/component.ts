@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+import { find, isEmpty } from 'lodash';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CasesDailyModel, CasesTotalModel } from '@app/models';
@@ -23,11 +23,12 @@ export class CountryDetailPage implements OnInit {
     public selectedCountry;
     public isNoCountrySelected = false;
 
-    public casesByDay: CasesDailyModel[] = null;
-    public totalCases: CasesTotalModel = null;
+    public casesByDay: CasesDailyModel[] = [];
+    public totalCases: CasesTotalModel = new CasesTotalModel;
     public totalCasesLoading: boolean = false;
     public casesByDayLoading: boolean = false;
     public isPageLoading: boolean = false;
+    public notEnoughDataError: boolean = false;
 
     constructor(
         public readonly _router: Router,
@@ -82,7 +83,7 @@ export class CountryDetailPage implements OnInit {
                     this.onCountrySelected(countryCode);
                 }
             );
-        }, 100);
+        }, BINDING_DELAY);
     }
 
     /**
@@ -136,6 +137,15 @@ export class CountryDetailPage implements OnInit {
         this.casesByDayLoading = true;
         this.coronaCasesApiService.getDailyCases(this.countryName).subscribe(
             (data: CasesDailyModel[]) => {
+                if (!data || !data.length) {
+                    this.notEnoughDataError = true;
+                    this.casesByDay = [];
+                    this.casesByDayLoading = false;
+
+                    return;
+                }
+
+                this.notEnoughDataError = false;
                 this.casesByDay = data;
                 this.casesByDayLoading = false;
             }
@@ -150,6 +160,16 @@ export class CountryDetailPage implements OnInit {
         this.totalCasesLoading = true;
         this.coronaCasesApiService.getTotalCases(this.countryName).subscribe(
             (data: CasesTotalModel) => {
+                if (!data || isEmpty(data)) {
+                    this.totalCases = new CasesTotalModel;
+                    this.notEnoughDataError = true;
+                    this.totalCasesLoading = false;
+                    this.isPageLoading = false;
+
+                    return;
+                }
+
+                this.notEnoughDataError = false;
                 this.totalCases = data;
                 this.totalCasesLoading = false;
                 this.isPageLoading = false;

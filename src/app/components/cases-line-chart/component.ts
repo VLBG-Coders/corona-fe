@@ -28,10 +28,17 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     }
 
     ngOnChanges() {
+        if (!this.chartData.length) {
+            return;
+        }
         this.storeChartData();
+
         if (this.chart) {
             this.chart.data = this.chartData;
-            this.drawChart();
+
+            setTimeout(() => {
+                this.drawChart();
+            }, 150);
         }
     }
 
@@ -66,7 +73,7 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     }
 
     private drawChart(): void {
-        if (this.chart.series.length) {
+        if (this.chart.series && this.chart.series.length) {
             this.chart.series.removeIndex(0);
             this.chart.series.removeIndex(0);
             this.chart.series.removeIndex(0);
@@ -87,14 +94,6 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
             'recovered',
             this.amchartService.config.CASES_RECOVERED_COLOR
         ));
-
-        let scrollbarX = new am4charts.XYChartScrollbar();
-        scrollbarX.series.push(confirmed);
-        scrollbarX.series.push(deaths);
-        scrollbarX.series.push(recovered);
-
-        this.chart.scrollbarX = scrollbarX;
-        this.chart.scrollbarX.parent = this.chart.bottomAxesContainer;
     }
 
     private getSeries(valueX: string, valueY: string, color: string): am4charts.LineSeries {

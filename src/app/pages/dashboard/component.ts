@@ -9,7 +9,7 @@ import { CoronaCasesApiService } from '@app/services/apis';
 })
 export class DashboardPage implements OnInit {
     public totalCasesCountries: ApiCasesTotalModel[] = [];
-    public totalCasesWorldwide: ApiCasesTotalModel = null;
+    public totalCasesWorldwide: ApiCasesTotalModel = new ApiCasesTotalModel;
     public dailyCasesWorldwide: CasesDailyModel[] = [];
     public totalCasesCountriesLoading: boolean = false;
     public totalCasesWorldwideLoading: boolean = false;
