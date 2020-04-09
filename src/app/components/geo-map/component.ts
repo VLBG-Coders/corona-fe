@@ -136,7 +136,6 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
      *
      */
     private updateSelectedCountry(mapPolygon: any): void {
-        console.log('----------------_>', mapPolygon);
         // Handle deselection.
         if (this._selectedCountry) {
             this._selectedCountry.isActive = false;

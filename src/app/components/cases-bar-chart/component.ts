@@ -30,10 +30,13 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
 
     ngOnChanges() {
         this.storeChartData();
-        if (this.chart) {
-            this.updateChartData();
+        if (this.chart && this._chartData && this._chartData.length) {
             this.chart.data = this._chartData;
-            this.drawChart();
+            const MAGIC_TIMEOUT = 150;
+            setTimeout(() => {
+                this.updateChartData();
+                this.drawChart();
+            }, MAGIC_TIMEOUT);
         }
     }
 
@@ -42,8 +45,9 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
      */
     public createChart(): void {
         this.updateChartData();
+
         let chart = this.container.createChild(am4charts.XYChart);
-        chart.data = this._chartData;
+        chart.data = [];
 
         chart.legend = new am4charts.Legend()
         chart.legend.position = 'top'
@@ -62,22 +66,13 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     /**
      *
      */
-    public updateChartData(): void {
-        if (!this.chartData || isEmpty(this.chartData)) {
-            return;
-        }
-
-        this._chartData = orderBy(this.chartData, ['date'], ['asc']);
-    }
-
-    /**
-     *
-     */
     private drawChart(): void {
         if (this.chart.series.length) {
             this.chart.series.removeIndex(0);
             this.chart.series.removeIndex(0);
         }
+        this.chart.data = this._chartData;
+
         // Create series
         let seriesConfirmed = this.chart.series.push(new am4charts.ColumnSeries());
         seriesConfirmed.clustered = false;
@@ -108,5 +103,12 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         seriesDeaths.columns.template.stroke = this.amchartService.getColor(
             this.amchartService.config.CASES_DEATHS_COLOR
         );
+    }
+
+    /**
+     *
+     */
+    public updateChartData(): void {
+        this._chartData = orderBy(this._chartData, ['date'], ['asc']);
     }
 }

@@ -28,17 +28,13 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     }
 
     ngOnChanges() {
-        if (!this.chartData.length) {
-            return;
-        }
         this.storeChartData();
-
-        if (this.chart) {
+        if (this.chart && this._chartData && this._chartData.length) {
             this.chart.data = this._chartData;
-
+            const MAGIC_TIMEOUT = 150;
             setTimeout(() => {
                 this.drawChart();
-            }, 150);
+            }, MAGIC_TIMEOUT);
         }
     }
 

@@ -59,25 +59,17 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     ngOnChanges() {
         if (!this.totalData || isEmpty(this.totalData)) {
             this.totalData = JSON.parse(JSON.stringify(this.totalData));
+            this.updateCasesVariables();
         }
 
         this.storeChartData();
-        if (this.chart) {
+        if (this.chart && this._chartData && this._chartData.length) {
             this.updateChartData();
-            this.chart.invalidateRawData();
+            //const MAGIC_TIMEOUT = 150;
+            //setTimeout(() => {
+            this.drawChart();
+            //}, MAGIC_TIMEOUT);
         }
-    }
-
-    /**
-     *
-     */
-    public updateCasesVariables(): void {
-        if (!this.totalData) {
-            return;
-        }
-
-        this.casesToday = this.totalData[this.viewCase];
-        this.casesDelta = this.totalData['delta_' + this.viewCase];
     }
 
     /**
@@ -86,15 +78,9 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     public createChart(): void {
         this.container.layout = 'grid';
         this.container.fixedWidthGrid = false;
-        this.createLineChart();
-    }
 
-    /**
-     *
-     */
-    private createLineChart(): void {
         let chart = this.container.createChild(am4charts.XYChart);
-        chart.padding(20, 5, 2, 5);
+        chart.padding(5, 5, 2, 5);
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.grid.template.disabled = true;
@@ -110,14 +96,27 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         valueAxis.renderer.labels.template.disabled = true;
         valueAxis.cursorTooltipEnabled = false;
 
-        this.series = chart.series.push(new am4charts.LineSeries());
+        this.chart = chart;
+
+        this.drawChart();
+    }
+
+    /**
+     *
+     */
+    private drawChart(): void {
+        if (this.chart.series.length) {
+            this.chart.series.removeIndex(0);
+        }
+
+        this.series = this.chart.series.push(new am4charts.LineSeries());
         this.series.dataFields.dateX = 'date';
         this.series.dataFields.valueY = 'value';
         this.series.tensionX = 0.8;
         this.series.strokeWidth = 2;
-        this.series.stroke = this.amchartService.getColor(this.CHART_BASE_COLOR);
+        this.series.stroke = this.colors[this.viewCase];
         this.series.fillOpacity = 1;
-        this.series.fill = this.getGradient(this.CHART_BASE_COLOR);
+        this.series.fill = this.getGradient(this.colorCodes[this.viewCase]);
 
         // render data points as bullets
         let bullet = this.series.bullets.push(new am4charts.CircleBullet());
@@ -125,21 +124,15 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         bullet.circle.fill = this.amchartService.getColor(this.CHART_BASE_COLOR);
         bullet.circle.propertyFields.opacity = 'opacity';
         bullet.circle.radius = 3;
-
-        this.chart = chart;
     }
 
     /**
      *
      */
     public updateChartData(): void {
-        if (!this.chartData || isEmpty(this.chartData)) {
+        if (!this._chartData || isEmpty(this._chartData)) {
             return;
         }
-
-        this._chartData = this.getChartDataCopy();
-
-        this.updateCasesVariables();
 
         let data = [];
         data = orderBy(data, ['date'], ['desc']);
@@ -158,8 +151,18 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         data = orderBy(data, ['date']);
 
         this.chart.data = data;
-        this.series.stroke = this.colors[this.viewCase];
-        this.series.fill = this.getGradient(this.colorCodes[this.viewCase]);
+    }
+
+    /**
+     *
+     */
+    public updateCasesVariables(): void {
+        if (!this.totalData) {
+            return;
+        }
+
+        this.casesToday = this.totalData[this.viewCase];
+        this.casesDelta = this.totalData['delta_' + this.viewCase];
     }
 
     /**
@@ -167,8 +170,8 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
      */
     private getGradient(color: string): am4core.LinearGradient {
         let gradient = new am4core.LinearGradient();
-        gradient.addColor(this.amchartService.getColor(color), 0.2);
         gradient.addColor(this.amchartService.getColor(color), 0);
+        gradient.addColor(this.amchartService.getColor(color), 0.2);
 
         return gradient;
     }
