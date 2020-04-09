@@ -47,10 +47,13 @@
             <div class="row">
                 <div class="col-12 custom-mb-30">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body main-map">
+                            <app-loading-indicator [appearance]="'fullwidth'"
+                                                   *ngIf="totalCasesCountriesLoading">
+                            </app-loading-indicator>
                             <app-cases-map-chart [chartData]="totalCasesCountries"
                                                  [customClass]="'dashboard'"
-                                                 [isComponentLoading]="totalCasesCountriesLoading">
+                                                 *ngIf="!totalCasesCountriesLoading">
                             </app-cases-map-chart>
                         </div>
                     </div>
