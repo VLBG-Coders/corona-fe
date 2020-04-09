@@ -33,7 +33,7 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         if (this.chart && this._chartData && this._chartData.length) {
             this.chart.dispose();
             this.updateChartData()
-            //this.createChart();
+            this.createChart();
         }
     }
 
