@@ -44,7 +44,7 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
 
     ngOnChanges() {
         this.storeChartData();
-        if (this.chart) {
+        if (this.chart && this.chartData && this.chartData.length) {
             this.chart.dispose();
             this.updateChartData()
             this.createChart();

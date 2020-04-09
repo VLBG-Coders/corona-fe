@@ -8,7 +8,7 @@ import { AmchartService } from '@app/services';
 import { CasesTotalModel, CountryModel } from '@app/models';
 import { ChartBase } from '../chart-base';
 
-am4core.useTheme(am4themes_animated);
+//am4core.useTheme(am4themes_animated);
 
 @Component({
     selector: 'app-cases-map-chart',
@@ -32,7 +32,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
         confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
         deaths: this.amchartService.config.CASES_DEATHS_COLOR,
         recovered: this.amchartService.config.CASES_RECOVERED_COLOR
-    }
+    };
     private colors = {
         confirmed: am4core.color(this.colorCodes.confirmed),
         deaths: am4core.color(this.colorCodes.deaths),
