@@ -46,14 +46,6 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
         super(_ngZone);
     }
 
-    ngOnChanges() {
-        this.storeChartData();
-        if (!this.isComponentLoading && this.chart) {
-            this.chart.dispose();
-            this.createChart();
-        }
-    }
-
     /**
      *
      */

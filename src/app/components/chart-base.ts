@@ -22,8 +22,8 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         setTimeout(() => {
             this._ngZone.runOutsideAngular(() => {
                 this.createChartContainer();
+                this.createChart();
             });
-            this.createChart();
         }, this.SUBSCRIPTION_DELAY);
     }
 
