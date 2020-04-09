@@ -21,10 +21,10 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
     ngAfterViewInit() {
         this.storeChartData();
         setTimeout(() => {
-            this._ngZone.runOutsideAngular(() => {
-                this.createChartContainer();
-                this.createChart();
-            });
+            /*this._ngZone.runOutsideAngular(() => {
+            });*/
+            this.createChartContainer();
+            this.createChart();
         }, this.SUBSCRIPTION_DELAY);
     }
 
@@ -41,15 +41,15 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
      *
      */
     ngOnDestroy() {
-        this._ngZone.runOutsideAngular(() => {
-            if (this.container) {
-                this.container.dispose();
-            }
+        /*this._ngZone.runOutsideAngular(() => {*/
+        if (this.container) {
+            this.container.dispose();
+        }
 
-            if (this.chart) {
-                this.chart.dispose();
-            }
-        });
+        if (this.chart) {
+            this.chart.dispose();
+        }
+        /*});*/
     }
 
     /**
