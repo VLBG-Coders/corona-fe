@@ -50,6 +50,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
      *
      */
     public createChart(): void {
+        console.log('yo I am loading', this.chartData)
         this.updateChartData();
         let chart = this.container.createChild(am4maps.MapChart);
         chart.geodata = am4geodata_worldLow;
