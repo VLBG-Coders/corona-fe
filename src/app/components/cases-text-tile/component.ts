@@ -137,12 +137,14 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
             return;
         }
 
+        this._chartData = this.getChartDataCopy();
+
         this.updateCasesVariables();
 
         let data = [];
         data = orderBy(data, ['date'], ['desc']);
 
-        for (let item of this.chartData) {
+        for (let item of this._chartData) {
             data.push({
                 date: item.date,
                 value: item[this.viewCase]

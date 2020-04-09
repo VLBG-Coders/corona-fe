@@ -2,10 +2,11 @@ import { AfterViewInit, NgZone, Input, OnDestroy, OnChanges } from '@angular/cor
 import * as am4core from '@amcharts/amcharts4/core';
 
 export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
-    public readonly SUBSCRIPTION_DELAY = 10;
+    public readonly SUBSCRIPTION_DELAY = 50;
     public container: am4core.Container;
     public chart: any;
     public chartData = [];
+    public _chartData = [];
     public COMPONENT_ID: string;
 
     constructor(
@@ -27,6 +28,15 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         }, this.SUBSCRIPTION_DELAY);
     }
 
+    ngOnChanges() {
+        this.storeChartData();
+        if (this.chart && this._chartData && this._chartData.length) {
+            this.chart.dispose();
+            this.updateChartData()
+            //this.createChart();
+        }
+    }
+
     /**
      *
      */
@@ -42,15 +52,6 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         });
     }
 
-    ngOnChanges() {
-        this.storeChartData();
-        if (this.chart && this.chartData && this.chartData.length) {
-            this.chart.dispose();
-            this.updateChartData()
-            this.createChart();
-        }
-    }
-
     /**
      *
      */
@@ -59,6 +60,7 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         this.container.width = am4core.percent(100);
         this.container.height = am4core.percent(100);
     }
+
     /**
      *
      */
@@ -80,10 +82,17 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
      *
      */
     public storeChartData(): void {
-        if (this.chartData) {
-            this.chartData = JSON.parse(JSON.stringify(this.chartData));
+        if (this.chartData && this.chartData.length) {
+            this._chartData = this.getChartDataCopy();
 
             return;
         }
+    }
+
+    /**
+     *
+     */
+    public getChartDataCopy(): any {
+        return JSON.parse(JSON.stringify(this.chartData));
     }
 }

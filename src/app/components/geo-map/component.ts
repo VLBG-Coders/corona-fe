@@ -28,7 +28,6 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
     private _selectedCountry: any = null;
     private worldPolygonSeries;
     private countryPolygonTemplate;
-    public chartData: any;
 
     constructor(
         public readonly _ngZone: NgZone,
@@ -137,6 +136,7 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
      *
      */
     private updateSelectedCountry(mapPolygon: any): void {
+        console.log('----------------_>', mapPolygon);
         // Handle deselection.
         if (this._selectedCountry) {
             this._selectedCountry.isActive = false;

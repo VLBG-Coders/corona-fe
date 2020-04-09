@@ -50,7 +50,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
      *
      */
     public createChart(): void {
-        console.log('yo I am loading', this.chartData)
+        console.log('yo I am loading', this._chartData)
         this.updateChartData();
         let chart = this.container.createChild(am4maps.MapChart);
         chart.geodata = am4geodata_worldLow;
@@ -75,7 +75,7 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
 
         // Make map load polygon (like country names) data from GeoJSON
         polygonSeries.useGeodata = true;
-        polygonSeries.data = this.chartData;
+        polygonSeries.data = this._chartData;
 
         // Configure series
         let polygonTemplate = polygonSeries.mapPolygons.template;
@@ -193,7 +193,9 @@ export class CasesMapChartComponent extends ChartBase implements OnChanges {
             return;
         }
 
-        for (let item of this.chartData) {
+        this._chartData = this.getChartDataCopy();
+
+        for (let item of this._chartData) {
             item.id = item.country.code;
             item.title = item.country.name;
             item.confirmed = item.cases.confirmed;

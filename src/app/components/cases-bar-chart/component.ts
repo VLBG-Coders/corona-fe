@@ -32,7 +32,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         this.storeChartData();
         if (this.chart) {
             this.updateChartData();
-            this.chart.data = this.chartData;
+            this.chart.data = this._chartData;
             this.drawChart();
         }
     }
@@ -43,7 +43,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     public createChart(): void {
         this.updateChartData();
         let chart = this.container.createChild(am4charts.XYChart);
-        chart.data = this.chartData;
+        chart.data = this._chartData;
 
         chart.legend = new am4charts.Legend()
         chart.legend.position = 'top'
@@ -67,7 +67,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
             return;
         }
 
-        this.chartData = orderBy(this.chartData, ['date'], ['asc']);
+        this._chartData = orderBy(this.chartData, ['date'], ['asc']);
     }
 
     /**

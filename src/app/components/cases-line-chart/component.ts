@@ -34,7 +34,7 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
         this.storeChartData();
 
         if (this.chart) {
-            this.chart.data = this.chartData;
+            this.chart.data = this._chartData;
 
             setTimeout(() => {
                 this.drawChart();
@@ -48,7 +48,7 @@ export class CasesLineChartComponent extends ChartBase implements OnChanges {
     public createChart(): void {
         let chart = this.container.createChild(am4charts.XYChart);
         chart.paddingRight = 20;
-        chart.data = this.chartData;
+        chart.data = this._chartData;
 
         chart.legend = new am4charts.Legend();
         chart.legend.position = 'top';
