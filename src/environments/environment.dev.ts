@@ -1,4 +1,4 @@
-const BASE_URL = 'http://api.corona-curve.info';
+const BASE_URL = 'https://api.corona-curve.info';
 
 export const environment = {
     production: false,
