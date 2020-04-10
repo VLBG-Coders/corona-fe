@@ -1,5 +1,5 @@
-<div class="container custom-mb-30 p-4 pt-5 pb-1">
-    <div class="row mb-2">
+<div class="container">
+    <div class="row mb-5">
         <div class="col-12">
             <h1>
                 About
@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row mb-3">
         <div class="col-12">
             <h2>
                 Motivation
@@ -15,17 +15,17 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row mb-5">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    asf
+                    We wanted to have global visualization of the COVID19 (Corona) Crisis.
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5 mb-2">
+    <div class="row mb-3">
         <div class="col-12">
             <h2>
                 Contributors
@@ -33,19 +33,67 @@
         </div>
     </div>
 
-    <div class="row mb-2">
-        <div class="col-12">
+    <div class="row mb-5">
+        <div class="col-4"
+             *ngFor="let person of contributors">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body contributor">
                     <div class="media">
-                        <img src="..."
-                             class="align-self-start mr-3"
-                             alt="...">
+                        <div class="image-container align-self-start d-flex align-items-center justify-content-center">
+                            <img [src]="imageBaseUrl + person.image"
+                                 class="image">
+                        </div>
                         <div class="media-body">
-                            <h5 class="mt-0">Top-aligned media</h5>
-                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-                                lacinia congue felis in faucibus.</p>
-                            <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                            <h5 class="mt-0">
+                                {{ person.name }}
+                            </h5>
+
+                            <div *ngIf="person.employerName">
+                                Works
+                                <a [href]="person.employerUrl"
+                                   target="_blank">
+                                    @{{ person.employerName }}
+                                </a>
+                            </div>
+
+                            <div *ngIf="!person.employerName">
+                                Hire me!
+                            </div>
+
+                            <div *ngIf="person.website">
+                                <i class="fas fa-link"></i>
+                                Website
+                                <a [href]="person.website"
+                                   target="_blank">
+                                    {{ person.website }}
+                                </a>
+                            </div>
+
+                            <div *ngIf="person.github">
+                                <i class="fab fa-github"></i>
+                                Github
+                                <a [href]="githubBaseUrl + person.github"
+                                   target="_blank">
+                                    {{ person.github }}
+                                </a>
+                            </div>
+
+                            <div *ngIf="person.twitter">
+                                <i class="fab fa-twitter"></i>
+                                Twitter
+                                <a [href]="twitterBaseUrl + person.twitter"
+                                   target="_blank">
+                                    @{{ person.twitter }}
+                                </a>
+                            </div>
+
+                            <div *ngIf="person.linkedin">
+                                <a [href]="linkedInBaseUrl + person.linkedin"
+                                   target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                    LinkedIn
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,33 +101,111 @@
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mb-3">
         <div class="col-12">
             <h2>
-                Datenschutz
+                Our Data
             </h2>
         </div>
     </div>
 
-    <div class="row mt-2">
+    <div class="row mb-5">
         <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    We import the latest data from the <a href="https://www.jhu.edu/">John Hopkins University</a> at least every 24 hours.
+                    <a href="https://github.com/CSSEGISandData/COVID-19/tree/web-data">Link to the raw data</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <h2>
+                Get in touch
+            </h2>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    Send us an E-Mail
+                    <a href="mailto:admin@corona-curve.info">admin<i class="fas fa-at"></i>corona-curve.info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mb-5">
+        <div class="col-12 mb-3">
+            <h2>
+                Privacy Policy
+            </h2>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    YOUR DATA
+                </div>
+                <div class="card-body">
+                    <p>
+                        Your privacy is important to us. It is corona-curve.info's policy to respect your privacy regarding any
+                        information we may collect from you across our website, https://corona-curve.info, and other sites we own and operate.
+                        We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means,
+                        with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
+                        We don’t share any personally identifying information publicly or with third-parties, except when required to by law.
+                    </p>
+
+                    <p>
+                        Our website may link to external sites that are not operated by us. Please be aware that we have no control over the
+                        content and practices of these sites, and cannot accept responsibility or liability for their respective privacy
+                        policies. You are free to refuse our request for your personal information, with the understanding that we may be unable to
+                        provide you with some of your desired services. Your continued use of our website will be regarded as acceptance of our practices
+                        around privacy and personal information. If you have any questions about how we handle user data and personal information,
+                        feel free to contact us.
+                    </p>
+
+                    <p>
+                        This policy is effective as of 02 April 2020.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-header">
                     GOOGLE ANALYTICS
                 </div>
                 <div class="card-body">
                     <p>
-                        Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. (“Google”). Google Analytics verwendet sog. “Cookies”, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung
-                        der Website durch Sie ermöglicht. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP-Adresse) wird an einen Server von Google in den USA übertragen und dort gespeichert.
-                    </p>
-                    <p>
-                        Google wird diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten für die Websitebetreiber zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung
-                        verbundene Dienstleistungen zu erbringen. Auch wird Google diese Informationen gegebenenfalls an Dritte übertragen, sofern dies gesetzlich vorgeschrieben ist oder soweit Dritte diese Daten im Auftrag von Google verarbeiten.
-                        Google wird in keinem Fall Ihre IP-Adresse mit anderen Daten der Google Inc. in Verbindung bringen.
+                        This website uses Google Analytics, a web analytics service provided by Google, Inc. (“Google”). 
+                        Google Analytics uses “cookies”, which are text files placed on your computer, to help the website analyze
+                        how users use the site. The information generated by the cookie about your use of the website (including your
+                        IP address) will be transmitted to and stored by Google on servers in the United States. In case of activation
+                        of the IP anonymization, Google will truncate/anonymize the last octet of the IP address for Member States of
+                        the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional
+                        cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider
+                        Google will use this information for the purpose of evaluating your use of the website, compiling reports on website
+                        activity for website operators and providing other services relating to website activity and internet usage to the
+                        website provider. Google will not associate your IP address with any other data held by Google. You may refuse the
+                        use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this,
+                        you may not be able to use the full functionality of this website. Furthermore you can prevent Google’s collection
+                        and use of data (cookies and IP address) by downloading and installing the browser plug-in available under
+                        https://tools.google.com/dlpage/gaoptout?hl=en-GB.
                     </p>
 
                     <p>
-                        Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern: http://tools.google.com/dlpage/gaoptout?hl=de.
+                        Further information concerning the terms and conditions of use and data privacy can be found at
+                        http://www.google.com/analytics/terms/gb.html or at http://www.google.com/intl/en_uk/analytics/privacyoverview.html.
+                         Please note that on this website, Google Analytics code is supplemented by “gat._anonymizeIp();” to ensure an anonymized
+                        collection of IP addresses (so called IP-masking).
                     </p>
                 </div>
             </div>

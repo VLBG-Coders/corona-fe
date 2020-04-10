@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 *:focus {
     outline: none;
     outline-width: 0;
@@ -10,7 +12,8 @@ body {
 }
 
 .page-content {
-    margin-top: 56px;
+    margin-top: 85px;
+    padding: 15px;
 }
 
 .header-component {
@@ -22,4 +25,11 @@ body {
 
 .custom-mb-30 {
     margin-bottom: 30px;
+}
+
+@include media-breakpoint-down(sm) {
+    .page-content {
+        margin-top: 85px;
+        padding: 0;
+    }
 }
