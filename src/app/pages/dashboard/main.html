@@ -1,14 +1,13 @@
 <div class="container-fluid p-4 pt-5 pb-1">
-    <div class="row custom-mb-30">
+    <div class="row">
         <div class="col-lg-4 col-xl-2 custom-mb-30">
             <div class="card">
                 <div class="card-body">
                     <div class="header-component">
                         CONFIRMED CASES<br />
-                        by countries
+                        <span class="light-font-weight">by countries</span>
                     </div>
-                    <app-cases-country-list-compact [viewCase]="'confirmed'"
-                                                    [dataCases]="totalCasesCountries"
+                    <app-cases-country-list-compact [viewCase]="'confirmed'" [dataCases]="totalCasesCountries"
                                                     [customClass]="'dashboard'"
                                                     [isComponentLoading]="totalCasesCountriesLoading">
                     </app-cases-country-list-compact>
@@ -19,26 +18,20 @@
         <div class="col-lg-8 col-xl-8">
             <div class="row">
                 <div class="col-lg-4 custom-mb-30">
-                    <app-cases-text-title [translationKey]="'Total confirmed'"
-                                          [viewCase]="'confirmed'"
-                                          [chartData]="dailyCasesWorldwide"
-                                          [totalData]="totalCasesWorldwide"
+                    <app-cases-text-title [translationKey]="'Total confirmed'" [viewCase]="'confirmed'"
+                                          [chartData]="dailyCasesWorldwide" [totalData]="totalCasesWorldwide"
                                           [isComponentLoading]="totalCasesWorldwideLoading || dailyCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
                 <div class="col-lg-4 custom-mb-30">
-                    <app-cases-text-title [translationKey]="'Total deaths'"
-                                          [viewCase]="'deaths'"
-                                          [chartData]="dailyCasesWorldwide"
-                                          [totalData]="totalCasesWorldwide"
+                    <app-cases-text-title [translationKey]="'Total deaths'" [viewCase]="'deaths'"
+                                          [chartData]="dailyCasesWorldwide" [totalData]="totalCasesWorldwide"
                                           [isComponentLoading]="totalCasesWorldwideLoading || dailyCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
                 <div class="col-lg-4 custom-mb-30">
-                    <app-cases-text-title [translationKey]="'Total recovered'"
-                                          [viewCase]="'recovered'"
-                                          [chartData]="dailyCasesWorldwide"
-                                          [totalData]="totalCasesWorldwide"
+                    <app-cases-text-title [translationKey]="'Total recovered'" [viewCase]="'recovered'"
+                                          [chartData]="dailyCasesWorldwide" [totalData]="totalCasesWorldwide"
                                           [isComponentLoading]="totalCasesWorldwideLoading || dailyCasesWorldwideLoading">
                     </app-cases-text-title>
                 </div>
@@ -48,8 +41,7 @@
                 <div class="col-12 custom-mb-30">
                     <div class="card">
                         <div class="card-body">
-                            <app-cases-map-chart [chartData]="totalCasesCountries"
-                                                 [customClass]="'dashboard'"
+                            <app-cases-map-chart [chartData]="totalCasesCountries" [customClass]="'dashboard'"
                                                  [isComponentLoading]="totalCasesCountriesLoading">
                             </app-cases-map-chart>
                         </div>
@@ -63,10 +55,9 @@
                 <div class="card-body">
                     <div class="header-component">
                         DEATHS<br />
-                        by countries
+                        <span class="light-font-weight">by countries</span>
                     </div>
-                    <app-cases-country-list-compact [viewCase]="'deaths'"
-                                                    [dataCases]="totalCasesCountries"
+                    <app-cases-country-list-compact [viewCase]="'deaths'" [dataCases]="totalCasesCountries"
                                                     [customClass]="'dashboard'"
                                                     [isComponentLoading]="totalCasesCountriesLoading">
                     </app-cases-country-list-compact>
@@ -92,8 +83,7 @@
         <div class="col-lg-12 col-xl-6 custom-mb-30">
             <div class="card">
                 <div class="card-body">
-                    <app-cases-country-list [dataCases]="totalCasesCountries"
-                                            [customClass]="'dashboard'"
+                    <app-cases-country-list [dataCases]="totalCasesCountries" [customClass]="'dashboard'"
                                             [isComponentLoading]="totalCasesCountriesLoading">
                     </app-cases-country-list>
                 </div>

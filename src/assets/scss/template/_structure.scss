@@ -16,10 +16,26 @@ body {
 .header-component {
     font-weight: 700;
     font-size: 24px;
-    line-height: 32px;
+    line-height: 1.1;
     margin-bottom: 20px;
 }
 
 .custom-mb-30 {
     margin-bottom: 30px;
+}
+
+.logo-name-corona-curve {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    color: $app-color-red;
+}
+
+.light-font-weight {
+    font-weight: 100;
+}
+
+.logo-corona-curve {
+    margin-left: 110px;
 }
