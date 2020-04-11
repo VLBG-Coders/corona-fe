@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 *:focus {
     outline: none;
     outline-width: 0;
@@ -10,7 +12,8 @@ body {
 }
 
 .page-content {
-    margin-top: 56px;
+    margin-top: 85px;
+    padding: 15px;
 }
 
 .header-component {
@@ -38,4 +41,12 @@ body {
 
 .logo-corona-curve {
     margin-left: 110px;
+}
+
+
+@include media-breakpoint-down(sm) {
+    .page-content {
+        margin-top: 85px;
+        padding: 0;
+    }
 }

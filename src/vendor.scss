@@ -1,7 +1,8 @@
 /* Import libraries and third party includes here. */
 @import '~bootstrap/scss/bootstrap';
-@import '../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css';
-@import '../node_modules/@fortawesome/fontawesome-free/css/solid.css';
-@import '../node_modules/@fortawesome/fontawesome-free/css/regular.css';
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
+@import '~@fortawesome/fontawesome-free/css/regular.css';
+@import '~@fortawesome/fontawesome-free/css/brands.css';
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/bootstrap.scss';

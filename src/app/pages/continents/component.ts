@@ -32,8 +32,6 @@ export class ContinentsPage implements OnInit {
                 this.totalCasesCountries = data;
                 this.updateContinentMapping();
                 this.totalCasesCountriesLoading = false;
-
-                console.log(this.casesByContinents);
             }
         );
     }

@@ -1,4 +1,5 @@
 @import '../../../assets/scss/variables';
+@import '~bootstrap/scss/bootstrap';
 
 $data-table-min-width: 800px;
 $data-table-max-width: 100%;
@@ -7,7 +8,9 @@ $data-table-col-width: $data-table-max-width / $data-table-columns;
 
 $data-table-col-margins-amount: 2;
 $data-table-col-margins-size: 15px;
+$data-table-col-margins-size-mobile: 5px;
 $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-margins-amount) / $data-table-columns;
+$data-table-col-margins-total-mobile: ($data-table-col-margins-size-mobile * $data-table-col-margins-amount) / $data-table-columns;
 
 .data-table-container {
     width: 100%;
@@ -101,13 +104,20 @@ $data-table-col-margins-total: ($data-table-col-margins-size * $data-table-col-m
         width: calc(#{$data-table-col-width} - #{$data-table-col-margins-total});
         padding: 5px 10px;
 
+        @include media-breakpoint-down(md) {
+            width: calc(#{$data-table-col-width} - #{$data-table-col-margins-total-mobile});
+        }
+
         &.grouped {
             background-color: #F5F5F5;
 
             &.grouped-start {}
 
             &.grouped-end {
-                margin-right: 15px;
+                margin-right: $data-table-col-margins-size;
+                @include media-breakpoint-down(md) {
+                    margin-right: $data-table-col-margins-size-mobile;
+                }
             }
         }
     }
