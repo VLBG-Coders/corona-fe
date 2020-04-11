@@ -1,59 +1,42 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand d-flex align-items-center"
-       routerLink="/dashboard">
-        <span>Corona Curve</span>
-        <img src="assets/images/app-logo.svg" />
+<nav class="navbar navbar-expand-md fixed-top">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/dashboard">
+        <div class="logo-name-corona-curve">
+            Corona<br>
+            <span class="light-font-weight">Curve</span>
+        </div>
+        <img class="logo-corona-curve" src="assets/images/app-logo.svg" />
     </a>
 
-    <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
             (click)="showMenu = !showMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse"
-         [class.show]="showMenu"
-         id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" [class.show]="showMenu" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"
-                routerLinkActive="active">
-                <a class="nav-link"
-                   routerLink="/dashboard"
-                   (click)="showMenu = !showMenu">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/dashboard" (click)="showMenu = !showMenu">
                     Dashboard
                 </a>
             </li>
 
-            <li class="nav-item"
-                routerLinkActive="active">
-                <a class="nav-link"
-                   routerLink="/continents"
-                   (click)="showMenu = !showMenu">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/continents" (click)="showMenu = !showMenu">
                     Continents
                 </a>
             </li>
 
-            <li class="nav-item"
-                routerLinkActive="active">
-                <a class="nav-link"
-                   routerLink="/country"
-                   (click)="showMenu = !showMenu">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/country" (click)="showMenu = !showMenu">
                     Country
                 </a>
             </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"
-                routerLinkActive="active">
-                <a class="nav-link"
-                   routerLink="/about"
-                   (click)="showMenu = !showMenu">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/about" (click)="showMenu = !showMenu">
                     About
                 </a>
             </li>

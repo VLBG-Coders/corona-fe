@@ -1,28 +1,23 @@
-<div class="snippet-cases-trend d-flex align-items-center"
-     *ngIf="showTrend">
-    <span class="trend-percentage mr-1 text-right"
-          *ngIf="casesDelta !== 0">
+<div class="snippet-cases-trend d-flex align-items-center" *ngIf="showTrend">
+    <span class="trend-percentage mr-2 text-right" *ngIf="casesDelta !== 0">
         <span *ngIf="trendNumber > 0">
             +
         </span>
         {{ trendNumber | number:'1.0-1' }}%
     </span>
 
-    <span class="trend-percentage mr-1 text-right"
-          *ngIf="casesDelta === 0">
+    <span class="trend-percentage mr-2 text-right" *ngIf="casesDelta === 0">
         0%
     </span>
 
-    <i class="fas icon"
-       [class.fa-caret-up]="casesToday > casesYesterday"
+    <i class="fas icon" [class.fa-caret-up]="casesToday > casesYesterday"
        [class.fa-caret-down]="casesToday < casesYesterday"
        [class.fa-caret-right]="casesToday === casesYesterday">
     </i>
 </div>
 
-<div class="snippet-cases-trend d-flex align-items-center"
-     *ngIf="!showTrend">
-    <span class="trend-percentage mr-1 text-right">
+<div class="snippet-cases-trend d-flex align-items-center" *ngIf="!showTrend">
+    <span class="trend-percentage mr-2 text-right">
         n.A.
     </span>
     <i class="fas icon fa-virus"></i>

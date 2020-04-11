@@ -2,5 +2,30 @@
     @include box-shadow(0 5px 30px #00000014);
     background: $main-structure-background;
     border-color: rgba($main-body-background, 0.05);
-    border-radius: 15px;
+    border-radius: 10px;
+}
+
+.navbar {
+    padding: 23px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-nav {
+    margin-left: 40px;
+}
+
+.nav-item {
+    &:not(:last-child) {
+        margin-right: 40px;
+    }
+
+    &.active {
+        font-weight: bold;
+        border-bottom: 2px solid $app-color-red;
+    }
+}
+
+.nav-link {
+    color: $link-color;
 }
