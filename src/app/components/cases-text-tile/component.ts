@@ -35,6 +35,7 @@ export class CasesTextTileComponent extends ChartBase {
     private MAX_CHART_DAYS = 15;
 
     public container: am4core.Container = null;
+    public _totalData: CasesTotalModel;
     public casesToday: number = 0;
     public casesDelta: number = 0;
 
@@ -56,8 +57,8 @@ export class CasesTextTileComponent extends ChartBase {
     }
 
     public updateChart(): void {
-        if (!this.totalData || isEmpty(this.totalData)) {
-            this.totalData = JSON.parse(JSON.stringify(this.totalData));
+        if (this.totalData || !isEmpty(this.totalData)) {
+            this._totalData = JSON.parse(JSON.stringify(this.totalData));
             this.updateCasesVariables();
         }
 
@@ -152,12 +153,13 @@ export class CasesTextTileComponent extends ChartBase {
      *
      */
     public updateCasesVariables(): void {
-        if (!this.totalData) {
+        if (!this._totalData) {
             return;
         }
 
-        this.casesToday = this.totalData[this.viewCase];
-        this.casesDelta = this.totalData['delta_' + this.viewCase];
+
+        this.casesToday = this._totalData[this.viewCase];
+        this.casesDelta = this._totalData['delta_' + this.viewCase];
     }
 
     /**
