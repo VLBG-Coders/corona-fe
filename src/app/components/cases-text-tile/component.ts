@@ -1,5 +1,5 @@
 import { isEmpty, orderBy } from 'lodash';
-import { Component, NgZone, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { AmchartService } from '@app/services';
@@ -11,7 +11,7 @@ import { ChartBase } from '../chart-base';
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesTextTileComponent extends ChartBase implements OnChanges {
+export class CasesTextTileComponent extends ChartBase {
     @Input()
     public isComponentLoading: boolean = false;
 
@@ -50,25 +50,20 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
     };
 
     constructor(
-        public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService
     ) {
-        super(_ngZone);
+        super();
     }
 
-    ngOnChanges() {
+    public updateChart(): void {
         if (!this.totalData || isEmpty(this.totalData)) {
             this.totalData = JSON.parse(JSON.stringify(this.totalData));
             this.updateCasesVariables();
         }
 
-        this.storeChartData();
         if (this.chart && this._chartData && this._chartData.length) {
             this.updateChartData();
-            //const MAGIC_TIMEOUT = 150;
-            //setTimeout(() => {
             this.drawChart();
-            //}, MAGIC_TIMEOUT);
         }
     }
 
@@ -81,6 +76,7 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
 
         let chart = this.container.createChild(am4charts.XYChart);
         chart.padding(5, 5, 2, 5);
+        chart.data = this._chartData;
 
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
         dateAxis.renderer.grid.template.disabled = true;
@@ -97,14 +93,13 @@ export class CasesTextTileComponent extends ChartBase implements OnChanges {
         valueAxis.cursorTooltipEnabled = false;
 
         this.chart = chart;
-
         this.drawChart();
     }
 
     /**
      *
      */
-    private drawChart(): void {
+    public drawChart(): void {
         if (this.chart.series.length) {
             this.chart.series.removeIndex(0);
         }

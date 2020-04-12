@@ -1,5 +1,5 @@
 import { isEmpty, orderBy } from 'lodash';
-import { Component, NgZone, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { AmchartService } from '@app/services';
@@ -11,7 +11,7 @@ import { ChartBase } from '../chart-base';
     templateUrl: './main.html',
     styleUrls: ['./styles.scss']
 })
-export class CasesBarChartComponent extends ChartBase implements OnChanges {
+export class CasesBarChartComponent extends ChartBase {
     @Input()
     public isComponentLoading: boolean = false;
 
@@ -22,22 +22,16 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
     public customClass: string;
 
     constructor(
-        public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService,
     ) {
-        super(_ngZone);
+        super();
     }
 
-    ngOnChanges() {
-        this.storeChartData();
-        if (this.chart && this._chartData && this._chartData.length) {
-            this.chart.data = this._chartData;
-            const MAGIC_TIMEOUT = 150;
-            setTimeout(() => {
-                this.updateChartData();
-                this.drawChart();
-            }, MAGIC_TIMEOUT);
-        }
+    /**
+     *
+     */
+    public drawChart(): void {
+        this.createChart();
     }
 
     /**
@@ -60,13 +54,7 @@ export class CasesBarChartComponent extends ChartBase implements OnChanges {
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
         this.chart = chart;
-        this.drawChart();
-    }
 
-    /**
-     *
-     */
-    private drawChart(): void {
         if (this.chart.series.length) {
             this.chart.series.removeIndex(0);
             this.chart.series.removeIndex(0);

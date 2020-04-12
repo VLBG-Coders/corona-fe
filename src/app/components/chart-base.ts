@@ -1,17 +1,17 @@
-import { AfterViewInit, NgZone, Input, OnDestroy, OnChanges } from '@angular/core';
+import { AfterViewInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 
 export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
     public readonly SUBSCRIPTION_DELAY = 50;
+    public readonly UPDATE_TIME_TO_WAIT = 150;
+    public COMPONENT_ID: string;
     public container: am4core.Container;
     public chart: any;
     public chartData = [];
     public _chartData = [];
-    public COMPONENT_ID: string;
+    public updateOnChangesTimer = null;
 
-    constructor(
-        public readonly _ngZone: NgZone
-    ) {
+    constructor() {
         this.COMPONENT_ID = this.getComponentId();
     }
 
@@ -26,25 +26,55 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
         }, this.SUBSCRIPTION_DELAY);
     }
 
+    /**
+     *
+     */
     ngOnChanges() {
-        this.storeChartData();
-        if (this.chart && this._chartData && this._chartData.length) {
-            this.chart.dispose();
-            this.updateChartData()
-            this.createChart();
-        }
+        this.checkForChartToBeReady();
     }
 
     /**
      *
      */
     ngOnDestroy() {
+        clearTimeout(this.updateOnChangesTimer);
+
         if (this.container) {
             this.container.dispose();
         }
 
         if (this.chart) {
             this.chart.dispose();
+        }
+    }
+
+    /**
+     *
+     */
+    public checkForChartToBeReady(): void {
+        clearTimeout(this.updateOnChangesTimer);
+        this.updateOnChangesTimer = setTimeout(() => {
+            this.storeChartData();
+
+            if (!this.chart || !this._chartData || !this._chartData.length) {
+                this.checkForChartToBeReady();
+
+                return;
+            }
+
+            this.updateChart();
+        }, this.UPDATE_TIME_TO_WAIT);
+    }
+
+    /**
+     *
+     */
+    public updateChart(): void {
+        if (this.chart && this._chartData && this._chartData.length) {
+            this.chart.dispose();
+            this.chart.data = this._chartData;
+            this.updateChartData()
+            this.drawChart();
         }
     }
 
@@ -61,6 +91,11 @@ export class ChartBase implements AfterViewInit, OnDestroy, OnChanges {
      *
      */
     public createChart(): void { }
+
+    /**
+     *
+     */
+    public drawChart(): void { }
 
     /**
      *

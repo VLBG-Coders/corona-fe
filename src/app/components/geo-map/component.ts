@@ -1,4 +1,4 @@
-import { Component, EventEmitter, NgZone, OnChanges, Input, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, Input, Output } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
@@ -30,10 +30,9 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
     private countryPolygonTemplate;
 
     constructor(
-        public readonly _ngZone: NgZone,
         public readonly amchartService: AmchartService
     ) {
-        super(_ngZone);
+        super();
     }
 
     ngOnChanges() { }

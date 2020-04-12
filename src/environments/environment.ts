@@ -1,8 +1,8 @@
-const BASE_URL = '';
+const BASE_URL = 'https://api.corona-curve.info';
 
 export const environment = {
     production: false,
-    useApiMock: true,
+    useApiMock: false,
     googleAnalyticsTrackingCode: '',
     apiBaseUrl: BASE_URL + '',
     apiMockBaseUrl: 'assets/apimocks'

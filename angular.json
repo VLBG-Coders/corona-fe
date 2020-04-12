@@ -65,10 +65,10 @@
                                 "with": "src/environments/environment.local.ts"
                             }]
                         },
-                        "dev": {
+                        "mock": {
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.dev.ts"
+                                "with": "src/environments/environment.mock.ts"
                             }]
                         }
                     }
@@ -85,8 +85,8 @@
                         "local": {
                             "browserTarget": "corona-fe:build:local"
                         },
-                        "dev": {
-                            "browserTarget": "corona-fe:build:dev"
+                        "mock": {
+                            "browserTarget": "corona-fe:build:mock"
                         }
                     }
                 },
