@@ -34,13 +34,14 @@
     </div>
 
     <div class="row mb-5">
-        <div class="col-xs-12 col-md-4 mb-4" *ngFor="let person of contributors">
+        <div class="col-xs-12 col-md-4 mb-4"
+             *ngFor="let person of contributors">
             <div class="card">
                 <div class="card-body contributor">
                     <div class="media">
-                        <div
-                             class="image-container align-self-start d-flex align-items-center justify-content-center">
-                            <img [src]="imageBaseUrl + person.image" class="image">
+                        <div class="image-container align-self-start d-flex align-items-center justify-content-center">
+                            <img [src]="imageBaseUrl + person.image"
+                                 class="image">
                         </div>
                         <div class="media-body">
                             <h5 class="mt-0">
@@ -49,7 +50,8 @@
 
                             <div *ngIf="person.employerName">
                                 Works
-                                <a [href]="person.employerUrl" target="_blank">
+                                <a [href]="person.employerUrl"
+                                   target="_blank">
                                     @{{ person.employerName }}
                                 </a>
                             </div>
@@ -61,7 +63,8 @@
                             <div *ngIf="person.website">
                                 <i class="fas fa-link"></i>
                                 Website
-                                <a [href]="person.website" target="_blank">
+                                <a [href]="person.website"
+                                   target="_blank">
                                     {{ person.website }}
                                 </a>
                             </div>
@@ -69,7 +72,8 @@
                             <div *ngIf="person.github">
                                 <i class="fab fa-github"></i>
                                 Github
-                                <a [href]="githubBaseUrl + person.github" target="_blank">
+                                <a [href]="githubBaseUrl + person.github"
+                                   target="_blank">
                                     {{ person.github }}
                                 </a>
                             </div>
@@ -77,13 +81,15 @@
                             <div *ngIf="person.twitter">
                                 <i class="fab fa-twitter"></i>
                                 Twitter
-                                <a [href]="twitterBaseUrl + person.twitter" target="_blank">
+                                <a [href]="twitterBaseUrl + person.twitter"
+                                   target="_blank">
                                     @{{ person.twitter }}
                                 </a>
                             </div>
 
                             <div *ngIf="person.linkedin">
-                                <a [href]="linkedInBaseUrl + person.linkedin" target="_blank">
+                                <a [href]="linkedInBaseUrl + person.linkedin"
+                                   target="_blank">
                                     <i class="fab fa-linkedin"></i>
                                     LinkedIn
                                 </a>
@@ -95,7 +101,8 @@
         </div>
 
         <div class="col-12 mt-5">
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning"
+                 role="alert">
                 Want to be part of this project? Awesome - don't wait and contact us! But Attention, it is
                 none-profit!
             </div>
@@ -136,8 +143,7 @@
             <div class="card">
                 <div class="card-body">
                     Send us an E-Mail
-                    <a href="mailto:admin@corona-curve.info">admin<i
-                           class="fas fa-at"></i>corona-curve.info</a>
+                    <a href="mailto:admin@corona-curve.info">admin<i class="fas fa-at"></i>corona-curve.info</a>
                 </div>
             </div>
         </div>
