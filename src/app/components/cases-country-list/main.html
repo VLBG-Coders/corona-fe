@@ -1,7 +1,5 @@
-<div class="data-table-container"
-     [ngClass]="customClass">
-    <app-loading-indicator [appearance]="'fullwidth'"
-                           *ngIf="isComponentLoading">
+<div class="data-table-container" [ngClass]="customClass">
+    <app-loading-indicator [appearance]="'fullwidth'" *ngIf="isComponentLoading">
     </app-loading-indicator>
 
     <div class="data-table-filter d-flex align-items-center">
@@ -16,10 +14,7 @@
                 </div>
             </div>
 
-            <input type="text"
-                   class="form-control"
-                   placeholder="Search..."
-                   [(ngModel)]="filterCountryName"
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterCountryName"
                    (keyup)="filterCountries($event)" />
         </div>
     </div>
@@ -51,12 +46,9 @@
             </div>
         </div>
 
-        <div class="data-table-rows"
-             *ngIf="isComponentReady">
-            <div class="data-table-row d-flex"
-                 [class.has-total-row]="showTotalBar"
-                 *ngFor="let data of _dataCases"
-                 (click)="onSelectCountryByCode(data.country.code)">
+        <div class="data-table-rows" *ngIf="isComponentReady">
+            <div class="data-table-row d-flex" [class.has-total-row]="showTotalBar"
+                 *ngFor="let data of _dataCases" (click)="onSelectCountryByCode(data.country.code)">
                 <div class="data-table-cell text-truncate bigger">
                     {{ data.country.name }}
                 </div>
@@ -83,30 +75,29 @@
             </div>
         </div>
 
-        <div class="data-table-total-bar d-flex"
-             *ngIf="showTotalBar">
+        <div class="data-table-total-bar d-flex" *ngIf="showTotalBar">
             <div class="data-table-cell text-truncate text-strong bigger">
-                Toal
+                Total
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                <app-snippet-cases-number [cases]="toalCases.confirmed"></app-snippet-cases-number>
+                <app-snippet-cases-number [cases]="totalCases.confirmed"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate grouped grouped-end">
-                <app-snippet-cases-number [cases]="toalCases.delta_confirmed"></app-snippet-cases-number>
+                <app-snippet-cases-number [cases]="totalCases.delta_confirmed"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped grouped-start">
-                <app-snippet-cases-number [cases]="toalCases.deaths"></app-snippet-cases-number>
+                <app-snippet-cases-number [cases]="totalCases.deaths"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate grouped grouped-end">
-                <app-snippet-cases-number [cases]="toalCases.delta_deaths"></app-snippet-cases-number>
+                <app-snippet-cases-number [cases]="totalCases.delta_deaths"></app-snippet-cases-number>
             </div>
 
             <div class="data-table-cell text-truncate text-strong grouped">
-                <app-snippet-cases-number [cases]="toalCases.recovered"></app-snippet-cases-number>
+                <app-snippet-cases-number [cases]="totalCases.recovered"></app-snippet-cases-number>
             </div>
         </div>
     </div>
