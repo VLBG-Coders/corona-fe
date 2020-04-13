@@ -25,7 +25,7 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
     @Input()
     public showTotalBar: boolean = true;
 
-    public toalCases: CasesTotalModel = new CasesTotalModel;
+    public totalCases: CasesTotalModel = new CasesTotalModel;
     public filterCountryName: string;
     public sortParameter = 'confirmed';
     public isComponentReady = false;
@@ -84,8 +84,8 @@ export class CasesCountryListComponent implements OnInit, OnChanges {
             return;
         }
 
-        for (let prop in this.toalCases) {
-            this.toalCases[prop] = sumBy(this.dataCases, (item) => {
+        for (let prop in this.totalCases) {
+            this.totalCases[prop] = sumBy(this.dataCases, (item) => {
                 return item.cases[prop];
             });
         }
