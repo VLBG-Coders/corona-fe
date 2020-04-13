@@ -31,12 +31,16 @@ export class CasesMapChartComponent extends ChartBase {
     private colorCodes = {
         confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
         deaths: this.amchartService.config.CASES_DEATHS_COLOR,
-        recovered: this.amchartService.config.CASES_RECOVERED_COLOR
+        recovered: this.amchartService.config.CASES_RECOVERED_COLOR,
+        confirmedPerCapita: this.amchartService.config.CASES_CONFIRMED_COLOR,
+        deathsPerCapita: this.amchartService.config.CASES_DEATHS_COLOR
     };
     private colors = {
         confirmed: am4core.color(this.colorCodes.confirmed),
         deaths: am4core.color(this.colorCodes.deaths),
-        recovered: am4core.color(this.colorCodes.recovered)
+        recovered: am4core.color(this.colorCodes.recovered),
+        confirmedPerCapita: am4core.color(this.colorCodes.confirmed),
+        deathsPerCapita: am4core.color(this.colorCodes.deaths)
     };
 
     constructor(
@@ -48,8 +52,20 @@ export class CasesMapChartComponent extends ChartBase {
     /**
      *
      */
+    public updateChart(): void {
+        if (this.chart && this._chartData && this._chartData.length) {
+            this.chart.data = this._chartData;
+            this.updateChartData()
+            this.drawChart();
+        }
+    }
+
+    /**
+     *
+     */
     public drawChart(): void {
-        this.createChart();
+        this.polygonSeries.data = this._chartData;
+        //this.updateChartData();
     }
 
     /**
@@ -95,7 +111,7 @@ export class CasesMapChartComponent extends ChartBase {
         polygonSeries.heatRules.push({
             property: 'fill',
             target: polygonTemplate,
-            min: this.colors[this.currentType].brighten(1),
+            min: this.colors[this.currentType].brighten(2),
             max: this.colors[this.currentType].brighten(-0.3)
         });
 
@@ -106,13 +122,16 @@ export class CasesMapChartComponent extends ChartBase {
         buttonsContainer.x = 0;
         buttonsContainer.contentAlign = 'right';
 
-        this.buttons = {
-            confirmed: this.createButton('confirmed', this.colorCodes.confirmed, buttonsContainer),
-            deaths: this.createButton('deaths', this.colorCodes.deaths, buttonsContainer),
-            recovered: this.createButton('recovered', this.colorCodes.recovered, buttonsContainer)
-        };
+        if (!this.buttons) {
+            this.buttons = {
+                confirmed: this.createButton('confirmed', this.colorCodes.confirmed, buttonsContainer),
+                deaths: this.createButton('deaths', this.colorCodes.deaths, buttonsContainer),
+                recovered: this.createButton('recovered', this.colorCodes.recovered, buttonsContainer),
+                confirmedPerCapita: this.createButton('confirmedPerCapita', this.colorCodes.confirmed, buttonsContainer),
+                deathsPerCapita: this.createButton('deathsPerCapita', this.colorCodes.deaths, buttonsContainer)
+            };
+        }
         this.buttons[this.currentType].isActive = true;
-
         this.polygonSeries = polygonSeries;
         this.chart = chart;
     }
@@ -184,6 +203,7 @@ export class CasesMapChartComponent extends ChartBase {
 
             dataItem.setValue('value', newValue);
             dataItem.mapPolygon.defaultState.properties.fill = undefined;
+            dataItem.mapPolygon.tooltipText = '{name}: ' + newValue;
         });
 
         this.polygonSeries.heatRules.getIndex(0).min = this.colors[currentType].brighten(1);
@@ -206,6 +226,18 @@ export class CasesMapChartComponent extends ChartBase {
             item.confirmed = item.cases.confirmed;
             item.deaths = item.cases.deaths;
             item.recovered = item.cases.recovered || 1;
+
+            item.confirmedPerCapita = 1;
+            item.deathsPerCapita = 1;
+            if (item.country.population) {
+                if (item.confirmed) {
+                    item.confirmedPerCapita = Math.round(item.confirmed / item.country.population * 100000) || 1;
+                }
+                if (item.deaths) {
+                    item.deathsPerCapita = Math.round(item.deaths / item.country.population * 100000) || 1;
+                }
+                console.log('--->', item.confirmedPerCapita);
+            }
         }
     }
 }
@@ -218,4 +250,6 @@ export class ChartDataModel {
     recovered: number;
     country: CountryModel;
     cases: CasesTotalModel;
+    confirmedPerCapita: number;
+    deathsPerCapita: number;
 }

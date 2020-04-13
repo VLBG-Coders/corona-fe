@@ -70,6 +70,8 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
             this.amchartService.config.MAP_COUNTRY_COLOR
         );
         countryPolygonTemplate.tooltipText = '{name}';
+        countryPolygonTemplate.fillOpacity = 0.9;
+
 
         // Create hover state and set alternative fill color
         let hoverState = countryPolygonTemplate.states.create('hover');
@@ -98,6 +100,7 @@ export class GeoMapComponent extends ChartBase implements OnChanges {
 
         this.bindEvents();
     }
+
     /**
      *
      */
