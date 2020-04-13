@@ -1,7 +1,7 @@
 .card {
     @include box-shadow(0 5px 30px #00000014);
     background: $main-structure-background;
-    border-color: rgba($main-body-background, 0.05);
+    border: 1px solid rgba($main-body-background, 0.05);
     border-radius: 10px;
 }
 
