@@ -1,0 +1,2461 @@
+[{
+        "avg_temperature": 12.6,
+        "capital": "Kabul",
+        "code": "AF",
+        "continent": "Asia",
+        "life_expectancy": 45.9,
+        "name": "Afghanistan",
+        "population": 35530081,
+        "population_density": 46.8
+    },
+    {
+        "avg_temperature": 11.4,
+        "capital": "Tirana",
+        "code": "AL",
+        "continent": "Europe",
+        "life_expectancy": 71.6,
+        "name": "Albania",
+        "population": 2930187,
+        "population_density": 101.23
+    },
+    {
+        "avg_temperature": 22.5,
+        "capital": "Alger",
+        "code": "DZ",
+        "continent": "Africa",
+        "life_expectancy": 69.7,
+        "name": "Algeria",
+        "population": 41318142,
+        "population_density": 16.46
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Fagatogo",
+        "code": "AS",
+        "continent": "Oceania",
+        "life_expectancy": 75.1,
+        "name": "American Samoa",
+        "population": 55641,
+        "population_density": 275.83
+    },
+    {
+        "avg_temperature": 7.6,
+        "capital": "Andorra la Vella",
+        "code": "AD",
+        "continent": "Europe",
+        "life_expectancy": 83.5,
+        "name": "Andorra",
+        "population": 76965,
+        "population_density": 168.55
+    },
+    {
+        "avg_temperature": 21.55,
+        "capital": "Luanda",
+        "code": "AO",
+        "continent": "Africa",
+        "life_expectancy": 38.3,
+        "name": "Angola",
+        "population": 29784193,
+        "population_density": 17.22
+    },
+    {
+        "avg_temperature": null,
+        "capital": "The Valley",
+        "code": "AI",
+        "continent": "North America",
+        "life_expectancy": 76.1,
+        "name": "Anguilla",
+        "population": 14909,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "AQ",
+        "continent": "Antarctica",
+        "life_expectancy": null,
+        "name": "Antarctica",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 26.0,
+        "capital": "Saint John's",
+        "code": "AG",
+        "continent": "North America",
+        "life_expectancy": 70.5,
+        "name": "Antigua and Barbuda",
+        "population": 102012,
+        "population_density": 204.51
+    },
+    {
+        "avg_temperature": 14.8,
+        "capital": "Buenos Aires",
+        "code": "AR",
+        "continent": "South America",
+        "life_expectancy": 75.1,
+        "name": "Argentina",
+        "population": 44271041,
+        "population_density": 15.14
+    },
+    {
+        "avg_temperature": 7.15,
+        "capital": "Yerevan",
+        "code": "AM",
+        "continent": "Asia",
+        "life_expectancy": 66.4,
+        "name": "Armenia",
+        "population": 2930450,
+        "population_density": 104.55
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Oranjestad",
+        "code": "AW",
+        "continent": "North America",
+        "life_expectancy": 78.4,
+        "name": "Aruba",
+        "population": 105264,
+        "population_density": 571.73
+    },
+    {
+        "avg_temperature": 21.65,
+        "capital": "Canberra",
+        "code": "AU",
+        "continent": "Oceania",
+        "life_expectancy": 79.8,
+        "name": "Australia",
+        "population": 24450561,
+        "population_density": 3.01
+    },
+    {
+        "avg_temperature": 6.35,
+        "capital": "Wien",
+        "code": "AT",
+        "continent": "Europe",
+        "life_expectancy": 77.7,
+        "name": "Austria",
+        "population": 8735453,
+        "population_density": 102.83
+    },
+    {
+        "avg_temperature": 11.95,
+        "capital": "Baku",
+        "code": "AZ",
+        "continent": "Asia",
+        "life_expectancy": 62.9,
+        "name": "Azerbaijan",
+        "population": 9827589,
+        "population_density": 113.92
+    },
+    {
+        "avg_temperature": 24.85,
+        "capital": "Nassau",
+        "code": "BS",
+        "continent": "North America",
+        "life_expectancy": 71.1,
+        "name": "Bahamas",
+        "population": 395361,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 27.15,
+        "capital": "al-Manama",
+        "code": "BH",
+        "continent": "Asia",
+        "life_expectancy": 73.0,
+        "name": "Bahrain",
+        "population": 1492584,
+        "population_density": 1.0
+    },
+    {
+        "avg_temperature": 25.0,
+        "capital": "Dhaka",
+        "code": "BD",
+        "continent": "Asia",
+        "life_expectancy": 60.2,
+        "name": "Bangladesh",
+        "population": 164669751,
+        "population_density": 1.0
+    },
+    {
+        "avg_temperature": 26.0,
+        "capital": "Bridgetown",
+        "code": "BB",
+        "continent": "North America",
+        "life_expectancy": 73.0,
+        "name": "Barbados",
+        "population": 285719,
+        "population_density": 661.96
+    },
+    {
+        "avg_temperature": 6.15,
+        "capital": "Minsk",
+        "code": "BY",
+        "continent": "Europe",
+        "life_expectancy": 68.0,
+        "name": "Belarus",
+        "population": 9468338,
+        "population_density": 46.65
+    },
+    {
+        "avg_temperature": 9.55,
+        "capital": "Bruxelles [Brussel]",
+        "code": "BE",
+        "continent": "Europe",
+        "life_expectancy": 77.8,
+        "name": "Belgium",
+        "population": 11429336,
+        "population_density": 369.72
+    },
+    {
+        "avg_temperature": 25.3,
+        "capital": "Belmopan",
+        "code": "BZ",
+        "continent": "North America",
+        "life_expectancy": 70.9,
+        "name": "Belize",
+        "population": 374681,
+        "population_density": 14.55
+    },
+    {
+        "avg_temperature": 27.55,
+        "capital": "Porto-Novo",
+        "code": "BJ",
+        "continent": "Africa",
+        "life_expectancy": 50.2,
+        "name": "Benin",
+        "population": 11175692,
+        "population_density": 91.55
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Hamilton",
+        "code": "BM",
+        "continent": "North America",
+        "life_expectancy": 76.9,
+        "name": "Bermuda",
+        "population": 61349,
+        "population_density": 1.0
+    },
+    {
+        "avg_temperature": 7.4,
+        "capital": "Thimphu",
+        "code": "BT",
+        "continent": "Asia",
+        "life_expectancy": 52.4,
+        "name": "Bhutan",
+        "population": 807610,
+        "population_density": 19.78
+    },
+    {
+        "avg_temperature": 21.55,
+        "capital": "La Paz",
+        "code": "BO",
+        "continent": "South America",
+        "life_expectancy": 63.7,
+        "name": "Bolivia",
+        "population": 11051600,
+        "population_density": 9.85
+    },
+    {
+        "avg_temperature": 9.85,
+        "capital": "Sarajevo",
+        "code": "BA",
+        "continent": "Europe",
+        "life_expectancy": 71.5,
+        "name": "Bosnia and Herzegovina",
+        "population": 3507017,
+        "population_density": 75.08
+    },
+    {
+        "avg_temperature": 21.5,
+        "capital": "Gaborone",
+        "code": "BW",
+        "continent": "Africa",
+        "life_expectancy": 39.3,
+        "name": "Botswana",
+        "population": 2291661,
+        "population_density": 3.57
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "BV",
+        "continent": "Antarctica",
+        "life_expectancy": null,
+        "name": "Bouvet Island",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.95,
+        "capital": "Bras\u00edlia",
+        "code": "BR",
+        "continent": "South America",
+        "life_expectancy": 62.9,
+        "name": "Brazil",
+        "population": 209288278,
+        "population_density": 23.97
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "IO",
+        "continent": "Africa",
+        "life_expectancy": null,
+        "name": "British Indian Ocean Territory",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 26.85,
+        "capital": "Bandar Seri Begawan",
+        "code": "BN",
+        "continent": "Asia",
+        "life_expectancy": 73.6,
+        "name": "Brunei",
+        "population": 428697,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 10.55,
+        "capital": "Sofia",
+        "code": "BG",
+        "continent": "Europe",
+        "life_expectancy": 70.9,
+        "name": "Bulgaria",
+        "population": 7084571,
+        "population_density": 66.92
+    },
+    {
+        "avg_temperature": 28.25,
+        "capital": "Ouagadougou",
+        "code": "BF",
+        "continent": "Africa",
+        "life_expectancy": 46.7,
+        "name": "Burkina Faso",
+        "population": 19193382,
+        "population_density": 61.9
+    },
+    {
+        "avg_temperature": 19.8,
+        "capital": "Bujumbura",
+        "code": "BI",
+        "continent": "Africa",
+        "life_expectancy": 46.2,
+        "name": "Burundi",
+        "population": 10864245,
+        "population_density": 395.74
+    },
+    {
+        "avg_temperature": 26.8,
+        "capital": "Phnom Penh",
+        "code": "KH",
+        "continent": "Asia",
+        "life_expectancy": 56.5,
+        "name": "Cambodia",
+        "population": 16005373,
+        "population_density": 85.74
+    },
+    {
+        "avg_temperature": 24.6,
+        "capital": "Yaound",
+        "code": "CM",
+        "continent": "Africa",
+        "life_expectancy": 54.8,
+        "name": "Cameroon",
+        "population": 24053727,
+        "population_density": 47.08
+    },
+    {
+        "avg_temperature": -5.35,
+        "capital": "Ottawa",
+        "code": "CA",
+        "continent": "North America",
+        "life_expectancy": 79.4,
+        "name": "Canada",
+        "population": 36624199,
+        "population_density": 3.87
+    },
+    {
+        "avg_temperature": 23.3,
+        "capital": "Praia",
+        "code": "CV",
+        "continent": "Africa",
+        "life_expectancy": 68.9,
+        "name": "Cape Verde",
+        "population": 546388,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "George Town",
+        "code": "KY",
+        "continent": "North America",
+        "life_expectancy": 78.9,
+        "name": "Cayman Islands",
+        "population": 61559,
+        "population_density": 243.48
+    },
+    {
+        "avg_temperature": 24.9,
+        "capital": "Bangui",
+        "code": "CF",
+        "continent": "Africa",
+        "life_expectancy": 44.0,
+        "name": "Central African Republic",
+        "population": 4659080,
+        "population_density": 7.41
+    },
+    {
+        "avg_temperature": 26.55,
+        "capital": "N'Djam",
+        "code": "TD",
+        "continent": "Africa",
+        "life_expectancy": 50.5,
+        "name": "Chad",
+        "population": 14899994,
+        "population_density": 10.19
+    },
+    {
+        "avg_temperature": 8.45,
+        "capital": "Santiago de Chile",
+        "code": "CL",
+        "continent": "South America",
+        "life_expectancy": 75.7,
+        "name": "Chile",
+        "population": 18054726,
+        "population_density": 23.7
+    },
+    {
+        "avg_temperature": 6.95,
+        "capital": "Peking",
+        "code": "CN",
+        "continent": "Asia",
+        "life_expectancy": 71.4,
+        "name": "China",
+        "population": 1409517397,
+        "population_density": 144.58
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Flying Fish Cove",
+        "code": "CX",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Christmas Island",
+        "population": 2500,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "West Island",
+        "code": "CC",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Cocos (Keeling) Islands",
+        "population": 600,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.5,
+        "capital": "Santaf",
+        "code": "CO",
+        "continent": "South America",
+        "life_expectancy": 70.3,
+        "name": "Colombia",
+        "population": 49065615,
+        "population_density": 43.55
+    },
+    {
+        "avg_temperature": 25.55,
+        "capital": "Moroni",
+        "code": "KM",
+        "continent": "Africa",
+        "life_expectancy": 60.0,
+        "name": "Comoros",
+        "population": 813912,
+        "population_density": 394.9
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Brazzaville",
+        "code": "CG",
+        "continent": "Africa",
+        "life_expectancy": 47.4,
+        "name": "Congo",
+        "population": 5260750,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Avarua",
+        "code": "CK",
+        "continent": "Oceania",
+        "life_expectancy": 71.1,
+        "name": "Cook Islands",
+        "population": 17380,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.8,
+        "capital": "San Jos",
+        "code": "CR",
+        "continent": "North America",
+        "life_expectancy": 75.8,
+        "name": "Costa Rica",
+        "population": 4905769,
+        "population_density": 95.42
+    },
+    {
+        "avg_temperature": 10.9,
+        "capital": "Zagreb",
+        "code": "HR",
+        "continent": "Europe",
+        "life_expectancy": 73.7,
+        "name": "Croatia",
+        "population": 4189353,
+        "population_density": 76.0
+    },
+    {
+        "avg_temperature": 25.2,
+        "capital": "La Habana",
+        "code": "CU",
+        "continent": "North America",
+        "life_expectancy": 76.2,
+        "name": "Cuba",
+        "population": 11484636,
+        "population_density": 105.84
+    },
+    {
+        "avg_temperature": 18.45,
+        "capital": "Nicosia",
+        "code": "CY",
+        "continent": "Asia",
+        "life_expectancy": 76.7,
+        "name": "Cyprus",
+        "population": 1179551,
+        "population_density": 123.5
+    },
+    {
+        "avg_temperature": 7.55,
+        "capital": "Praha",
+        "code": "CZ",
+        "continent": "Europe",
+        "life_expectancy": 74.5,
+        "name": "Czech Republic",
+        "population": 10618303,
+        "population_density": 136.24
+    },
+    {
+        "avg_temperature": 7.5,
+        "capital": "Copenhagen",
+        "code": "DK",
+        "continent": "Europe",
+        "life_expectancy": 76.5,
+        "name": "Denmark",
+        "population": 5733551,
+        "population_density": 132.31
+    },
+    {
+        "avg_temperature": 28.0,
+        "capital": "Djibouti",
+        "code": "DJ",
+        "continent": "Africa",
+        "life_expectancy": 50.8,
+        "name": "Djibouti",
+        "population": 956985,
+        "population_density": 37.66
+    },
+    {
+        "avg_temperature": 22.35,
+        "capital": "Roseau",
+        "code": "DM",
+        "continent": "North America",
+        "life_expectancy": 73.4,
+        "name": "Dominica",
+        "population": 73925,
+        "population_density": 96.0
+    },
+    {
+        "avg_temperature": 24.55,
+        "capital": "Santo Domingo de Guzm",
+        "code": "DO",
+        "continent": "North America",
+        "life_expectancy": 73.2,
+        "name": "Dominican Republic",
+        "population": 10766998,
+        "population_density": 215.31
+    },
+    {
+        "avg_temperature": 25.25,
+        "capital": "Dili",
+        "code": "TP",
+        "continent": "Asia",
+        "life_expectancy": 46.0,
+        "name": "East Timor",
+        "population": 1296311,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 21.85,
+        "capital": "Quito",
+        "code": "EC",
+        "continent": "South America",
+        "life_expectancy": 71.1,
+        "name": "Ecuador",
+        "population": 16624858,
+        "population_density": 63.37
+    },
+    {
+        "avg_temperature": 22.1,
+        "capital": "Cairo",
+        "code": "EG",
+        "continent": "Africa",
+        "life_expectancy": 63.3,
+        "name": "Egypt",
+        "population": 97553151,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.45,
+        "capital": "San Salvador",
+        "code": "SV",
+        "continent": "North America",
+        "life_expectancy": 69.7,
+        "name": "El Salvador",
+        "population": 6377853,
+        "population_density": 306.01
+    },
+    {
+        "avg_temperature": 24.55,
+        "capital": "Malabo",
+        "code": "GQ",
+        "continent": "Africa",
+        "life_expectancy": 53.6,
+        "name": "Equatorial Guinea",
+        "population": 1267689,
+        "population_density": 26.99
+    },
+    {
+        "avg_temperature": 25.5,
+        "capital": "Asmara",
+        "code": "ER",
+        "continent": "Africa",
+        "life_expectancy": 55.8,
+        "name": "Eritrea",
+        "population": 5068831,
+        "population_density": 62.7
+    },
+    {
+        "avg_temperature": 5.1,
+        "capital": "Tallinn",
+        "code": "EE",
+        "continent": "Europe",
+        "life_expectancy": 69.5,
+        "name": "Estonia",
+        "population": 1309632,
+        "population_density": 31.25
+    },
+    {
+        "avg_temperature": 22.2,
+        "capital": "Addis Abeba",
+        "code": "ET",
+        "continent": "Africa",
+        "life_expectancy": 45.2,
+        "name": "Ethiopia",
+        "population": 104957438,
+        "population_density": 94.1
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Stanley",
+        "code": "FK",
+        "continent": "South America",
+        "life_expectancy": null,
+        "name": "Falkland Islands",
+        "population": 2910,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "T\u00f3rshavn",
+        "code": "FO",
+        "continent": "Europe",
+        "life_expectancy": 78.4,
+        "name": "Faroe Islands",
+        "population": 49290,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Suva",
+        "code": "FJ",
+        "continent": "Oceania",
+        "life_expectancy": 67.9,
+        "name": "Fiji Islands",
+        "population": 905502,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 1.7,
+        "capital": "Helsinki [Helsingfors]",
+        "code": "FI",
+        "continent": "Europe",
+        "life_expectancy": 77.4,
+        "name": "Finland",
+        "population": 5523231,
+        "population_density": 17.9
+    },
+    {
+        "avg_temperature": 10.7,
+        "capital": "Paris",
+        "code": "FR",
+        "continent": "Europe",
+        "life_expectancy": 78.8,
+        "name": "France",
+        "population": 64979548,
+        "population_density": 120.59
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Cayenne",
+        "code": "GF",
+        "continent": "South America",
+        "life_expectancy": 76.1,
+        "name": "French Guiana",
+        "population": 282731,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Papeete",
+        "code": "PF",
+        "continent": "Oceania",
+        "life_expectancy": 74.8,
+        "name": "French Polynesia",
+        "population": 283007,
+        "population_density": 75.64
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "TF",
+        "continent": "Antarctica",
+        "life_expectancy": null,
+        "name": "French Southern territories",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 25.05,
+        "capital": "Libreville",
+        "code": "GA",
+        "continent": "Africa",
+        "life_expectancy": 50.1,
+        "name": "Gabon",
+        "population": 2025137,
+        "population_density": 6.49
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Banjul",
+        "code": "GM",
+        "continent": "Africa",
+        "life_expectancy": 53.2,
+        "name": "Gambia",
+        "population": 2100568,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 5.8,
+        "capital": "Tbilisi",
+        "code": "GE",
+        "continent": "Asia",
+        "life_expectancy": 64.5,
+        "name": "Georgia",
+        "population": 3912061,
+        "population_density": 78.32
+    },
+    {
+        "avg_temperature": 8.5,
+        "capital": "Berlin",
+        "code": "DE",
+        "continent": "Europe",
+        "life_expectancy": 77.4,
+        "name": "Germany",
+        "population": 82114224,
+        "population_density": 231.31
+    },
+    {
+        "avg_temperature": 27.2,
+        "capital": "Accra",
+        "code": "GH",
+        "continent": "Africa",
+        "life_expectancy": 57.4,
+        "name": "Ghana",
+        "population": 28833629,
+        "population_density": 113.85
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Gibraltar",
+        "code": "GI",
+        "continent": "Europe",
+        "life_expectancy": 79.0,
+        "name": "Gibraltar",
+        "population": 34571,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 15.4,
+        "capital": "Athenai",
+        "code": "GR",
+        "continent": "Europe",
+        "life_expectancy": 78.4,
+        "name": "Greece",
+        "population": 11159773,
+        "population_density": 85.59
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Nuuk",
+        "code": "GL",
+        "continent": "North America",
+        "life_expectancy": 68.1,
+        "name": "Greenland",
+        "population": 56480,
+        "population_density": 0.14
+    },
+    {
+        "avg_temperature": 26.65,
+        "capital": "Saint George's",
+        "code": "GD",
+        "continent": "North America",
+        "life_expectancy": 64.5,
+        "name": "Grenada",
+        "population": 107825,
+        "population_density": 311.46
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Basse-Terre",
+        "code": "GP",
+        "continent": "North America",
+        "life_expectancy": 77.0,
+        "name": "Guadeloupe",
+        "population": 449568,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Aga",
+        "code": "GU",
+        "continent": "Oceania",
+        "life_expectancy": 77.8,
+        "name": "Guam",
+        "population": 164229,
+        "population_density": 305.79
+    },
+    {
+        "avg_temperature": 23.45,
+        "capital": "Ciudad de Guatemala",
+        "code": "GT",
+        "continent": "North America",
+        "life_expectancy": 66.2,
+        "name": "Guatemala",
+        "population": 16913503,
+        "population_density": 144.35
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "GG",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Guernsey",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 25.7,
+        "capital": "Conakry",
+        "code": "GN",
+        "continent": "Africa",
+        "life_expectancy": 45.6,
+        "name": "Guinea",
+        "population": 12717176,
+        "population_density": 47.8
+    },
+    {
+        "avg_temperature": 26.75,
+        "capital": "Bissau",
+        "code": "GW",
+        "continent": "Africa",
+        "life_expectancy": 49.0,
+        "name": "Guinea-Bissau",
+        "population": 1861283,
+        "population_density": 60.61
+    },
+    {
+        "avg_temperature": 26.0,
+        "capital": "Georgetown",
+        "code": "GY",
+        "continent": "South America",
+        "life_expectancy": 64.0,
+        "name": "Guyana",
+        "population": 777859,
+        "population_density": 4.06
+    },
+    {
+        "avg_temperature": 24.9,
+        "capital": "Port-au-Prince",
+        "code": "HT",
+        "continent": "North America",
+        "life_expectancy": 49.2,
+        "name": "Haiti",
+        "population": 10981229,
+        "population_density": 374.36
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "HM",
+        "continent": "Antarctica",
+        "life_expectancy": null,
+        "name": "Heard Island and McDonald Islands",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Citt",
+        "code": "VA",
+        "continent": "Europe",
+        "life_expectancy": null,
+        "name": "Holy See (Vatican City State)",
+        "population": 1000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 23.5,
+        "capital": "Tegucigalpa",
+        "code": "HN",
+        "continent": "North America",
+        "life_expectancy": 69.9,
+        "name": "Honduras",
+        "population": 9265067,
+        "population_density": 72.37
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Victoria",
+        "code": "HK",
+        "continent": "Asia",
+        "life_expectancy": 79.5,
+        "name": "Hong Kong",
+        "population": 7364883,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 9.75,
+        "capital": "Budapest",
+        "code": "HU",
+        "continent": "Europe",
+        "life_expectancy": 71.4,
+        "name": "Hungary",
+        "population": 9721559,
+        "population_density": 109.33
+    },
+    {
+        "avg_temperature": 1.75,
+        "capital": "Reykjav",
+        "code": "IS",
+        "continent": "Europe",
+        "life_expectancy": 79.4,
+        "name": "Iceland",
+        "population": 335025,
+        "population_density": 3.22
+    },
+    {
+        "avg_temperature": 23.65,
+        "capital": "New Delhi",
+        "code": "IN",
+        "continent": "Asia",
+        "life_expectancy": 62.5,
+        "name": "India",
+        "population": 1339180127,
+        "population_density": 421.14
+    },
+    {
+        "avg_temperature": 25.85,
+        "capital": "Jakarta",
+        "code": "ID",
+        "continent": "Asia",
+        "life_expectancy": 70.1,
+        "name": "Indonesia",
+        "population": 263991379,
+        "population_density": 124.0
+    },
+    {
+        "avg_temperature": 17.25,
+        "capital": "Tehran",
+        "code": "IR",
+        "continent": "Asia",
+        "life_expectancy": 69.7,
+        "name": "Iran",
+        "population": 81162788,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 21.4,
+        "capital": "Baghdad",
+        "code": "IQ",
+        "continent": "Asia",
+        "life_expectancy": 66.5,
+        "name": "Iraq",
+        "population": 38274618,
+        "population_density": 76.94
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Dublin",
+        "code": "IE",
+        "continent": "Europe",
+        "life_expectancy": 76.8,
+        "name": "Ireland",
+        "population": 4761657,
+        "population_density": 66.7
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "IM",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Isle of Man",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 19.2,
+        "capital": "Jerusalem",
+        "code": "IL",
+        "continent": "Asia",
+        "life_expectancy": 78.6,
+        "name": "Israel",
+        "population": 8321570,
+        "population_density": 372.43
+    },
+    {
+        "avg_temperature": 13.45,
+        "capital": "Roma",
+        "code": "IT",
+        "continent": "Europe",
+        "life_expectancy": 79.0,
+        "name": "Italy",
+        "population": 59359900,
+        "population_density": 203.41
+    },
+    {
+        "avg_temperature": 26.35,
+        "capital": "Yamoussoukro",
+        "code": "CI",
+        "continent": "Africa",
+        "life_expectancy": 45.2,
+        "name": "Ivory Coast",
+        "population": 24294750,
+        "population_density": 63.89
+    },
+    {
+        "avg_temperature": 24.95,
+        "capital": "Kingston",
+        "code": "JM",
+        "continent": "North America",
+        "life_expectancy": 75.2,
+        "name": "Jamaica",
+        "population": 2890299,
+        "population_density": 250.69
+    },
+    {
+        "avg_temperature": 11.15,
+        "capital": "Tokyo",
+        "code": "JP",
+        "continent": "Asia",
+        "life_expectancy": 80.7,
+        "name": "Japan",
+        "population": 127484450,
+        "population_density": 349.29
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "JE",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Jersey",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 18.3,
+        "capital": "Amman",
+        "code": "JO",
+        "continent": "Asia",
+        "life_expectancy": 77.4,
+        "name": "Jordan",
+        "population": 9702353,
+        "population_density": 72.75
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Astana",
+        "code": "KZ",
+        "continent": "Asia",
+        "life_expectancy": 63.2,
+        "name": "Kazakhstan",
+        "population": 18204499,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.75,
+        "capital": "Nairobi",
+        "code": "KE",
+        "continent": "Africa",
+        "life_expectancy": 48.0,
+        "name": "Kenya",
+        "population": 49699862,
+        "population_density": 77.93
+    },
+    {
+        "avg_temperature": 28.2,
+        "capital": "Bairiki",
+        "code": "KI",
+        "continent": "Oceania",
+        "life_expectancy": 59.8,
+        "name": "Kiribati",
+        "population": 116398,
+        "population_density": 126.36
+    },
+    {
+        "avg_temperature": 25.35,
+        "capital": "Kuwait",
+        "code": "KW",
+        "continent": "Asia",
+        "life_expectancy": 76.1,
+        "name": "Kuwait",
+        "population": 4136528,
+        "population_density": 189.03
+    },
+    {
+        "avg_temperature": 1.55,
+        "capital": "Bishkek",
+        "code": "KG",
+        "continent": "Asia",
+        "life_expectancy": 63.4,
+        "name": "Kyrgyzstan",
+        "population": 6045117,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 22.8,
+        "capital": "Vientiane",
+        "code": "LA",
+        "continent": "Asia",
+        "life_expectancy": 53.1,
+        "name": "Laos",
+        "population": 6858160,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 5.6,
+        "capital": "Riga",
+        "code": "LV",
+        "continent": "Europe",
+        "life_expectancy": 68.4,
+        "name": "Latvia",
+        "population": 1949670,
+        "population_density": 32.38
+    },
+    {
+        "avg_temperature": 16.4,
+        "capital": "Beirut",
+        "code": "LB",
+        "continent": "Asia",
+        "life_expectancy": 71.3,
+        "name": "Lebanon",
+        "population": 6082357,
+        "population_density": 436.7
+    },
+    {
+        "avg_temperature": 11.85,
+        "capital": "Maseru",
+        "code": "LS",
+        "continent": "Africa",
+        "life_expectancy": 50.8,
+        "name": "Lesotho",
+        "population": 2233339,
+        "population_density": 68.33
+    },
+    {
+        "avg_temperature": 25.3,
+        "capital": "Monrovia",
+        "code": "LR",
+        "continent": "Africa",
+        "life_expectancy": 51.0,
+        "name": "Liberia",
+        "population": 4731906,
+        "population_density": 44.58
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Tripoli",
+        "code": "LY",
+        "continent": "Africa",
+        "life_expectancy": 75.5,
+        "name": "Libyan Arab Jamahiriya",
+        "population": 5605000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 5.65,
+        "capital": "Vaduz",
+        "code": "LI",
+        "continent": "Europe",
+        "life_expectancy": 78.8,
+        "name": "Liechtenstein",
+        "population": 37922,
+        "population_density": 230.78
+    },
+    {
+        "avg_temperature": 6.2,
+        "capital": "Vilnius",
+        "code": "LT",
+        "continent": "Europe",
+        "life_expectancy": 69.1,
+        "name": "Lithuania",
+        "population": 2890297,
+        "population_density": 47.17
+    },
+    {
+        "avg_temperature": 8.65,
+        "capital": "Luxembourg [Luxemburg/L",
+        "code": "LU",
+        "continent": "Europe",
+        "life_expectancy": 77.1,
+        "name": "Luxembourg",
+        "population": 583455,
+        "population_density": 209.73
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Macao",
+        "code": "MO",
+        "continent": "Asia",
+        "life_expectancy": 81.6,
+        "name": "Macao",
+        "population": 473000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 22.65,
+        "capital": "Antananarivo",
+        "code": "MG",
+        "continent": "Africa",
+        "life_expectancy": 55.0,
+        "name": "Madagascar",
+        "population": 25570895,
+        "population_density": 39.4
+    },
+    {
+        "avg_temperature": 21.9,
+        "capital": "Lilongwe",
+        "code": "MW",
+        "continent": "Africa",
+        "life_expectancy": 37.6,
+        "name": "Malawi",
+        "population": 18622104,
+        "population_density": 173.55
+    },
+    {
+        "avg_temperature": 25.4,
+        "capital": "Kuala Lumpur",
+        "code": "MY",
+        "continent": "Asia",
+        "life_expectancy": 70.8,
+        "name": "Malaysia",
+        "population": 31624264,
+        "population_density": 90.45
+    },
+    {
+        "avg_temperature": 27.65,
+        "capital": "Male",
+        "code": "MV",
+        "continent": "Asia",
+        "life_expectancy": 62.2,
+        "name": "Maldives",
+        "population": 436330,
+        "population_density": 1.0
+    },
+    {
+        "avg_temperature": 28.25,
+        "capital": "Bamako",
+        "code": "ML",
+        "continent": "Africa",
+        "life_expectancy": 46.7,
+        "name": "Mali",
+        "population": 18541980,
+        "population_density": 12.54
+    },
+    {
+        "avg_temperature": 19.2,
+        "capital": "Valletta",
+        "code": "MT",
+        "continent": "Europe",
+        "life_expectancy": 77.9,
+        "name": "Malta",
+        "population": 430835,
+        "population_density": 1.0
+    },
+    {
+        "avg_temperature": 27.4,
+        "capital": "Dalap-Uliga-Darrit",
+        "code": "MH",
+        "continent": "Oceania",
+        "life_expectancy": 65.5,
+        "name": "Marshall Islands",
+        "population": 53127,
+        "population_density": 292.41
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Fort-de-France",
+        "code": "MQ",
+        "continent": "North America",
+        "life_expectancy": 78.3,
+        "name": "Martinique",
+        "population": 384896,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 27.65,
+        "capital": "Nouakchott",
+        "code": "MR",
+        "continent": "Africa",
+        "life_expectancy": 50.8,
+        "name": "Mauritania",
+        "population": 4420184,
+        "population_density": 3.77
+    },
+    {
+        "avg_temperature": 22.4,
+        "capital": "Port-Louis",
+        "code": "MU",
+        "continent": "Africa",
+        "life_expectancy": 71.0,
+        "name": "Mauritius",
+        "population": 1265138,
+        "population_density": 638.57
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Mamoutzou",
+        "code": "YT",
+        "continent": "Africa",
+        "life_expectancy": 59.5,
+        "name": "Mayotte",
+        "population": 253045,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 21.0,
+        "capital": "Ciudad de M",
+        "code": "MX",
+        "continent": "North America",
+        "life_expectancy": 71.5,
+        "name": "Mexico",
+        "population": 129163276,
+        "population_density": 62.93
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Palikir",
+        "code": "FM",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Micronesia, Federated States of",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 9.45,
+        "capital": "Chisinau",
+        "code": "MD",
+        "continent": "Europe",
+        "life_expectancy": 64.5,
+        "name": "Moldova",
+        "population": 4051212,
+        "population_density": 124.02
+    },
+    {
+        "avg_temperature": 13.55,
+        "capital": "Monaco-Ville",
+        "code": "MC",
+        "continent": "Europe",
+        "life_expectancy": 78.8,
+        "name": "Monaco",
+        "population": 38695,
+        "population_density": 18.0
+    },
+    {
+        "avg_temperature": -0.7,
+        "capital": "Ulan Bator",
+        "code": "MN",
+        "continent": "Asia",
+        "life_expectancy": 67.3,
+        "name": "Mongolia",
+        "population": 3075647,
+        "population_density": 1.83
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "ME",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Montenegro",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Plymouth",
+        "code": "MS",
+        "continent": "North America",
+        "life_expectancy": 78.0,
+        "name": "Montserrat",
+        "population": 5177,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 17.1,
+        "capital": "Rabat",
+        "code": "MA",
+        "continent": "Africa",
+        "life_expectancy": 69.1,
+        "name": "Morocco",
+        "population": 35739580,
+        "population_density": 73.96
+    },
+    {
+        "avg_temperature": 23.8,
+        "capital": "Maputo",
+        "code": "MZ",
+        "continent": "Africa",
+        "life_expectancy": 37.5,
+        "name": "Mozambique",
+        "population": 29668834,
+        "population_density": 32.85
+    },
+    {
+        "avg_temperature": 13.05,
+        "capital": "Rangoon (Yangon)",
+        "code": "MM",
+        "continent": "Asia",
+        "life_expectancy": 54.9,
+        "name": "Myanmar",
+        "population": 53370609,
+        "population_density": 81.52
+    },
+    {
+        "avg_temperature": 19.95,
+        "capital": "Windhoek",
+        "code": "NA",
+        "continent": "Africa",
+        "life_expectancy": 42.5,
+        "name": "Namibia",
+        "population": 2533794,
+        "population_density": 2.8
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Yaren",
+        "code": "NR",
+        "continent": "Oceania",
+        "life_expectancy": 60.8,
+        "name": "Nauru",
+        "population": 11359,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 8.1,
+        "capital": "Kathmandu",
+        "code": "NP",
+        "continent": "Asia",
+        "life_expectancy": 57.8,
+        "name": "Nepal",
+        "population": 29304998,
+        "population_density": 193.91
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Amsterdam",
+        "code": "NL",
+        "continent": "Europe",
+        "life_expectancy": 78.3,
+        "name": "Netherlands",
+        "population": 17035938,
+        "population_density": 498.35
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Willemstad",
+        "code": "AN",
+        "continent": "North America",
+        "life_expectancy": 74.7,
+        "name": "Netherlands Antilles",
+        "population": 217000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Noum",
+        "code": "NC",
+        "continent": "Oceania",
+        "life_expectancy": 72.8,
+        "name": "New Caledonia",
+        "population": 276255,
+        "population_density": 14.33
+    },
+    {
+        "avg_temperature": 10.55,
+        "capital": "Wellington",
+        "code": "NZ",
+        "continent": "Oceania",
+        "life_expectancy": 77.8,
+        "name": "New Zealand",
+        "population": 4705818,
+        "population_density": 16.98
+    },
+    {
+        "avg_temperature": 24.9,
+        "capital": "Managua",
+        "code": "NI",
+        "continent": "North America",
+        "life_expectancy": 68.7,
+        "name": "Nicaragua",
+        "population": 6217581,
+        "population_density": 50.53
+    },
+    {
+        "avg_temperature": 27.15,
+        "capital": "Niamey",
+        "code": "NE",
+        "continent": "Africa",
+        "life_expectancy": 41.3,
+        "name": "Niger",
+        "population": 21477348,
+        "population_density": 14.08
+    },
+    {
+        "avg_temperature": 26.8,
+        "capital": "Abuja",
+        "code": "NG",
+        "continent": "Africa",
+        "life_expectancy": 51.6,
+        "name": "Nigeria",
+        "population": 190886311,
+        "population_density": 190.62
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Alofi",
+        "code": "NU",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Niue",
+        "population": 1618,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Kingston",
+        "code": "NF",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Norfolk Island",
+        "population": 2000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 5.7,
+        "capital": "Pyongyang",
+        "code": "KP",
+        "continent": "Asia",
+        "life_expectancy": 70.7,
+        "name": "North Korea",
+        "population": 25490965,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Skopje",
+        "code": "MK",
+        "continent": "Europe",
+        "life_expectancy": 73.8,
+        "name": "North Macedonia",
+        "population": 2024000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Belfast",
+        "code": "GB",
+        "continent": "Europe",
+        "life_expectancy": null,
+        "name": "Northern Ireland",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Garapan",
+        "code": "MP",
+        "continent": "Oceania",
+        "life_expectancy": 75.5,
+        "name": "Northern Mariana Islands",
+        "population": 55144,
+        "population_density": 117.08
+    },
+    {
+        "avg_temperature": 1.5,
+        "capital": "Oslo",
+        "code": "NO",
+        "continent": "Europe",
+        "life_expectancy": 78.7,
+        "name": "Norway",
+        "population": 5305383,
+        "population_density": 13.92
+    },
+    {
+        "avg_temperature": 25.6,
+        "capital": "Masqat",
+        "code": "OM",
+        "continent": "Asia",
+        "life_expectancy": 71.8,
+        "name": "Oman",
+        "population": 4636262,
+        "population_density": 11.74
+    },
+    {
+        "avg_temperature": 20.2,
+        "capital": "Islamabad",
+        "code": "PK",
+        "continent": "Asia",
+        "life_expectancy": 61.1,
+        "name": "Pakistan",
+        "population": 197015955,
+        "population_density": 236.28
+    },
+    {
+        "avg_temperature": 27.6,
+        "capital": "Koror",
+        "code": "PW",
+        "continent": "Oceania",
+        "life_expectancy": 68.6,
+        "name": "Palau",
+        "population": 21729,
+        "population_density": 45.47
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Gaza",
+        "code": "PS",
+        "continent": "Asia",
+        "life_expectancy": 71.4,
+        "name": "Palestine",
+        "population": 4920724,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 25.4,
+        "capital": "Ciudad de Panam",
+        "code": "PA",
+        "continent": "North America",
+        "life_expectancy": 75.5,
+        "name": "Panama",
+        "population": 4098587,
+        "population_density": 51.98
+    },
+    {
+        "avg_temperature": 25.25,
+        "capital": "Port Moresby",
+        "code": "PG",
+        "continent": "Oceania",
+        "life_expectancy": 63.1,
+        "name": "Papua New Guinea",
+        "population": 8251162,
+        "population_density": 16.17
+    },
+    {
+        "avg_temperature": 23.55,
+        "capital": "Asunci",
+        "code": "PY",
+        "continent": "South America",
+        "life_expectancy": 73.7,
+        "name": "Paraguay",
+        "population": 6811297,
+        "population_density": 17.12
+    },
+    {
+        "avg_temperature": 19.6,
+        "capital": "Lima",
+        "code": "PE",
+        "continent": "South America",
+        "life_expectancy": 70.0,
+        "name": "Peru",
+        "population": 32165485,
+        "population_density": 23.73
+    },
+    {
+        "avg_temperature": 25.85,
+        "capital": "Manila",
+        "code": "PH",
+        "continent": "Asia",
+        "life_expectancy": 67.5,
+        "name": "Philippines",
+        "population": 104918090,
+        "population_density": 329.99
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Adamstown",
+        "code": "PN",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Pitcairn",
+        "population": 50,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 7.85,
+        "capital": "Warszawa",
+        "code": "PL",
+        "continent": "Europe",
+        "life_expectancy": 73.2,
+        "name": "Poland",
+        "population": 38170712,
+        "population_density": 125.83
+    },
+    {
+        "avg_temperature": 15.15,
+        "capital": "Lisboa",
+        "code": "PT",
+        "continent": "Europe",
+        "life_expectancy": 75.8,
+        "name": "Portugal",
+        "population": 10329506,
+        "population_density": 114.2
+    },
+    {
+        "avg_temperature": null,
+        "capital": "San Juan",
+        "code": "PR",
+        "continent": "North America",
+        "life_expectancy": 75.6,
+        "name": "Puerto Rico",
+        "population": 3663131,
+        "population_density": 407.56
+    },
+    {
+        "avg_temperature": 27.15,
+        "capital": "Doha",
+        "code": "QA",
+        "continent": "Asia",
+        "life_expectancy": 72.4,
+        "name": "Qatar",
+        "population": 2639211,
+        "population_density": 186.79
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Saint-Denis",
+        "code": "RE",
+        "continent": "Africa",
+        "life_expectancy": 72.7,
+        "name": "Reunion",
+        "population": 699000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 8.8,
+        "capital": "Bucuresti",
+        "code": "RO",
+        "continent": "Europe",
+        "life_expectancy": 69.9,
+        "name": "Romania",
+        "population": 19679306,
+        "population_density": 86.79
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Moscow",
+        "code": "RU",
+        "continent": "Europe",
+        "life_expectancy": 67.2,
+        "name": "Russian Federation",
+        "population": 143989754,
+        "population_density": 8.76
+    },
+    {
+        "avg_temperature": 17.85,
+        "capital": "Kigali",
+        "code": "RW",
+        "continent": "Africa",
+        "life_expectancy": 39.3,
+        "name": "Rwanda",
+        "population": 12208407,
+        "population_density": 477.36
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Jamestown",
+        "code": "SH",
+        "continent": "Africa",
+        "life_expectancy": 76.8,
+        "name": "Saint Helena",
+        "population": 4049,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.5,
+        "capital": "Basseterre",
+        "code": "KN",
+        "continent": "North America",
+        "life_expectancy": 70.7,
+        "name": "Saint Kitts and Nevis",
+        "population": 55345,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 25.5,
+        "capital": "Castries",
+        "code": "LC",
+        "continent": "North America",
+        "life_expectancy": 72.3,
+        "name": "Saint Lucia",
+        "population": 178844,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Saint-Pierre",
+        "code": "PM",
+        "continent": "North America",
+        "life_expectancy": 77.6,
+        "name": "Saint Pierre and Miquelon",
+        "population": 6320,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 26.8,
+        "capital": "Kingstown",
+        "code": "VC",
+        "continent": "North America",
+        "life_expectancy": 72.3,
+        "name": "Saint Vincent and the Grenadines",
+        "population": 109897,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 26.7,
+        "capital": "Apia",
+        "code": "WS",
+        "continent": "Oceania",
+        "life_expectancy": 69.2,
+        "name": "Samoa",
+        "population": 196440,
+        "population_density": 67.27
+    },
+    {
+        "avg_temperature": 11.85,
+        "capital": "San Marino",
+        "code": "SM",
+        "continent": "Europe",
+        "life_expectancy": 81.1,
+        "name": "San Marino",
+        "population": 33400,
+        "population_density": 524.13
+    },
+    {
+        "avg_temperature": 23.75,
+        "capital": "S",
+        "code": "ST",
+        "continent": "Africa",
+        "life_expectancy": 65.3,
+        "name": "Sao Tome and Principe",
+        "population": 204327,
+        "population_density": 201.03
+    },
+    {
+        "avg_temperature": 24.65,
+        "capital": "Riyadh",
+        "code": "SA",
+        "continent": "Asia",
+        "life_expectancy": 67.8,
+        "name": "Saudi Arabia",
+        "population": 32938213,
+        "population_density": 13.41
+    },
+    {
+        "avg_temperature": 27.85,
+        "capital": "Dakar",
+        "code": "SN",
+        "continent": "Africa",
+        "life_expectancy": 62.2,
+        "name": "Senegal",
+        "population": 15850567,
+        "population_density": 73.41
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "RS",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Serbia",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 27.15,
+        "capital": "Victoria",
+        "code": "SC",
+        "continent": "Africa",
+        "life_expectancy": 70.4,
+        "name": "Seychelles",
+        "population": 94737,
+        "population_density": 193.85
+    },
+    {
+        "avg_temperature": 26.05,
+        "capital": "Freetown",
+        "code": "SL",
+        "continent": "Africa",
+        "life_expectancy": 45.3,
+        "name": "Sierra Leone",
+        "population": 7557212,
+        "population_density": 84.4
+    },
+    {
+        "avg_temperature": 26.45,
+        "capital": "Singapore",
+        "code": "SG",
+        "continent": "Asia",
+        "life_expectancy": 80.1,
+        "name": "Singapore",
+        "population": 5708844,
+        "population_density": 7.0
+    },
+    {
+        "avg_temperature": 6.8,
+        "capital": "Bratislava",
+        "code": "SK",
+        "continent": "Europe",
+        "life_expectancy": 73.7,
+        "name": "Slovakia",
+        "population": 5447662,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 8.9,
+        "capital": "Ljubljana",
+        "code": "SI",
+        "continent": "Europe",
+        "life_expectancy": 74.9,
+        "name": "Slovenia",
+        "population": 2079976,
+        "population_density": 102.31
+    },
+    {
+        "avg_temperature": 25.65,
+        "capital": "Honiara",
+        "code": "SB",
+        "continent": "Oceania",
+        "life_expectancy": 71.3,
+        "name": "Solomon Islands",
+        "population": 611343,
+        "population_density": 20.05
+    },
+    {
+        "avg_temperature": 27.05,
+        "capital": "Mogadishu",
+        "code": "SO",
+        "continent": "Africa",
+        "life_expectancy": 46.2,
+        "name": "Somalia",
+        "population": 14742523,
+        "population_density": 16.73
+    },
+    {
+        "avg_temperature": 17.75,
+        "capital": "Pretoria",
+        "code": "ZA",
+        "continent": "Africa",
+        "life_expectancy": 51.1,
+        "name": "South Africa",
+        "population": 56717156,
+        "population_density": 43.68
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "GS",
+        "continent": "Antarctica",
+        "life_expectancy": null,
+        "name": "South Georgia and the South Sandwich Islands",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 11.5,
+        "capital": "Seoul",
+        "code": "KR",
+        "continent": "Asia",
+        "life_expectancy": 74.4,
+        "name": "South Korea",
+        "population": 50982212,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Juba",
+        "code": "SS",
+        "continent": "Africa",
+        "life_expectancy": null,
+        "name": "South Sudan",
+        "population": 12575714,
+        "population_density": 0.0
+    },
+    {
+        "avg_temperature": 13.3,
+        "capital": "Madrid",
+        "code": "ES",
+        "continent": "Europe",
+        "life_expectancy": 78.8,
+        "name": "Spain",
+        "population": 46354321,
+        "population_density": 93.52
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "LK",
+        "continent": "Asia",
+        "life_expectancy": null,
+        "name": "Sri Lanka",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 26.9,
+        "capital": "Khartum",
+        "code": "SD",
+        "continent": "Africa",
+        "life_expectancy": 56.6,
+        "name": "Sudan",
+        "population": 40533330,
+        "population_density": 20.73
+    },
+    {
+        "avg_temperature": 25.7,
+        "capital": "Paramaribo",
+        "code": "SR",
+        "continent": "South America",
+        "life_expectancy": 71.4,
+        "name": "Suriname",
+        "population": 563402,
+        "population_density": 3.46
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Longyearbyen",
+        "code": "SJ",
+        "continent": "Europe",
+        "life_expectancy": null,
+        "name": "Svalbard and Jan Mayen",
+        "population": 3200,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 21.4,
+        "capital": "Mbabane",
+        "code": "SZ",
+        "continent": "Africa",
+        "life_expectancy": 40.4,
+        "name": "Swaziland",
+        "population": 1008000,
+        "population_density": 72.65
+    },
+    {
+        "avg_temperature": 2.1,
+        "capital": "Stockholm",
+        "code": "SE",
+        "continent": "Europe",
+        "life_expectancy": 79.6,
+        "name": "Sweden",
+        "population": 9910701,
+        "population_density": 23.55
+    },
+    {
+        "avg_temperature": 5.5,
+        "capital": "Bern",
+        "code": "CH",
+        "continent": "Europe",
+        "life_expectancy": 79.6,
+        "name": "Switzerland",
+        "population": 8476005,
+        "population_density": 204.51
+    },
+    {
+        "avg_temperature": 17.75,
+        "capital": "Damascus",
+        "code": "SY",
+        "continent": "Asia",
+        "life_expectancy": 68.5,
+        "name": "Syria",
+        "population": 18269868,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 2.0,
+        "capital": "Dushanbe",
+        "code": "TJ",
+        "continent": "Asia",
+        "life_expectancy": 64.1,
+        "name": "Tajikistan",
+        "population": 8921343,
+        "population_density": 58.64
+    },
+    {
+        "avg_temperature": 22.35,
+        "capital": "Dodoma",
+        "code": "TZ",
+        "continent": "Africa",
+        "life_expectancy": 52.3,
+        "name": "Tanzania",
+        "population": 57310019,
+        "population_density": 55.6
+    },
+    {
+        "avg_temperature": 26.3,
+        "capital": "Bangkok",
+        "code": "TH",
+        "continent": "Asia",
+        "life_expectancy": 68.6,
+        "name": "Thailand",
+        "population": 69037513,
+        "population_density": 131.16
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "CD",
+        "continent": "Africa",
+        "life_expectancy": null,
+        "name": "The Democratic Republic of Congo",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "TL",
+        "continent": null,
+        "life_expectancy": null,
+        "name": "Timor-Leste",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 27.15,
+        "capital": "Lom",
+        "code": "TG",
+        "continent": "Africa",
+        "life_expectancy": 54.7,
+        "name": "Togo",
+        "population": 7797694,
+        "population_density": 125.34
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Fakaofo",
+        "code": "TK",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Tokelau",
+        "population": 1300,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 25.25,
+        "capital": "Nuku'alofa",
+        "code": "TO",
+        "continent": "Oceania",
+        "life_expectancy": 67.9,
+        "name": "Tonga",
+        "population": 108020,
+        "population_density": 146.28
+    },
+    {
+        "avg_temperature": 25.75,
+        "capital": "Port-of-Spain",
+        "code": "TT",
+        "continent": "North America",
+        "life_expectancy": 68.0,
+        "name": "Trinidad and Tobago",
+        "population": 1369125,
+        "population_density": 261.43
+    },
+    {
+        "avg_temperature": 19.2,
+        "capital": "Tunis",
+        "code": "TN",
+        "continent": "Africa",
+        "life_expectancy": 73.7,
+        "name": "Tunisia",
+        "population": 11532127,
+        "population_density": 70.07
+    },
+    {
+        "avg_temperature": 11.1,
+        "capital": "Ankara",
+        "code": "TR",
+        "continent": "Asia",
+        "life_expectancy": 71.0,
+        "name": "Turkey",
+        "population": 80745020,
+        "population_density": 97.36
+    },
+    {
+        "avg_temperature": 15.1,
+        "capital": "Ashgabat",
+        "code": "TM",
+        "continent": "Asia",
+        "life_expectancy": 60.9,
+        "name": "Turkmenistan",
+        "population": 5758075,
+        "population_density": 11.15
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Cockburn Town",
+        "code": "TC",
+        "continent": "North America",
+        "life_expectancy": 73.3,
+        "name": "Turks and Caicos Islands",
+        "population": 35446,
+        "population_density": 34.84
+    },
+    {
+        "avg_temperature": 28.0,
+        "capital": "Funafuti",
+        "code": "TV",
+        "continent": "Oceania",
+        "life_expectancy": 66.3,
+        "name": "Tuvalu",
+        "population": 11192,
+        "population_density": 329.2
+    },
+    {
+        "avg_temperature": 22.8,
+        "capital": "Kampala",
+        "code": "UG",
+        "continent": "Africa",
+        "life_expectancy": 42.9,
+        "name": "Uganda",
+        "population": 42862958,
+        "population_density": 188.07
+    },
+    {
+        "avg_temperature": 8.3,
+        "capital": "Kyiv",
+        "code": "UA",
+        "continent": "Europe",
+        "life_expectancy": 66.0,
+        "name": "Ukraine",
+        "population": 44222947,
+        "population_density": 78.52
+    },
+    {
+        "avg_temperature": 27.0,
+        "capital": "Abu Dhabi",
+        "code": "AE",
+        "continent": "Asia",
+        "life_expectancy": 74.1,
+        "name": "United Arab Emirates",
+        "population": 9400145,
+        "population_density": 111.8
+    },
+    {
+        "avg_temperature": 8.45,
+        "capital": "London",
+        "code": "GB",
+        "continent": "Europe",
+        "life_expectancy": 77.7,
+        "name": "United Kingdom",
+        "population": 66181585,
+        "population_density": 264.94
+    },
+    {
+        "avg_temperature": 8.55,
+        "capital": "Washington",
+        "code": "US",
+        "continent": "North America",
+        "life_expectancy": 77.1,
+        "name": "United States",
+        "population": 324459463,
+        "population_density": 34.56
+    },
+    {
+        "avg_temperature": null,
+        "capital": null,
+        "code": "UM",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "United States Minor Outlying Islands",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 17.55,
+        "capital": "Montevideo",
+        "code": "UY",
+        "continent": "South America",
+        "life_expectancy": 75.2,
+        "name": "Uruguay",
+        "population": 3456750,
+        "population_density": 19.47
+    },
+    {
+        "avg_temperature": 12.05,
+        "capital": "Toskent",
+        "code": "UZ",
+        "continent": "Asia",
+        "life_expectancy": 63.7,
+        "name": "Uzbekistan",
+        "population": 31910641,
+        "population_density": 71.09
+    },
+    {
+        "avg_temperature": 23.95,
+        "capital": "Port-Vila",
+        "code": "VU",
+        "continent": "Oceania",
+        "life_expectancy": 60.6,
+        "name": "Vanuatu",
+        "population": 276244,
+        "population_density": 20.74
+    },
+    {
+        "avg_temperature": 25.35,
+        "capital": "Caracas",
+        "code": "VE",
+        "continent": "South America",
+        "life_expectancy": 73.1,
+        "name": "Venezuela",
+        "population": 31977065,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 24.45,
+        "capital": "Hanoi",
+        "code": "VN",
+        "continent": "Asia",
+        "life_expectancy": 69.3,
+        "name": "Vietnam",
+        "population": 95540800,
+        "population_density": 289.32
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Road Town",
+        "code": "VG",
+        "continent": "North America",
+        "life_expectancy": null,
+        "name": "Virgin Islands, British",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Charlotte Amalie",
+        "code": "VI",
+        "continent": "North America",
+        "life_expectancy": null,
+        "name": "Virgin Islands, U.S.",
+        "population": null,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Mata-Utu",
+        "code": "WF",
+        "continent": "Oceania",
+        "life_expectancy": null,
+        "name": "Wallis and Futuna",
+        "population": 11773,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "El-Aai",
+        "code": "EH",
+        "continent": "Africa",
+        "life_expectancy": 49.8,
+        "name": "Western Sahara",
+        "population": 552628,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 23.85,
+        "capital": "Sanaa",
+        "code": "YE",
+        "continent": "Asia",
+        "life_expectancy": 59.8,
+        "name": "Yemen",
+        "population": 28250420,
+        "population_density": null
+    },
+    {
+        "avg_temperature": null,
+        "capital": "Beograd",
+        "code": "YU",
+        "continent": "Europe",
+        "life_expectancy": 72.4,
+        "name": "Yugoslavia",
+        "population": 10640000,
+        "population_density": null
+    },
+    {
+        "avg_temperature": 21.4,
+        "capital": "Lusaka",
+        "code": "ZM",
+        "continent": "Africa",
+        "life_expectancy": 37.2,
+        "name": "Zambia",
+        "population": 17094130,
+        "population_density": 19.56
+    },
+    {
+        "avg_temperature": 21.0,
+        "capital": "Harare",
+        "code": "ZW",
+        "continent": "Africa",
+        "life_expectancy": 37.8,
+        "name": "Zimbabwe",
+        "population": 16529904,
+        "population_density": 36.58
+    }
+]

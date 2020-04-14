@@ -1,0 +1,11 @@
+.ngx-datatable.dark {
+    .datatable-body-row,
+    .datatable-footer,
+    .datatable-header {
+        //background: $main-structure-background;
+    }
+
+    .datatable-footer {
+        display: none;
+    }
+}

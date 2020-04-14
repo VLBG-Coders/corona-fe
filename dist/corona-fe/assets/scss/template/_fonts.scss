@@ -1,0 +1,23 @@
+body {
+    color: $font-color;
+}
+
+.font-red {
+    color: $app-color-red;
+}
+
+.font-green {
+    color: $app-color-green;
+}
+
+.font-case-confirmed {
+    color: $case-color-confirmed;
+}
+
+.font-case-deaths {
+    color: $case-color-deaths;
+}
+
+.font-case-recovered {
+    color: $case-color-recovered;
+}

@@ -1,0 +1,186 @@
+/* Inspired by: http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/ */
+
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin transform($args...) {
+    -webkit-transform: $args;
+    -moz-transform: $args;
+    -ms-transform: $args;
+    -o-transform: $args;
+    transform: $args;
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin font-smooth {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+%clearfix {
+    *zoom: 1;
+
+    &:after,
+    &:before {
+        content: ' ';
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+%visuallyhidden {
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+@mixin box-shadow($args...) {
+    -webkit-box-shadow: $args;
+    -moz-box-shadow: $args;
+    box-shadow: $args;
+}
+
+@mixin fontawesome-icon($content, $font-size, $font-weight: 400) {
+    font-family: $fontawesome-font;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    content: $content;
+}
+
+@mixin fontawesome-icon-light($content, $font-size, $font-weight: 300) {
+    @include fontawesome-icon($content, $font-size, 300);
+}
+
+@mixin fontawesome-icon-solid($content, $font-size, $font-weight: 900) {
+    @include fontawesome-icon($content, $font-size, 900);
+}
+
+@mixin breakpoint-xlg {
+    @media only screen and (max-width: $breakpoint-xlg) {
+        @content;
+    }
+}
+
+@mixin breakpoint-lg {
+    @media only screen and (max-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin breakpoint-md {
+    @media only screen and (max-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin breakpoint-sm {
+    @media only screen and (max-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin breakpoint-xs {
+    @media only screen and (max-width: $breakpoint-xs) {
+        @content;
+    }
+}
+
+@mixin breakpoint-xxs {
+    @media only screen and (max-width: $breakpoint-xxs) {
+        @content;
+    }
+}
+
+@mixin breakpoint-tablet-portrait {
+    @media only screen and (min-device-width: $breakpoint-tablet-min-width) and (max-device-width: $breakpoint-tablet-max-width) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+    }
+}
+
+@mixin breakpoint-tablet-landscape {
+    @media only screen and (min-device-width: $breakpoint-tablet-min-width) and (max-device-width: $breakpoint-tablet-max-width) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+    }
+}
+
+@mixin breakpoint-phone-landscape {
+    @media only screen and (min-device-width: $breakpoint-phone-min-width) and (max-device-width: $breakpoint-phone-max-width) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@mixin no-appearance {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}

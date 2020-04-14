@@ -10,6 +10,12 @@ All updates are currently done manually.
 
 #### Step by step guide
 
+On your local machine:
+
+- `git pull`
+- `npm run deploy`
+- `git add . && git commit -m"new Release" && git push`
+
 Please log in to the server and follow these steps:
 
 - `cd /var/data/websites/corona-fe`
