@@ -1,7 +1,7 @@
 import { find, isEmpty } from 'lodash';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CasesDailyModel, CasesTotalModel } from '@app/models';
+import { ApiCasesTotalModel, CasesDailyModel, CasesTotalModel } from '@app/models';
 import { CoronaCasesApiService, CountriesApiService } from '@app/services/apis';
 import { GeoMapComponent } from '@app/components';
 
@@ -123,7 +123,7 @@ export class CountryDetailPage implements OnInit {
      *
      */
     private fetchCountryDetails(): void {
-        this.countriesApiService.getCountries(this.countryName).subscribe(
+        this.countriesApiService.getCountries(this.countryCode).subscribe(
             data => {
                 this.selectedCountry = data;
             }
@@ -135,7 +135,7 @@ export class CountryDetailPage implements OnInit {
      */
     private fetchDailyCasesByCountry(): void {
         this.casesByDayLoading = true;
-        this.coronaCasesApiService.getDailyCases(this.countryName).subscribe(
+        this.coronaCasesApiService.getDailyCases(this.countryCode).subscribe(
             (data: CasesDailyModel[]) => {
                 if (!data || !data.length) {
                     this.notEnoughDataError = true;
@@ -158,9 +158,9 @@ export class CountryDetailPage implements OnInit {
     private fetchTotalCasesByCountry(): void {
         this.isPageLoading = true;
         this.totalCasesLoading = true;
-        this.coronaCasesApiService.getTotalCases(this.countryName).subscribe(
-            (data: CasesTotalModel) => {
-                if (!data || isEmpty(data)) {
+        this.coronaCasesApiService.getTotalCases(this.countryCode).subscribe(
+            (data: ApiCasesTotalModel[]) => {
+                if (!data || isEmpty(data) || !data.length) {
                     this.totalCases = new CasesTotalModel;
                     this.notEnoughDataError = true;
                     this.totalCasesLoading = false;
@@ -170,7 +170,7 @@ export class CountryDetailPage implements OnInit {
                 }
 
                 this.notEnoughDataError = false;
-                this.totalCases = data;
+                this.totalCases = data[0].cases;
                 this.totalCasesLoading = false;
                 this.isPageLoading = false;
             }

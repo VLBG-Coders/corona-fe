@@ -8,7 +8,7 @@ import { AmchartService } from '@app/services';
 import { CasesTotalModel, CountryModel } from '@app/models';
 import { ChartBase } from '../chart-base';
 
-//am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_animated);
 
 @Component({
     selector: 'app-cases-map-chart',
@@ -27,20 +27,25 @@ export class CasesMapChartComponent extends ChartBase {
 
     private currentType = 'confirmed';
     private polygonSeries: am4maps.MapPolygonSeries;
+    private heatLegend: am4maps.HeatLegend;
     private buttons;
     private colorCodes = {
         confirmed: this.amchartService.config.CASES_CONFIRMED_COLOR,
         deaths: this.amchartService.config.CASES_DEATHS_COLOR,
         recovered: this.amchartService.config.CASES_RECOVERED_COLOR,
-        confirmedPerCapita: this.amchartService.config.CASES_CONFIRMED_COLOR,
-        deathsPerCapita: this.amchartService.config.CASES_DEATHS_COLOR
+        confirmedPerCapita: this.amchartService.config.CASES_CONFIRMED_PER_CAPITA_COLOR,
+        deathsPerCapita: this.amchartService.config.CASES_DEATHS_PER_CAPITA_COLOR
     };
     private colors = {
         confirmed: am4core.color(this.colorCodes.confirmed),
         deaths: am4core.color(this.colorCodes.deaths),
         recovered: am4core.color(this.colorCodes.recovered),
-        confirmedPerCapita: am4core.color(this.colorCodes.confirmed),
-        deathsPerCapita: am4core.color(this.colorCodes.deaths)
+        confirmedPerCapita: am4core.color(this.colorCodes.confirmedPerCapita),
+        deathsPerCapita: am4core.color(this.colorCodes.deathsPerCapita)
+    };
+    private heatMapConfig = {
+        min: 1.5,
+        max: -0.5
     };
 
     constructor(
@@ -65,7 +70,6 @@ export class CasesMapChartComponent extends ChartBase {
      */
     public drawChart(): void {
         this.polygonSeries.data = this._chartData;
-        //this.updateChartData();
     }
 
     /**
@@ -111,8 +115,8 @@ export class CasesMapChartComponent extends ChartBase {
         polygonSeries.heatRules.push({
             property: 'fill',
             target: polygonTemplate,
-            min: this.colors[this.currentType].brighten(2),
-            max: this.colors[this.currentType].brighten(-0.3)
+            min: this.colors[this.currentType].brighten(this.heatMapConfig.min),
+            max: this.colors[this.currentType].brighten(this.heatMapConfig.max)
         });
 
         // buttons container (active/confirmed/recovered/deaths)
@@ -124,14 +128,28 @@ export class CasesMapChartComponent extends ChartBase {
 
         if (!this.buttons) {
             this.buttons = {
-                confirmed: this.createButton('confirmed', this.colorCodes.confirmed, buttonsContainer),
-                deaths: this.createButton('deaths', this.colorCodes.deaths, buttonsContainer),
-                recovered: this.createButton('recovered', this.colorCodes.recovered, buttonsContainer),
-                confirmedPerCapita: this.createButton('confirmedPerCapita', this.colorCodes.confirmed, buttonsContainer),
-                deathsPerCapita: this.createButton('deathsPerCapita', this.colorCodes.deaths, buttonsContainer)
+                confirmed: this.createButton('confirmed', 'Confirmed', this.colorCodes.confirmed, buttonsContainer),
+                deaths: this.createButton('deaths', 'Deaths', this.colorCodes.deaths, buttonsContainer),
+                recovered: this.createButton('recovered', 'Recovered', this.colorCodes.recovered, buttonsContainer),
+                confirmedPerCapita: this.createButton('confirmedPerCapita', 'Confirmed per capita', this.colorCodes.confirmedPerCapita, buttonsContainer),
+                deathsPerCapita: this.createButton('deathsPerCapita', 'Deaths per capita', this.colorCodes.deathsPerCapita, buttonsContainer)
             };
         }
+
         this.buttons[this.currentType].isActive = true;
+
+        var heatLegend = chart.chartContainer.createChild(am4maps.HeatLegend);
+        heatLegend.valign = 'bottom';
+        heatLegend.align = 'left';
+        heatLegend.width = am4core.percent(30);
+        heatLegend.series = polygonSeries;
+        heatLegend.orientation = 'horizontal';
+        heatLegend.padding(20, 20, 20, 20);
+        heatLegend.valueAxis.renderer.labels.template.fontSize = 10;
+        heatLegend.valueAxis.renderer.minGridDistance = 40;
+        heatLegend.markerCount = 10;
+
+        this.heatLegend = heatLegend;
         this.polygonSeries = polygonSeries;
         this.chart = chart;
     }
@@ -139,9 +157,9 @@ export class CasesMapChartComponent extends ChartBase {
     /**
      *
      */
-    private createButton(name: string, color: string, container: am4core.Container): am4core.Button {
+    private createButton(name: string, translation: string, color: string, container: am4core.Container): am4core.Button {
         let button = container.createChild(am4core.Button);
-        button.label.text = name;
+        button.label.text = translation;
         button.label.valign = 'middle'
         button.label.fill = am4core.color('#000000');
         button.label.fontSize = '11px';
@@ -206,8 +224,10 @@ export class CasesMapChartComponent extends ChartBase {
             dataItem.mapPolygon.tooltipText = '{name}: ' + newValue;
         });
 
-        this.polygonSeries.heatRules.getIndex(0).min = this.colors[currentType].brighten(1);
-        this.polygonSeries.heatRules.getIndex(0).max = this.colors[currentType].brighten(-0.3);
+        this.polygonSeries.heatRules.getIndex(0).min = this.colors[currentType].brighten(this.heatMapConfig.min);
+        this.polygonSeries.heatRules.getIndex(0).max = this.colors[currentType].brighten(this.heatMapConfig.max);
+        this.heatLegend.minColor = this.colors[currentType].brighten(this.heatMapConfig.min);
+        this.heatLegend.maxColor = this.colors[currentType].brighten(this.heatMapConfig.max);
     }
 
     /**
@@ -227,16 +247,15 @@ export class CasesMapChartComponent extends ChartBase {
             item.deaths = item.cases.deaths;
             item.recovered = item.cases.recovered || 1;
 
-            item.confirmedPerCapita = 1;
-            item.deathsPerCapita = 1;
+            item.confirmedPerCapita = 0.001;
+            item.deathsPerCapita = 0.001;
             if (item.country.population) {
                 if (item.confirmed) {
-                    item.confirmedPerCapita = Math.round(item.confirmed / item.country.population * 100000) || 1;
+                    item.confirmedPerCapita = (item.confirmed / item.country.population * 1000000).toFixed(2);
                 }
                 if (item.deaths) {
-                    item.deathsPerCapita = Math.round(item.deaths / item.country.population * 100000) || 1;
+                    item.deathsPerCapita = (item.deaths / item.country.population * 1000000).toFixed(2);
                 }
-                console.log('--->', item.confirmedPerCapita);
             }
         }
     }

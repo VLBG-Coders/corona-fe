@@ -32,7 +32,7 @@ export class BaseApiService {
         }
 
         if (countryCode) {
-            requestParams.params['country'] = countryCode;
+            requestParams.params['code'] = countryCode;
         }
 
         return requestParams;
